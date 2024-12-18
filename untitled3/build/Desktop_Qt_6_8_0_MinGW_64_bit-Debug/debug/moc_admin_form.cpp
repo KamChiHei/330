@@ -36,13 +36,37 @@ namespace {
 struct qt_meta_stringdata_CLASSadmin_formENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSadmin_formENDCLASS = QtMocHelpers::stringData(
     "admin_form",
-    "switchPage",
+    "getRandomChar",
     "",
-    "on_pushButton_clicked",
-    "on_pushButton_2_clicked",
+    "getRandomDigit",
+    "generateCode",
+    "switchPage",
+    "addSeat",
+    "flightId",
+    "seatTypeId",
+    "seatAmount",
+    "addFlight",
+    "departurePlace",
+    "arrivalPlace",
+    "date",
+    "departureTime",
+    "arrivalTime",
+    "baseFare",
+    "seatAmountOfLvl1",
+    "seatAmountOfLvl2",
+    "seatAmountOfLvl3",
     "on_pushButton_4_clicked",
-    "on_pushButton_3_clicked",
-    "on_pushButton_5_clicked"
+    "delSeat",
+    "delFlightId",
+    "delFlight",
+    "on_pushButton_search_clicked",
+    "on_pushButton_delete_clicked",
+    "on_pushButton_add_clicked",
+    "on_pushButton_addFlight_clicked",
+    "on_pushButton_deleteFlight_clicked",
+    "on_pushButton_searchFlight_clicked",
+    "on_lineEdit_baseFare_editingFinished",
+    "on_pushButton_update_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -55,7 +79,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,14 +87,36 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x08,    1 /* Private */,
-       3,    0,   51,    2, 0x08,    2 /* Private */,
-       4,    0,   52,    2, 0x08,    3 /* Private */,
-       5,    0,   53,    2, 0x08,    4 /* Private */,
-       6,    0,   54,    2, 0x08,    5 /* Private */,
-       7,    0,   55,    2, 0x08,    6 /* Private */,
+       1,    0,  116,    2, 0x08,    1 /* Private */,
+       3,    0,  117,    2, 0x08,    2 /* Private */,
+       4,    0,  118,    2, 0x08,    3 /* Private */,
+       5,    0,  119,    2, 0x08,    4 /* Private */,
+       6,    3,  120,    2, 0x08,    5 /* Private */,
+      10,   10,  127,    2, 0x08,    9 /* Private */,
+      20,    0,  148,    2, 0x08,   20 /* Private */,
+      21,    1,  149,    2, 0x08,   21 /* Private */,
+      23,    1,  152,    2, 0x08,   23 /* Private */,
+      24,    0,  155,    2, 0x08,   25 /* Private */,
+      25,    0,  156,    2, 0x08,   26 /* Private */,
+      26,    0,  157,    2, 0x08,   27 /* Private */,
+      27,    0,  158,    2, 0x08,   28 /* Private */,
+      28,    0,  159,    2, 0x08,   29 /* Private */,
+      29,    0,  160,    2, 0x08,   30 /* Private */,
+      30,    0,  161,    2, 0x08,   31 /* Private */,
+      31,    0,  162,    2, 0x08,   32 /* Private */,
 
  // slots: parameters
+    QMetaType::Char,
+    QMetaType::Char,
+    QMetaType::QString,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,    7,    8,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    7,   11,   12,   13,   14,   15,   16,   17,   18,   19,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -90,17 +136,54 @@ Q_CONSTINIT const QMetaObject admin_form::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSadmin_formENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<admin_form, std::true_type>,
+        // method 'getRandomChar'
+        QtPrivate::TypeAndForceComplete<char, std::false_type>,
+        // method 'getRandomDigit'
+        QtPrivate::TypeAndForceComplete<char, std::false_type>,
+        // method 'generateCode'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'switchPage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_clicked'
+        // method 'addSeat'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_2_clicked'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'addFlight'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_pushButton_4_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_3_clicked'
+        // method 'delSeat'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_5_clicked'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'delFlight'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'on_pushButton_search_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_delete_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_add_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_addFlight_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_deleteFlight_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_searchFlight_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_lineEdit_baseFare_editingFinished'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_update_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -112,16 +195,29 @@ void admin_form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<admin_form *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->switchPage(); break;
-        case 1: _t->on_pushButton_clicked(); break;
-        case 2: _t->on_pushButton_2_clicked(); break;
-        case 3: _t->on_pushButton_4_clicked(); break;
-        case 4: _t->on_pushButton_3_clicked(); break;
-        case 5: _t->on_pushButton_5_clicked(); break;
+        case 0: { char _r = _t->getRandomChar();
+            if (_a[0]) *reinterpret_cast< char*>(_a[0]) = std::move(_r); }  break;
+        case 1: { char _r = _t->getRandomDigit();
+            if (_a[0]) *reinterpret_cast< char*>(_a[0]) = std::move(_r); }  break;
+        case 2: { QString _r = _t->generateCode();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 3: _t->switchPage(); break;
+        case 4: _t->addSeat((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[3]))); break;
+        case 5: _t->addFlight((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[9])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[10]))); break;
+        case 6: _t->on_pushButton_4_clicked(); break;
+        case 7: _t->delSeat((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->delFlight((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->on_pushButton_search_clicked(); break;
+        case 10: _t->on_pushButton_delete_clicked(); break;
+        case 11: _t->on_pushButton_add_clicked(); break;
+        case 12: _t->on_pushButton_addFlight_clicked(); break;
+        case 13: _t->on_pushButton_deleteFlight_clicked(); break;
+        case 14: _t->on_pushButton_searchFlight_clicked(); break;
+        case 15: _t->on_lineEdit_baseFare_editingFinished(); break;
+        case 16: _t->on_pushButton_update_clicked(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *admin_form::metaObject() const
@@ -143,13 +239,13 @@ int admin_form::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 17;
     }
     return _id;
 }

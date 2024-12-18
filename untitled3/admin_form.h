@@ -20,18 +20,39 @@ public:
 
 
 private slots:
-    void switchPage();
-    void on_pushButton_clicked();
+    char getRandomChar();
 
-    void on_pushButton_2_clicked();
+    char getRandomDigit();
+
+    QString generateCode() ;
+
+    void switchPage();
+
+    void addSeat(QString flightId,QString seatTypeId,int seatAmount);
+
+    void addFlight(QString flightId,QString departurePlace,QString arrivalPlace,QString date,QString departureTime,QString arrivalTime,int baseFare,int seatAmountOfLvl1,int seatAmountOfLvl2,int seatAmountOfLvl3);
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_3_clicked();
+    void delSeat(QString delFlightId);
 
-    void on_pushButton_5_clicked();
+    void delFlight(QString delFlightId);
 
-    void on_pushButton_6_clicked();
+    void on_pushButton_search_clicked();
+
+    void on_pushButton_delete_clicked();
+
+    void on_pushButton_add_clicked();
+
+    void on_pushButton_addFlight_clicked();
+
+    void on_pushButton_deleteFlight_clicked();
+
+    void on_pushButton_searchFlight_clicked();
+
+    void on_lineEdit_baseFare_editingFinished();
+
+    void on_pushButton_update_clicked();
 
 private:
     Ui::admin_form *ui;
