@@ -22,6 +22,10 @@ Refund::Refund(QWidget *parent,int i)
         m->setQuery(sql,db);
 
         ui->orders->setModel(m);
+        m->setHeaderData(0,Qt::Horizontal,"订单编号");
+        m->setHeaderData(1,Qt::Horizontal,"订单人");
+        m->setHeaderData(2,Qt::Horizontal,"座位号");
+        m->setHeaderData(3,Qt::Horizontal,"支付状态");
 
 
     }

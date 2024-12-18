@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="label">
@@ -142,12 +142,12 @@
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>0</hour>
+        <hour>16</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2024</year>
         <month>1</month>
-        <day>2</day>
+        <day>1</day>
        </datetime>
       </property>
      </widget>
@@ -747,7 +747,7 @@
      <x>0</x>
      <y>0</y>
      <width>1230</width>
-     <height>17</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

@@ -136,7 +136,7 @@ public:
         dateEdit_date = new QDateEdit(page);
         dateEdit_date->setObjectName("dateEdit_date");
         dateEdit_date->setGeometry(QRect(60, 60, 110, 22));
-        dateEdit_date->setDateTime(QDateTime(QDate(2024, 1, 2), QTime(0, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2024, 1, 1), QTime(16, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(300, 50, 113, 20));
@@ -300,7 +300,7 @@ public:
         admin_form->setCentralWidget(centralwidget);
         menubar = new QMenuBar(admin_form);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1230, 17));
+        menubar->setGeometry(QRect(0, 0, 1230, 24));
         admin_form->setMenuBar(menubar);
         statusbar = new QStatusBar(admin_form);
         statusbar->setObjectName("statusbar");
@@ -308,7 +308,7 @@ public:
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(admin_form);

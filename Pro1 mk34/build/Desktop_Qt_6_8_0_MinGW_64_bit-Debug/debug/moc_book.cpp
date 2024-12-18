@@ -38,6 +38,8 @@ constexpr auto qt_meta_stringdata_CLASSBookENDCLASS = QtMocHelpers::stringData(
     "Book",
     "back",
     "",
+    "cl",
+    "fin",
     "on_Back_clicked",
     "on_FindButton_clicked",
     "on_AllButton_clicked",
@@ -48,7 +50,6 @@ constexpr auto qt_meta_stringdata_CLASSBookENDCLASS = QtMocHelpers::stringData(
     "index",
     "on_Tickets_clicked",
     "on_flight_idEdit_textChanged",
-    "arg1",
     "on_fEdit_textChanged",
     "on_tEdit_textChanged"
 );
@@ -63,7 +64,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSBookENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,19 +72,21 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSBookENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   80,    2, 0x06,    1 /* Public */,
+       1,    0,   92,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       3,    0,   81,    2, 0x08,    2 /* Private */,
-       4,    0,   82,    2, 0x08,    3 /* Private */,
-       5,    0,   83,    2, 0x08,    4 /* Private */,
-       6,    0,   84,    2, 0x08,    5 /* Private */,
-       7,    0,   85,    2, 0x08,    6 /* Private */,
-       8,    1,   86,    2, 0x08,    7 /* Private */,
-      11,    1,   89,    2, 0x08,    9 /* Private */,
-      12,    1,   92,    2, 0x08,   11 /* Private */,
-      14,    1,   95,    2, 0x08,   13 /* Private */,
-      15,    1,   98,    2, 0x08,   15 /* Private */,
+       3,    0,   93,    2, 0x08,    2 /* Private */,
+       4,    0,   94,    2, 0x08,    3 /* Private */,
+       5,    0,   95,    2, 0x08,    4 /* Private */,
+       6,    0,   96,    2, 0x08,    5 /* Private */,
+       7,    0,   97,    2, 0x08,    6 /* Private */,
+       8,    0,   98,    2, 0x08,    7 /* Private */,
+       9,    0,   99,    2, 0x08,    8 /* Private */,
+      10,    1,  100,    2, 0x08,    9 /* Private */,
+      13,    1,  103,    2, 0x08,   11 /* Private */,
+      14,    0,  106,    2, 0x08,   13 /* Private */,
+      15,    0,  107,    2, 0x08,   14 /* Private */,
+      16,    0,  108,    2, 0x08,   15 /* Private */,
 
  // signals: parameters
     QMetaType::Void,
@@ -94,11 +97,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSBookENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 9,   10,
-    QMetaType::Void, 0x80000000 | 9,   10,
-    QMetaType::Void, QMetaType::QString,   13,
-    QMetaType::Void, QMetaType::QString,   13,
-    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void, 0x80000000 | 11,   12,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -113,6 +118,10 @@ Q_CONSTINIT const QMetaObject Book::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<Book, std::true_type>,
         // method 'back'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'cl'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'fin'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_Back_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -132,13 +141,10 @@ Q_CONSTINIT const QMetaObject Book::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>,
         // method 'on_flight_idEdit_textChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_fEdit_textChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_tEdit_textChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -150,16 +156,18 @@ void Book::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         (void)_t;
         switch (_id) {
         case 0: _t->back(); break;
-        case 1: _t->on_Back_clicked(); break;
-        case 2: _t->on_FindButton_clicked(); break;
-        case 3: _t->on_AllButton_clicked(); break;
-        case 4: _t->on_FindButton_ft_clicked(); break;
-        case 5: _t->on_BookButton_clicked(); break;
-        case 6: _t->on_Tickets_doubleClicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
-        case 7: _t->on_Tickets_clicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
-        case 8: _t->on_flight_idEdit_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 9: _t->on_fEdit_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 10: _t->on_tEdit_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 1: _t->cl(); break;
+        case 2: _t->fin(); break;
+        case 3: _t->on_Back_clicked(); break;
+        case 4: _t->on_FindButton_clicked(); break;
+        case 5: _t->on_AllButton_clicked(); break;
+        case 6: _t->on_FindButton_ft_clicked(); break;
+        case 7: _t->on_BookButton_clicked(); break;
+        case 8: _t->on_Tickets_doubleClicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 9: _t->on_Tickets_clicked((*reinterpret_cast< std::add_pointer_t<QModelIndex>>(_a[1]))); break;
+        case 10: _t->on_flight_idEdit_textChanged(); break;
+        case 11: _t->on_fEdit_textChanged(); break;
+        case 12: _t->on_tEdit_textChanged(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -193,13 +201,13 @@ int Book::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }

@@ -21,12 +21,15 @@ public:
     int id;
     explicit Book(QWidget *parent = nullptr,int id=0);
     ~Book();
+    QString flid;
     QString totxt;
     QString fromtxt;
 
 signals:
     void back();
 private slots:
+    void cl();
+    void fin();
     void on_Back_clicked();
     void on_FindButton_clicked();
 
@@ -42,11 +45,11 @@ private slots:
 
     void on_Tickets_clicked(const QModelIndex &index);
 
-    void on_flight_idEdit_textChanged(const QString &arg1);
+    void on_flight_idEdit_textChanged();
 
-    void on_fEdit_textChanged(const QString &arg1);
+    void on_fEdit_textChanged();
 
-    void on_tEdit_textChanged(const QString &arg1);
+    void on_tEdit_textChanged();
 
 private:
     Ui::Book *ui;

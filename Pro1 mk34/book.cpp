@@ -11,18 +11,31 @@ Book::Book(QWidget *parent,int i)
     ui->setupUi(this);
     db = QSqlDatabase::addDatabase("QODBC");
 
-    db.setDatabaseName("flight_ticket_system");    // ODBC 数据源名称
-    db.setHostName("127.0.0.1");
-    db.setPort(3306);
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    db.setPort(3306);                          // 端口号，默认
+    db.setDatabaseName("flight_ticket_system");
 
     if(db.open()){
         //QMessageBox::information(this,"连接提示","连接成功");
         m= new QSqlTableModel;
-        m->setTable("flight");
+
+
         n = new QSqlTableModel;
         n->setTable("seat_types");
         ui->Tickets->setModel(m);
+        m->setTable("flight");
+        m->setHeaderData(0,Qt::Horizontal,"航班号");
+        m->setHeaderData(1,Qt::Horizontal,"出发地");
+        m->setHeaderData(2,Qt::Horizontal,"到达地");
+        m->setHeaderData(3,Qt::Horizontal,"出发时间");
+        m->setHeaderData(4,Qt::Horizontal,"到达时间");
+        m->setHeaderData(5,Qt::Horizontal,"日期");
+        m->setHeaderData(6,Qt::Horizontal,"基础价位");
         ui->Seats_types->setModel(n);
+        n->setHeaderData(0,Qt::Horizontal,"座位类型编号");
+        n->setHeaderData(1,Qt::Horizontal,"座位类型");
+        n->setHeaderData(2,Qt::Horizontal,"升舱费");
         n->select();
 
 
@@ -30,7 +43,7 @@ Book::Book(QWidget *parent,int i)
     else {
         //QMessageBox::warning(this,"连接提示","连接失败");
     }
-   m->select();
+    m->select();
     connect(ui->flight_idEdit,SIGNAL(returnPressed()),this,SLOT(on_FindButton_clicked()));
     connect(ui->fEdit,SIGNAL(returnPressed()),this,SLOT(on_FindButton_ft_clicked()));
     connect(ui->tEdit,SIGNAL(returnPressed()),this,SLOT(on_FindButton_ft_clicked()));
@@ -181,45 +194,59 @@ void Book::on_Tickets_doubleClicked(const QModelIndex &index)
 
 
 
-    void Book::on_Tickets_clicked(const QModelIndex &index)
-    {
-        current=index;
-        qDebug()<<current;
+void Book::on_Tickets_clicked(const QModelIndex &index)
+{
+    current=index;
+    qDebug()<<current;
+}
+
+
+void Book::on_flight_idEdit_textChanged()
+{
+    this->flid =ui->flight_idEdit->text();
+    if(totxt==""&&fromtxt==""&&flid==""){
+        cl();
+        return ;
     }
+    fin();
+    qDebug() << flid;
+
+}
 
 
-    void Book::on_flight_idEdit_textChanged(const QString &arg1)
-    {
-        QString a=ui->flight_idEdit->text();
-        if(a==""){
-            return ;
-        }else{
-            QString queryString = QString("SELECT * FROM flight WHERE flight_id like '%%1%'").arg(a);
-            qDebug() << queryString;
-            m->setQuery(queryString, db);
-        }
-        qDebug() << a;
-        a="\"%"+a+"%\"";
-
+void Book::on_fEdit_textChanged()
+{
+    this->fromtxt = ui->fEdit->text().trimmed();
+    if(totxt==""&&fromtxt==""&&flid==""){
+        cl();
+        return ;
     }
+    fin();
+}
 
 
-    void Book::on_fEdit_textChanged(const QString &arg1)
-    {
-        this->fromtxt = ui->fEdit->text().trimmed();
-        QString queryString = QString("SELECT * FROM flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%'").arg(fromtxt,totxt);
-        qDebug() << queryString;
-        m->setQuery(queryString, db);
+
+
+void Book::on_tEdit_textChanged()
+{
+    this->totxt = ui->tEdit->text().trimmed();
+    if(totxt==""&&fromtxt==""&&flid==""){
+        cl();
+        return ;
     }
+    fin();
 
 
+}
 
+void Book::cl(){
+    QString queryString = QString("SELECT * FROM flight ");
+    qDebug() << queryString;
+    m->setQuery(queryString, db);
+}
 
-    void Book::on_tEdit_textChanged(const QString &arg1)
-    {
-        this->totxt = ui->tEdit->text().trimmed();
-        QString queryString = QString("SELECT * FROM flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%'").arg(fromtxt,totxt);
-        qDebug() << queryString;
-        m->setQuery(queryString, db);
-    }
-
+void Book::fin(){
+    QString queryString = QString("SELECT * FROM flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND flight_id like '%%3%'").arg(fromtxt,totxt,flid);
+    qDebug() << queryString;
+    m->setQuery(queryString, db);
+}
