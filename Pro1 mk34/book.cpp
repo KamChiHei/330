@@ -175,6 +175,9 @@ void Book::on_BookButton_clicked()
 
 void Book::on_Tickets_doubleClicked(const QModelIndex &index)
 {
+
+    changeHead();
+
     qDebug()<<"双击一次";
     int a=index.row();
     QModelIndex i = m->index(a, 0);
@@ -203,6 +206,8 @@ void Book::on_Tickets_clicked(const QModelIndex &index)
 
 void Book::on_flight_idEdit_textChanged()
 {
+    changeHead1();
+
     this->flid =ui->flight_idEdit->text();
     if(totxt==""&&fromtxt==""&&flid==""){
         cl();
@@ -216,6 +221,7 @@ void Book::on_flight_idEdit_textChanged()
 
 void Book::on_fEdit_textChanged()
 {
+    changeHead1();
     this->fromtxt = ui->fEdit->text().trimmed();
     if(totxt==""&&fromtxt==""&&flid==""){
         cl();
@@ -229,6 +235,7 @@ void Book::on_fEdit_textChanged()
 
 void Book::on_tEdit_textChanged()
 {
+    changeHead1();
     this->totxt = ui->tEdit->text().trimmed();
     if(totxt==""&&fromtxt==""&&flid==""){
         cl();
@@ -249,4 +256,20 @@ void Book::fin(){
     QString queryString = QString("SELECT * FROM flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND flight_id like '%%3%'").arg(fromtxt,totxt,flid);
     qDebug() << queryString;
     m->setQuery(queryString, db);
+}
+void Book::changeHead1(){
+    m->setHeaderData(0,Qt::Horizontal,"航班号");
+    m->setHeaderData(1,Qt::Horizontal,"出发地");
+    m->setHeaderData(2,Qt::Horizontal,"到达地");
+    m->setHeaderData(3,Qt::Horizontal,"出发时间");
+    m->setHeaderData(4,Qt::Horizontal,"到达时间");
+    m->setHeaderData(5,Qt::Horizontal,"日期");
+    m->setHeaderData(6,Qt::Horizontal,"基础价位");
+}
+void Book::changeHead(){
+    m->setHeaderData(0,Qt::Horizontal,"座位id");
+    m->setHeaderData(1,Qt::Horizontal,"航班号");
+    m->setHeaderData(2,Qt::Horizontal,"座位类型");
+    m->setHeaderData(3,Qt::Horizontal,"座位号");
+    m->setHeaderData(4,Qt::Horizontal,"座位状态");
 }

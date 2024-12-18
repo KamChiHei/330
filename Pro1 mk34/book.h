@@ -28,6 +28,8 @@ public:
 signals:
     void back();
 private slots:
+    void changeHead();
+    void changeHead1();
     void cl();
     void fin();
     void on_Back_clicked();
