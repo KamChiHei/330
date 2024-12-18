@@ -1,0 +1,15 @@
+debug/admin_form.o
+debug/book.o
+debug/del_user.o
+debug/login.o
+debug/main.o
+debug/refund.o
+debug/register_form.o
+debug/user_form.o
+debug/moc_admin_form.o
+debug/moc_book.o
+debug/moc_del_user.o
+debug/moc_login.o
+debug/moc_refund.o
+debug/moc_register_form.o
+debug/moc_user_form.o

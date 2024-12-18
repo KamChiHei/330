@@ -1,0 +1,15 @@
+release/admin_form.o
+release/book.o
+release/del_user.o
+release/login.o
+release/main.o
+release/refund.o
+release/register_form.o
+release/user_form.o
+release/moc_admin_form.o
+release/moc_book.o
+release/moc_del_user.o
+release/moc_login.o
+release/moc_refund.o
+release/moc_register_form.o
+release/moc_user_form.o

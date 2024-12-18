@@ -1,0 +1,98 @@
+#include "refund.h"
+#include "qsqltablemodel.h"
+#include "ui_refund.h"
+
+Refund::Refund(QWidget *parent,int i)
+    : QWidget(parent)
+    , ui(new Ui::Refund)
+{
+    id=i;
+    ui->setupUi(this);
+    db = QSqlDatabase::addDatabase("QODBC");
+
+    db.setDatabaseName("flight_ticket_system");
+    db.setHostName("127.0.0.1");
+    db.setPort(3306);
+    if(db.open()){
+        QMessageBox::information(this,"连接提示","连接成功");
+        m= new QSqlTableModel;
+        m->setTable("orders");
+
+        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        m->setQuery(sql,db);
+
+        ui->orders->setModel(m);
+
+
+    }
+    else {
+        QMessageBox::warning(this,"连接提示","连接失败");
+    }
+
+}
+
+Refund::~Refund()
+{
+    delete ui;
+}
+
+void Refund::on_pushButton_clicked()
+{
+    if(db.isOpen()){
+        QMessageBox::information(this,"!","关闭成功！");
+        db.close();}
+    emit this->back();
+
+}
+
+
+void Refund::on_Tickets_clicked()
+{
+
+    QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+    m->setQuery(sql,db);
+}
+
+
+void Refund::on_orders_clicked(const QModelIndex &index)
+{
+    current=index;
+    qDebug()<<current;
+}
+
+
+void Refund::on_cancelButton_clicked()
+{
+    if(current.isValid()){
+
+
+
+        qDebug()<<id;
+        int a=current.row();
+        QModelIndex k = m->index(a,0),i = m->index(a, 2),j = m->index(a,3);
+        QVariant data0 = m->data(k),data2 = m->data(i),data3= m->data(j);
+        int seatid=data2.toInt();
+        int orderid=data0.toInt();
+        QString ordersta=data3.toString();
+
+
+        QString query = QString("UPDATE `flight_ticket_system`.`seats` SET `seatchoosed` = '0' WHERE (`seat_id` = '%1');").arg(seatid);
+        qDebug() << query;
+        m->setQuery(query, db);
+
+
+        QString query2 = QString("UPDATE `flight_ticket_system`.`orders` SET `order_status` = '已取消' WHERE (`order_id` = '%1');").arg(orderid);
+        qDebug() << query2;
+        m->setQuery(query2, db);
+
+        QMessageBox::information(this,"退票提示","退票成功！");
+
+
+        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        m->setQuery(sql,db);
+
+
+        current=QModelIndex();
+    }
+}
+
