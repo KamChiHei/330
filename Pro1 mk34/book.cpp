@@ -11,7 +11,7 @@ Book::Book(QWidget *parent,int i)
     ui->setupUi(this);
     db = QSqlDatabase::addDatabase("QODBC");
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+
     db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
     db.setPort(3306);                          // 端口号，默认
     db.setDatabaseName("flight_ticket_system");

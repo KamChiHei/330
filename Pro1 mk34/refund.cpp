@@ -100,3 +100,41 @@ void Refund::on_cancelButton_clicked()
     }
 }
 
+
+void Refund::on_changeButton_clicked()
+{
+
+
+
+
+    this->c = new change();
+    connect(this->c,&change::back,[=](){
+        // db.open();
+        this->c->hide();
+        this->show();
+    });
+    c->getdatabase(db);
+    if(current.isValid()){
+
+
+
+        qDebug()<<id;
+        int a=current.row();
+        QModelIndex k = m->index(a,0),i = m->index(a, 2),j = m->index(a,3);
+        QVariant data0 = m->data(k),data2 = m->data(i),data3= m->data(j);
+        int seatid=data2.toInt();
+        int orderid=data0.toInt();
+        qDebug()<<orderid<<seatid;
+        c->getinfo(orderid,seatid);
+
+    }
+
+    // db.close();
+    // if(!db.isOpen()){
+    //     QMessageBox::information(this,"!","关闭成功");
+    // }
+
+    this->hide();
+    this->c->show();
+}
+

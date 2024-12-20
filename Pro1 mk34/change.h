@@ -2,6 +2,8 @@
 #define CHANGE_H
 
 #include <QWidget>
+#include <QtSql/QSqlDatabase>
+#include<QMessageBox>
 
 namespace Ui {
 class change;
@@ -21,13 +23,18 @@ public:
     int fee;
     QString newflid;
     void getinfo(int orderid,int seatid);
+    QSqlDatabase dbc;
+    void getdatabase(QSqlDatabase d);
 
+signals:
+    void back();
 private slots:
     void on_mytable_itemSelectionChanged();
 
     void on_ensureB_clicked();
 
     void on_cancelB_clicked();
+
 
 private:
     Ui::change *ui;

@@ -23,22 +23,30 @@ change::change(QWidget *parent)
     ui->mytable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     ui->mytable->setSelectionMode(QAbstractItemView::SingleSelection);  // 只能选中一项
-    ui->mytable->setSelectionBehavior(QAbstractItemView::SelectRows);   // 选中整行
+    ui->mytable->setSelectionBehavior(QAbstractItemView::SelectRows);  // 选中整行
 
-    //connect with SQL
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
-    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
-    db.setPort(3306);                          // 端口号，默认
-    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
-    db.setUserName("root");
-    db.setPassword("admin");
-    db.open();
+
+
+    /*dbc = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    dbc.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    dbc.setPort(3306);                          // 端口号，默认
+    dbc.setDatabaseName("flight_ticket_system"); */          // ODBC 数据源名称
+
+    // if(dbc.isOpen()){
+    //     QMessageBox::information(this,"连接提","连接成功");
+
+
+    // }
+    // else {
+    //     QMessageBox::warning(this,"连接提示","连接失败");
+    // }
+
 
     //显示可改签的票
 
     QString opt = QString("select * from flight where departure_place like %1 AND arrival_place like %2").arg(from,to);
-    QSqlQuery qopt(db);
-    qopt.exec();
+    QSqlQuery qopt(dbc);
+    qopt.exec(opt);
     while(qopt.next()){
 
         for(int i = 0;i<=7;i++){
@@ -55,37 +63,28 @@ change::~change()
     delete ui;
 }
 
+void change::getdatabase(QSqlDatabase d){
+    dbc=d;
+}
+
 void change::getinfo(int oid,int sid){
     orderid = oid;
     seatid = sid;
+    qDebug()<<orderid<<seatid;
 
-    //connect with SQL
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
-    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
-    db.setPort(3306);                          // 端口号，默认
-    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
-    db.setUserName("root");
-    db.setPassword("admin");
-    db.open();
+    // QString opt = QString("select flight_id from seats where seats_id=%1").arg(seatid);
+    // QSqlQuery qopt(dbc);
+    // qopt.exec(opt);
+    // qopt.next();
+    // QString flid = qopt.value(0).toString();
 
-    //SQL 删除
+    // opt = QString("select departure_place,arrival_place,base_fare from flight where seats_id=%1").arg(flid);
+    // qopt.exec(opt);
+    // qopt.next();
+    // from = qopt.value(0).toString();
+    // to = qopt.value(1).toString();
+    // fee = qopt.value(2).toInt();
 
-    QString opt = QString("select flight_id from seats where seats_id=%1").arg(seatid);
-    QSqlQuery qopt(db);
-    qopt.exec(opt);
-    qopt.next();
-    QString flid = qopt.value(0).toString();
-
-    opt = QString("select departure_place,arrival_place,base_fare from flight where seats_id=%1").arg(flid);
-    qopt.exec(opt);
-    qopt.next();
-    from = qopt.value(0).toString();
-    to = qopt.value(1).toString();
-    fee = qopt.value(2).toInt();
-
-
-    //disconnect
-    db.close();
 }
 
 void change::on_mytable_itemSelectionChanged()
@@ -102,17 +101,10 @@ void change::on_mytable_itemSelectionChanged()
 
 void change::on_ensureB_clicked()
 {
-    //connect with SQL
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
-    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
-    db.setPort(3306);                          // 端口号，默认
-    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
-    db.setUserName("root");
-    db.setPassword("admin");
-    db.open();
+
 
     QString opt = QString("select seat_id from seats where flight_id ='%1").arg(newflid);
-    QSqlQuery qopt(db);
+    QSqlQuery qopt(dbc);
     qopt.exec(opt);
     qopt.next();
     int newsid = qopt.value(0).toInt();
@@ -127,6 +119,7 @@ void change::on_ensureB_clicked()
 
 void change::on_cancelB_clicked()
 {
-    this->close();
+
+    emit this->back();
 }
 

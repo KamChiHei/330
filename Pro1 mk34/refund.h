@@ -8,6 +8,8 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 
+#include <change.h>
+
 namespace Ui {
 class Refund;
 }
@@ -30,11 +32,14 @@ private slots:
 
     void on_cancelButton_clicked();
 
+    void on_changeButton_clicked();
+
 private:
     Ui::Refund *ui;
     QSqlTableModel *m;
     QSqlDatabase db;
     QModelIndex current;
+    change* c;
 };
 
 #endif // REFUND_H
