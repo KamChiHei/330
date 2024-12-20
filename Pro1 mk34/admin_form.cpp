@@ -143,11 +143,26 @@ void admin_form::addFlight(QString flightId,QString departurePlace,QString arriv
     db.close();
 }
 
+void admin_form::clear(){
+    ui->dateEdit_date->setDate(QDate(2024,1,1));
+    ui->lineEdit_departurePlace->clear();
+    ui->lineEdit_arrivalPlace->clear();
+    ui->lineEdit_flightId->clear();
+    ui->lineEdit_baseFare->clear();
+    ui->lineEdit_moneyOfLvl2->clear();
+    ui->lineEdit_moneyOfLvl3->clear();
+    ui->lineEdit_seatAmountOfLvl1->clear();
+    ui->lineEdit_seatAmountOfLvl2->clear();
+    ui->lineEdit_seatAmountOfLvl3->clear();
+    ui->timeEdit_arrivalTime->setTime(QTime(0,0));
+    ui->timeEdit_departureTime->setTime(QTime(0,0));
+}
 void admin_form::on_pushButton_add_clicked()
 {
     QString flightId=ui->lineEdit_flightId->text(),departurePlace=ui->lineEdit_departurePlace->text(),arrivalPlace=ui->lineEdit_arrivalPlace->text(),date=ui->dateEdit_date->date().toString("yyyy-MM-dd"),departureTime=ui->timeEdit_departureTime->time().toString(),arrivalTime=ui->timeEdit_arrivalTime->time().toString();
     int baseFare=ui->lineEdit_baseFare->text().toInt(),seatAmountOfLvl1=ui->lineEdit_seatAmountOfLvl1->text().toInt(),seatAmountOfLvl2=ui->lineEdit_seatAmountOfLvl2->text().toInt(),seatAmountOfLvl3=ui->lineEdit_seatAmountOfLvl3->text().toInt();
     addFlight(flightId,departurePlace,arrivalPlace,date,departureTime,arrivalTime,baseFare,seatAmountOfLvl1,seatAmountOfLvl2,seatAmountOfLvl3);
+    clear();
 }
 
 
@@ -179,12 +194,17 @@ void  admin_form::delFlight(QString delFlightId){
     query.exec(sql);
     qDebug()<<sql;
     db.close();
+
 }
 
+void admin_form::clear2(){
+    ui->lineEdit_delFlightId->clear();
+}
 void admin_form::on_pushButton_delete_clicked()
 {
     QString delFlightId=ui->lineEdit_delFlightId->text();
     delFlight(delFlightId);
+    clear2();
 }
 
 
@@ -288,7 +308,15 @@ void admin_form::on_lineEdit_baseFare_editingFinished()
     }
 }
 
-
+void admin_form::clear3(){
+    ui->lineEdit_needToUpdateFlightId->clear();
+    ui->lineEdit_needToUpdateArrivalPlace->clear();
+    ui->timeEdit_needToUpdateArrivalTime->setTime(QTime(0,0));
+    ui->lineEdit_needToUpdateBaseFare->clear();
+    ui->lineEdit_needToUpdateDeparturePlace->clear();
+    ui->timeEdit_needToUpdateDepartureTime->clear();
+    ui->dateEdit_needToUpdateDate->setDate(QDate(2024,1,1));
+}
 void admin_form::on_pushButton_update_clicked()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
@@ -302,6 +330,7 @@ void admin_form::on_pushButton_update_clicked()
     qDebug()<<sql;
     query.exec(sql);
     db.close();
+    clear3();
 }
 
 
