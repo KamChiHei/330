@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     admin_form.cpp \
     book.cpp \
+    change.cpp \
     del_user.cpp \
     login.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     admin_form.h \
     book.h \
+    change.h \
     del_user.h \
     login.h \
     refund.h \
@@ -30,6 +32,7 @@ HEADERS += \
 FORMS += \
     admin_form.ui \
     book.ui \
+    change.ui \
     del_user.ui \
     login.ui \
     refund.ui \
