@@ -55,19 +55,6 @@
     <string>退票</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>250</y>
-     <width>56</width>
-     <height>18</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>改签</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>
