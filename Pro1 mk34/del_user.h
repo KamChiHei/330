@@ -1,6 +1,7 @@
 #ifndef DEL_USER_H
 #define DEL_USER_H
 
+#include <QtSql/QSqlDatabase>
 #include <QWidget>
 
 namespace Ui {
@@ -16,7 +17,8 @@ public:
     ~del_user();
     void Dgetinfo(int id=0,QString uname="");
     int uid;
-
+    void setdatabase(QSqlDatabase  d);
+    QSqlDatabase dbd;
 private slots:
     void on_delButton_clicked();
 

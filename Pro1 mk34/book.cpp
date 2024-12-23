@@ -32,10 +32,7 @@ Book::Book(QWidget *parent,int i)
         m->setHeaderData(4,Qt::Horizontal,"到达时间");
         m->setHeaderData(5,Qt::Horizontal,"日期");
         m->setHeaderData(6,Qt::Horizontal,"基础价位");
-        ui->Seats_types->setModel(n);
-        n->setHeaderData(0,Qt::Horizontal,"座位类型编号");
-        n->setHeaderData(1,Qt::Horizontal,"座位类型");
-        n->setHeaderData(2,Qt::Horizontal,"升舱费");
+
         n->select();
 
 

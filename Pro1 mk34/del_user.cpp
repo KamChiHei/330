@@ -51,3 +51,6 @@ void del_user::on_nodelButton_clicked()
     this->close();
 }
 
+void del_user::setdatabase(QSqlDatabase  d){
+    dbd=d;
+}

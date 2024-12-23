@@ -26,35 +26,9 @@ change::change(QWidget *parent)
     ui->mytable->setSelectionBehavior(QAbstractItemView::SelectRows);  // 选中整行
 
 
-
-    /*dbc = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
-    dbc.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
-    dbc.setPort(3306);                          // 端口号，默认
-    dbc.setDatabaseName("flight_ticket_system"); */          // ODBC 数据源名称
-
-    // if(dbc.isOpen()){
-    //     QMessageBox::information(this,"连接提","连接成功");
+   // 显示可改签的票
 
 
-    // }
-    // else {
-    //     QMessageBox::warning(this,"连接提示","连接失败");
-    // }
-
-
-    //显示可改签的票
-
-    QString opt = QString("select * from flight where departure_place like %1 AND arrival_place like %2").arg(from,to);
-    QSqlQuery qopt(dbc);
-    qopt.exec(opt);
-    while(qopt.next()){
-
-        for(int i = 0;i<=7;i++){
-            ui->mytable->setRowCount(ui->mytable->rowCount()+1);
-            ui->mytable->setItem(ui->mytable->rowCount(),i,new QTableWidgetItem(qopt.value(i).toString()));
-            ui->mytable->item(ui->mytable->rowCount(),i)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
-        }
-    }
 
 }
 
@@ -72,19 +46,34 @@ void change::getinfo(int oid,int sid){
     seatid = sid;
     qDebug()<<orderid<<seatid;
 
-    // QString opt = QString("select flight_id from seats where seats_id=%1").arg(seatid);
-    // QSqlQuery qopt(dbc);
-    // qopt.exec(opt);
-    // qopt.next();
-    // QString flid = qopt.value(0).toString();
+    QString opt = QString("select flight_id from seats where seat_id= %1").arg(seatid);
+    QSqlQuery qopt(dbc);
+    qopt.exec(opt);
+    qopt.next();
+    QString flid = qopt.value(0).toString();
+    qDebug()<<flid;
 
-    // opt = QString("select departure_place,arrival_place,base_fare from flight where seats_id=%1").arg(flid);
-    // qopt.exec(opt);
-    // qopt.next();
-    // from = qopt.value(0).toString();
-    // to = qopt.value(1).toString();
-    // fee = qopt.value(2).toInt();
+    QString opt0 = QString("select departure_place,arrival_place,base_fare from flight where flight_id = '%1'").arg(flid);
+    qopt.exec(opt0);
+    qopt.next();
+    from = qopt.value(0).toString();
+    to = qopt.value(1).toString();
+    fee = qopt.value(2).toInt();
+    qDebug()<<from<<to<<fee;
 
+    QString opt2 = QString("SELECT * FROM flight WHERE departure_place LIKE '%1%' AND arrival_place LIKE '%2%'").arg(from).arg(to);
+    QSqlQuery qopt2(dbc);
+    if (qopt2.exec(opt2)) {
+        while (qopt2.next()) {
+            int currentRowCount = ui->mytable->rowCount();
+            ui->mytable->setRowCount(currentRowCount + 1);
+            for (int i = 0; i < 7; i++) {
+                QTableWidgetItem *item = new QTableWidgetItem(qopt2.value(i).toString());
+                ui->mytable->setItem(currentRowCount, i, item);
+                item->setTextAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+            }
+        }
+    }
 }
 
 void change::on_mytable_itemSelectionChanged()
@@ -103,14 +92,16 @@ void change::on_ensureB_clicked()
 {
 
 
-    QString opt = QString("select seat_id from seats where flight_id ='%1").arg(newflid);
+    QString opt = QString("select seat_id from seats where flight_id = '%1'").arg(newflid);
     QSqlQuery qopt(dbc);
     qopt.exec(opt);
     qopt.next();
     int newsid = qopt.value(0).toInt();
+    qDebug()<<newsid;
 
 
-    opt = QString("update orders set seat_id = '%1' WHERE seat_id like '%1'").arg(newsid,seatid);
+    opt = QString("update orders set seat_id = %1 WHERE seat_id = %2").arg(newsid).arg(seatid);
+    qDebug()<<opt;
     qopt.exec(opt);
 
     ui->label->show();

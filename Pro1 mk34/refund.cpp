@@ -125,7 +125,7 @@ void Refund::on_changeButton_clicked()
         int seatid=data2.toInt();
         int orderid=data0.toInt();
         qDebug()<<orderid<<seatid;
-        c->getinfo(orderid,seatid);
+         c->getinfo(orderid,seatid);
 
     }
 

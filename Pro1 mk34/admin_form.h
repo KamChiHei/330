@@ -20,12 +20,6 @@ public:
 
 
 private slots:
-    void clear();
-
-    void clear2();
-
-    void clear3();
-
     char getRandomChar();
 
     char getRandomDigit();

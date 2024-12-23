@@ -23,6 +23,7 @@ public:
     //
     Book* b=NULL;
     Refund* r=NULL;
+    QSqlDatabase  dbu;
 
 
 private slots:
