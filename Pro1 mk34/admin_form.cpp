@@ -23,14 +23,91 @@ admin_form::admin_form(QWidget *parent)
 
     //设置行与列
     ui->tableWidget->setColumnCount(9);
-
+    ui->tableWidget->setRowCount(0);
     //创建表头
     ui->tableWidget->setHorizontalHeaderLabels(labels);
 
     //设置为只读模式
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    db.setPort(3306);                          // 端口号，默认
+    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
+    db.open();
+    ui->tableWidget->clearContents();
+    QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight ");//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
 
+        while(query.next())
+        {
+
+            ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            int moneyOfLvl2= query.value(3).toInt()*2;
+            int moneyOfLvl3=query.value(3).toInt()*3;
+            QString s = QString::number(moneyOfLvl2);
+            QString q = QString::number(moneyOfLvl3);
+
+            ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+            ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+            ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            QSqlQuery query1;
+            QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+            query1.prepare(sql);
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+            query1.prepare(sqll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+            query1.prepare(sqlll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+            i++;
+        }
+
+    }
+    db.close();
 }
 
 admin_form::~admin_form()
@@ -214,8 +291,132 @@ void admin_form::on_pushButton_delete_clicked()
 
 
 
-void admin_form::on_pushButton_search_clicked()
+// void admin_form::on_pushButton_search_clicked()
+// {
+//     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+//     db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+//     db.setPort(3306);                          // 端口号，默认
+//     db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
+//     db.open();
+//     ui->tableWidget->clearContents();
+//     QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
+//     QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight where departure_place='%1'and arrival_place='%2'and date='%3';").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+//     qDebug()<<sqlstr;
+//     QSqlQuery query(db);
+//     query.prepare(sqlstr);//准备
+//     int i=0;
+//      if(query.exec())
+//      {
+
+//          while(query.next())
+//         {
+
+//             ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+//              ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+//             ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+//             ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+//              ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+//              ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+//        ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+//              ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+//              int moneyOfLvl2= query.value(3).toInt()*2;
+//              int moneyOfLvl3=query.value(3).toInt()*3;
+//              QString s = QString::number(moneyOfLvl2);
+//             QString q = QString::number(moneyOfLvl3);
+
+//              ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+
+//         ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+//             ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+//              QSqlQuery query1;
+//              QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+//              query1.prepare(sql);
+//              if(query1.exec()){
+//                  while(query1.next()){
+//                      ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+//                     ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+//                  }
+//            }
+
+//             QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+//              query1.prepare(sqll);
+
+//              if(query1.exec()){
+//                 while(query1.next()){
+//                      ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+//                      ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+//                 }
+//            }
+//             QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+//             query1.prepare(sqlll);
+
+//              if(query1.exec()){
+//                 while(query1.next()){
+//                      ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+//                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+//                }
+//             }
+//             i++;
+//         }
+
+//      }
+//      db.close();
+// }
+
+
+
+
+
+
+void admin_form::on_lineEdit_baseFare_editingFinished()
 {
+    int seatMoneyOfLvl2=ui->lineEdit_baseFare->text().toInt()*2;
+    int seatMoneyOfLvl3=ui->lineEdit_baseFare->text().toInt()*3;
+    QString s = QString::number(seatMoneyOfLvl2);
+    QString q = QString::number(seatMoneyOfLvl3);
+    if(!ui->lineEdit_baseFare->text().isEmpty()){
+        ui->lineEdit_moneyOfLvl2->setText(s);
+        ui->lineEdit_moneyOfLvl3->setText(q);
+    }
+}
+
+void admin_form::clear3(){
+    ui->lineEdit_needToUpdateFlightId->clear();
+    ui->lineEdit_needToUpdateArrivalPlace->clear();
+    ui->timeEdit_needToUpdateArrivalTime->setTime(QTime(0,0));
+    ui->lineEdit_needToUpdateBaseFare->clear();
+    ui->lineEdit_needToUpdateDeparturePlace->clear();
+    ui->timeEdit_needToUpdateDepartureTime->clear();
+    ui->dateEdit_needToUpdateDate->setDate(QDate(2024,1,1));
+}
+
+void admin_form::on_pushButton_update_clicked()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    db.setPort(3306);                          // 端口号，默认
+    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
+    db.open();
+    QSqlQuery query(db);
+    QString needToUpdateFlightId=ui->lineEdit_needToUpdateFlightId->text(),needToUpdateDate=ui->dateEdit_needToUpdateDate->date().toString("yyyy-MM-dd"),needToUpdateDepartureTime=ui->timeEdit_needToUpdateDepartureTime->text(),needToUpdateArrivalTime=ui->timeEdit_needToUpdateArrivalTime->text(),needToUpdateDeparturePlace=ui->lineEdit_needToUpdateDeparturePlace->text(),needToUpdateArrivalPlace=ui->lineEdit_needToUpdateArrivalPlace->text(),needToUpdateBaseFare=ui->lineEdit_needToUpdateBaseFare->text();
+    QString sql=QString("UPDATE flight SET date='%1',departure_time='%2',arrival_time='%3',departure_place='%4',arrival_place='%5',base_fare='%6' where flight_id='%7'").arg(needToUpdateDate,needToUpdateDepartureTime,needToUpdateArrivalTime,needToUpdateDeparturePlace,needToUpdateArrivalPlace,needToUpdateBaseFare,needToUpdateFlightId);
+    qDebug()<<sql;
+    query.exec(sql);
+    db.close();
+    clear3();
+}
+
+
+
+void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &arg1)
+{
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->clearContents();
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
     db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
     db.setPort(3306);                          // 端口号，默认
@@ -223,7 +424,7 @@ void admin_form::on_pushButton_search_clicked()
     db.open();
     ui->tableWidget->clearContents();
     QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
-    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight where departure_place='%1'and arrival_place='%2'and date='%3';").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%'").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
     qDebug()<<sqlstr;
     QSqlQuery query(db);
     query.prepare(sqlstr);//准备
@@ -297,45 +498,260 @@ void admin_form::on_pushButton_search_clicked()
 }
 
 
-
-
-
-
-void admin_form::on_lineEdit_baseFare_editingFinished()
+void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1)
 {
-    int seatMoneyOfLvl2=ui->lineEdit_baseFare->text().toInt()*2;
-    int seatMoneyOfLvl3=ui->lineEdit_baseFare->text().toInt()*3;
-    QString s = QString::number(seatMoneyOfLvl2);
-    QString q = QString::number(seatMoneyOfLvl3);
-    if(!ui->lineEdit_baseFare->text().isEmpty()){
-        ui->lineEdit_moneyOfLvl2->setText(s);
-        ui->lineEdit_moneyOfLvl3->setText(q);
-    }
-}
-
-void admin_form::clear3(){
-    ui->lineEdit_needToUpdateFlightId->clear();
-    ui->lineEdit_needToUpdateArrivalPlace->clear();
-    ui->timeEdit_needToUpdateArrivalTime->setTime(QTime(0,0));
-    ui->lineEdit_needToUpdateBaseFare->clear();
-    ui->lineEdit_needToUpdateDeparturePlace->clear();
-    ui->timeEdit_needToUpdateDepartureTime->clear();
-    ui->dateEdit_needToUpdateDate->setDate(QDate(2024,1,1));
-}
-void admin_form::on_pushButton_update_clicked()
-{
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->clearContents();
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
     db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
     db.setPort(3306);                          // 端口号，默认
     db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
     db.open();
+    ui->tableWidget->clearContents();
+    QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%'").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
     QSqlQuery query(db);
-    QString needToUpdateFlightId=ui->lineEdit_needToUpdateFlightId->text(),needToUpdateDate=ui->dateEdit_needToUpdateDate->date().toString("yyyy-MM-dd"),needToUpdateDepartureTime=ui->timeEdit_needToUpdateDepartureTime->text(),needToUpdateArrivalTime=ui->timeEdit_needToUpdateArrivalTime->text(),needToUpdateDeparturePlace=ui->lineEdit_needToUpdateDeparturePlace->text(),needToUpdateArrivalPlace=ui->lineEdit_needToUpdateArrivalPlace->text(),needToUpdateBaseFare=ui->lineEdit_needToUpdateBaseFare->text();
-    QString sql=QString("UPDATE flight SET date='%1',departure_time='%2',arrival_time='%3',departure_place='%4',arrival_place='%5',base_fare='%6' where flight_id='%7'").arg(needToUpdateDate,needToUpdateDepartureTime,needToUpdateArrivalTime,needToUpdateDeparturePlace,needToUpdateArrivalPlace,needToUpdateBaseFare,needToUpdateFlightId);
-    qDebug()<<sql;
-    query.exec(sql);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            int moneyOfLvl2= query.value(3).toInt()*2;
+            int moneyOfLvl3=query.value(3).toInt()*3;
+            QString s = QString::number(moneyOfLvl2);
+            QString q = QString::number(moneyOfLvl3);
+
+            ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+            ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+            ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            QSqlQuery query1;
+            QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+            query1.prepare(sql);
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+            query1.prepare(sqll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+            query1.prepare(sqlll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+            i++;
+        }
+
+    }
     db.close();
-    clear3();
 }
 
+
+void admin_form::on_dateEdit_selectedDate_dateChanged(const QDate &date)
+{
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->clearContents();
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    db.setPort(3306);                          // 端口号，默认
+    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
+    db.open();
+    ui->tableWidget->clearContents();
+    QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%'").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            int moneyOfLvl2= query.value(3).toInt()*2;
+            int moneyOfLvl3=query.value(3).toInt()*3;
+            QString s = QString::number(moneyOfLvl2);
+            QString q = QString::number(moneyOfLvl3);
+
+            ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+            ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+            ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            QSqlQuery query1;
+            QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+            query1.prepare(sql);
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+            query1.prepare(sqll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+            query1.prepare(sqlll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+
+void admin_form::on_pushButton_clear_clicked()
+{
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->clearContents();
+    ui->lineEdit_selectedDeparturePlace->clear();
+    ui->lineEdit_selectedArrivalPlace->clear();
+    ui->dateEdit_selectedDate->setDate(QDate(2024,1,1));
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");  // ODBC 驱动
+    db.setHostName("127.0.0.1");                // MySQL 服务器ip地址，本机
+    db.setPort(3306);                          // 端口号，默认
+    db.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
+    db.open();
+    ui->tableWidget->clearContents();
+    QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight ");//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            int moneyOfLvl2= query.value(3).toInt()*2;
+            int moneyOfLvl3=query.value(3).toInt()*3;
+            QString s = QString::number(moneyOfLvl2);
+            QString q = QString::number(moneyOfLvl3);
+
+            ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+            ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+            ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            QSqlQuery query1;
+            QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+            query1.prepare(sql);
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+            query1.prepare(sqll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+            query1.prepare(sqlll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+            i++;
+        }
+
+    }
+    db.close();
+}
 

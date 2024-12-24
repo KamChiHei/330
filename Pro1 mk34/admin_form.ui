@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QLabel" name="label">
@@ -142,7 +142,7 @@
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>8</hour>
+        <hour>0</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2024</year>
@@ -444,19 +444,6 @@
        <string>日期</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_search">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>120</y>
-        <width>80</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>查询</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="lineEdit_selectedDeparturePlace">
       <property name="geometry">
        <rect>
@@ -495,6 +482,19 @@
         <width>931</width>
         <height>192</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_clear">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>120</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>清除</string>
       </property>
      </widget>
     </widget>

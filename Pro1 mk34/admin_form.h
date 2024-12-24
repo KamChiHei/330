@@ -44,8 +44,6 @@ private slots:
 
     void delFlight(QString delFlightId);
 
-    void on_pushButton_search_clicked();
-
     void on_pushButton_delete_clicked();
 
     void on_pushButton_add_clicked();
@@ -59,6 +57,14 @@ private slots:
     void on_lineEdit_baseFare_editingFinished();
 
     void on_pushButton_update_clicked();
+
+    void on_lineEdit_selectedDeparturePlace_textChanged(const QString &arg1);
+
+    void on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1);
+
+    void on_dateEdit_selectedDate_dateChanged(const QDate &date);
+
+    void on_pushButton_clear_clicked();
 
 private:
     Ui::admin_form *ui;
