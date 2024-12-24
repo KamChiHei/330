@@ -5,6 +5,8 @@
 #include <QSqlError>
 #include <QRandomGenerator>
 
+const int BATCH_SIZE = 50;
+
 // Initialize database connection
 QSqlDatabase initializeDatabase() {
     QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
@@ -20,6 +22,9 @@ QSqlDatabase initializeDatabase() {
 admin_form::admin_form(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::admin_form)
+    , currentOffset(0)
+
+
 {
     ui->setupUi(this);
     QStringList labels = {"航班号", "出发时间", "到达时间", "经济舱票价", "商务舱票价", "头等舱票价", "经济舱座位数", "商务舱座位数", "头等舱座位数"};
@@ -29,14 +34,20 @@ admin_form::admin_form(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(labels);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->clearContents();
-    load();
+    connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch);
+    connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
+
+    connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
+    connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
+
+    load(currentOffset);
 }
 
 
 
-void admin_form::load(){
+void admin_form::load(int offset){
     QSqlDatabase db = initializeDatabase();
-    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight ");//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
     qDebug()<<sqlstr;
     QSqlQuery query(db);
     query.prepare(sqlstr);//准备
@@ -109,11 +120,10 @@ void admin_form::load(){
     db.close();
 }
 
-
-void admin_form::load2(){
+void admin_form::load2(int offset){
     QSqlDatabase db = initializeDatabase();
     QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
-    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%'").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%' limit %4 offset %5").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
     qDebug()<<sqlstr;
     QSqlQuery query(db);
     query.prepare(sqlstr);//准备
@@ -185,10 +195,60 @@ void admin_form::load2(){
     }
     db.close();
 }
+
+void admin_form::setSeatCount(int row, const QString &flightId, const QString &seatTypeId, int column) {
+    QSqlDatabase db = initializeDatabase();
+    QSqlQuery query(db);
+    QString sql = QString("SELECT count(flight_id) FROM seats WHERE flight_id='%1' AND seat_type_id='%2'")
+                      .arg(flightId).arg(seatTypeId);
+    query.prepare(sql);
+    if (query.exec() && query.next()) {
+        ui->tableWidget->setItem(row, column, new QTableWidgetItem(query.value(0).toString()));
+        ui->tableWidget->item(row, column)->setTextAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+    }
+    db.close();
+}
+
+
 
 
 admin_form::~admin_form() {
     delete ui;
+}
+
+void admin_form::loadNextBatch() {
+    currentOffset += BATCH_SIZE;
+    if(currentoffset2>0){
+        return;
+    }
+    load(currentOffset);
+}
+
+void admin_form::loadPrevBatch() {
+    if (currentOffset >= BATCH_SIZE) {
+        currentOffset -= BATCH_SIZE;
+    } else {
+        currentOffset = 0;
+    }
+
+    if(currentoffset2>0){
+        return;
+    }
+    load(currentOffset);
+}
+
+void admin_form::loadNextBatch2() {
+    currentoffset2 += BATCH_SIZE;
+    load2(currentoffset2);
+}
+
+void admin_form::loadPrevBatch2() {
+    if (currentoffset2 >= BATCH_SIZE) {
+        currentoffset2 -= BATCH_SIZE;
+    } else {
+        currentoffset2 = 0;
+    }
+    load2(currentoffset2);
 }
 
 void admin_form::switchPage() {
@@ -343,17 +403,25 @@ void admin_form::clear3() {
 
 void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &arg1) {
     ui->tableWidget->clearContents();
-    load2();
+    currentoffset2=0;
+    load2(currentoffset2);
+
 }
 
 void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1) {
     ui->tableWidget->clearContents();
-    load2();
+    currentoffset2=0;
+
+    load2(currentoffset2);
+
 }
 
 void admin_form::on_dateEdit_selectedDate_dateChanged(const QDate &date) {
     ui->tableWidget->clearContents();
-    load2();
+    currentoffset2=0;
+
+    load2(currentoffset2);
+
 }
 
 
@@ -363,5 +431,6 @@ void admin_form::on_pushButton_clear_clicked() {
     ui->lineEdit_selectedDeparturePlace->clear();
     ui->lineEdit_selectedArrivalPlace->clear();
     ui->dateEdit_selectedDate->setDate(QDate(2024, 1, 1));
-    load();
+    currentOffset=0;
+    load(currentOffset);
 }

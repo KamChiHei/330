@@ -743,6 +743,13 @@ QPushButton:hover {
 
 </string>
       </property>
+      <property name="date">
+       <date>
+        <year>2024</year>
+        <month>1</month>
+        <day>1</day>
+       </date>
+      </property>
      </widget>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
@@ -796,6 +803,32 @@ QPushButton:hover {
       </property>
       <property name="pixmap">
        <pixmap resource="icon.qrc">:/new/prefix1/iconANDpic/point3.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="prevButton">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>150</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>上一页</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="nextButton">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>150</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>下一页</string>
       </property>
      </widget>
     </widget>

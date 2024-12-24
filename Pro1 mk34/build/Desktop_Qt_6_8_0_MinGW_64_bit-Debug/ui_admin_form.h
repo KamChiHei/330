@@ -73,6 +73,8 @@ public:
     QTableWidget *tableWidget;
     QPushButton *pushButton_clear;
     QLabel *label_3;
+    QPushButton *prevButton;
+    QPushButton *nextButton;
     QWidget *page_2;
     QLabel *label_4;
     QLabel *label_21;
@@ -401,6 +403,7 @@ public:
 "\n"
 "\n"
 ""));
+        dateEdit_selectedDate->setDate(QDate(2024, 1, 1));
         tableWidget = new QTableWidget(page_3);
         tableWidget->setObjectName("tableWidget");
         tableWidget->setGeometry(QRect(90, 200, 961, 511));
@@ -424,6 +427,12 @@ public:
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(0, 160, 80, 80));
         label_3->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/iconANDpic/point3.png")));
+        prevButton = new QPushButton(page_3);
+        prevButton->setObjectName("prevButton");
+        prevButton->setGeometry(QRect(680, 150, 80, 18));
+        nextButton = new QPushButton(page_3);
+        nextButton->setObjectName("nextButton");
+        nextButton->setGeometry(QRect(810, 150, 80, 18));
         stackedWidget->addWidget(page_3);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
@@ -663,6 +672,8 @@ public:
         label_20->setText(QCoreApplication::translate("admin_form", "\346\227\245\346\234\237", nullptr));
         pushButton_clear->setText(QCoreApplication::translate("admin_form", "\346\270\205\351\231\244", nullptr));
         label_3->setText(QString());
+        prevButton->setText(QCoreApplication::translate("admin_form", "\344\270\212\344\270\200\351\241\265", nullptr));
+        nextButton->setText(QCoreApplication::translate("admin_form", "\344\270\213\344\270\200\351\241\265", nullptr));
         label_4->setText(QString());
         label_21->setText(QCoreApplication::translate("admin_form", "<html><head/><body><p>\344\277\256\346\224\271\350\210\252\347\217\255</p></body></html>", nullptr));
         pushButton_update->setText(QCoreApplication::translate("admin_form", "\344\277\256\346\224\271", nullptr));
