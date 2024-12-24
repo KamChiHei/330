@@ -1,7 +1,7 @@
 #include "book.h"
 #include "ui_book.h"
 
-
+//jijkjk
 Book::Book(QWidget *parent,int i)
     : QMainWindow(parent)
     , ui(new Ui::Book)
