@@ -34,15 +34,15 @@ private slots:
 
     void switchPage();
 
-    void addSeat(QString flightId,QString seatTypeId,int seatAmount);
+    void addSeat(const QString &flightId, const QString &seatTypeId, int seatAmount);
 
-    void addFlight(QString flightId,QString departurePlace,QString arrivalPlace,QString date,QString departureTime,QString arrivalTime,int baseFare,int seatAmountOfLvl1,int seatAmountOfLvl2,int seatAmountOfLvl3);
+    void addFlight(const QString &flightId, const QString &departurePlace, const QString &arrivalPlace, const QString &date, const QString &departureTime, const QString &arrivalTime, int baseFare, int seatAmountOfLvl1, int seatAmountOfLvl2, int seatAmountOfLvl3);
 
     void on_pushButton_4_clicked();
 
-    void delSeat(QString delFlightId);
+    void delSeat(const QString &delFlightId);
 
-    void delFlight(QString delFlightId);
+    void delFlight(const QString &delFlightId);
 
     void on_pushButton_delete_clicked();
 
@@ -65,6 +65,14 @@ private slots:
     void on_dateEdit_selectedDate_dateChanged(const QDate &date);
 
     void on_pushButton_clear_clicked();
+
+    void loadData();
+
+    void setTableItem(int row, int column, const QString &text);
+
+    void setSeatCount(int row, const QString &flightId, const QString &seatTypeId, int column);
+
+    void loadFilteredData();
 
 private:
     Ui::admin_form *ui;
