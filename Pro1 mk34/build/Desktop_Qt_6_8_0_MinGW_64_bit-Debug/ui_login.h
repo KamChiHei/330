@@ -48,7 +48,7 @@ public:
         icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setWindowOpacity(1.000000000000000);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 0, 0);\n"
 ""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
@@ -82,7 +82,7 @@ public:
         lineEdit->setObjectName("lineEdit");
         lineEdit->setGeometry(QRect(100, 50, 200, 40));
         lineEdit->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background-color: transparent;\n"
+"  \n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
 "    border-radius: 5px;\n"
@@ -94,7 +94,7 @@ public:
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setGeometry(QRect(100, 110, 200, 40));
         lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
-"    background-color: transparent;\n"
+"  \n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
 "    border-radius: 5px;\n"
@@ -180,7 +180,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 400, 18));
+        menubar->setGeometry(QRect(0, 0, 400, 17));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
