@@ -10,6 +10,7 @@
 #define UI_REGISTER_FORM_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -40,49 +41,110 @@ public:
     {
         if (register_Form->objectName().isEmpty())
             register_Form->setObjectName("register_Form");
-        register_Form->resize(328, 355);
+        register_Form->resize(400, 300);
+        register_Form->setMinimumSize(QSize(400, 300));
+        register_Form->setMaximumSize(QSize(400, 300));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        register_Form->setWindowIcon(icon);
+        register_Form->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         name = new QLineEdit(register_Form);
         name->setObjectName("name");
-        name->setGeometry(QRect(120, 90, 113, 20));
+        name->setGeometry(QRect(100, 10, 200, 30));
+        name->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: transparent;\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"}"));
         pwd1 = new QLineEdit(register_Form);
         pwd1->setObjectName("pwd1");
-        pwd1->setGeometry(QRect(120, 140, 113, 20));
+        pwd1->setGeometry(QRect(100, 80, 200, 30));
         pwd2 = new QLineEdit(register_Form);
         pwd2->setObjectName("pwd2");
-        pwd2->setGeometry(QRect(120, 190, 113, 20));
+        pwd2->setGeometry(QRect(100, 140, 200, 30));
         B1 = new QPushButton(register_Form);
         B1->setObjectName("B1");
-        B1->setGeometry(QRect(120, 250, 61, 21));
+        B1->setGeometry(QRect(100, 230, 200, 30));
+        B1->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"	\n"
+"	\n"
+"	\n"
+"	background-color: rgb(0, 159, 252);\n"
+"    \n"
+"	\n"
+"	font: 14pt \"\351\273\221\344\275\223\";\n"
+"	\n"
+"	color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 170, 255); \n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    \n"
+"	background-color: rgb(0, 159, 252);\n"
+"       \n"
+"    font: 14pt \"\351\273\221\344\275\223\";\n"
+"	color: rgb(255, 255, 255);\n"
+"}"));
         B2 = new QPushButton(register_Form);
         B2->setObjectName("B2");
-        B2->setGeometry(QRect(120, 280, 61, 21));
+        B2->setGeometry(QRect(100, 260, 200, 30));
+        B2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"		\n"
+"	font: 14pt \"\351\273\221\344\275\223\";\n"
+"	color: rgb(0, 0, 0);\n"
+"border: 1px solid  rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"     \n"
+"    font: 14pt \"\351\273\221\344\275\223\";\n"
+"	color: rgb(0, 0, 0);\n"
+"}"));
         pwdtips2 = new QLabel(register_Form);
         pwdtips2->setObjectName("pwdtips2");
-        pwdtips2->setGeometry(QRect(120, 220, 151, 16));
+        pwdtips2->setGeometry(QRect(100, 170, 200, 30));
+        pwdtips2->setStyleSheet(QString::fromUtf8("font: 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 0, 0);"));
         nametips = new QLabel(register_Form);
         nametips->setObjectName("nametips");
-        nametips->setGeometry(QRect(120, 120, 131, 16));
+        nametips->setGeometry(QRect(100, 40, 200, 30));
+        nametips->setStyleSheet(QString::fromUtf8("font: 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 0, 0);"));
         pwdtips1 = new QLabel(register_Form);
         pwdtips1->setObjectName("pwdtips1");
-        pwdtips1->setGeometry(QRect(120, 170, 151, 16));
+        pwdtips1->setGeometry(QRect(100, 110, 200, 30));
+        pwdtips1->setStyleSheet(QString::fromUtf8("font: 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 0, 0);"));
         layoutWidget = new QWidget(register_Form);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(40, 90, 74, 131));
+        layoutWidget->setGeometry(QRect(10, 0, 86, 181));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(layoutWidget);
         label->setObjectName("label");
+        QFont font;
+        font.setFamilies({QString::fromUtf8("\351\273\221\344\275\223")});
+        font.setPointSize(14);
+        label->setFont(font);
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label);
 
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
+        label_2->setFont(font);
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_2);
 
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
+        label_3->setFont(font);
+        label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_3);
 
@@ -94,7 +156,7 @@ public:
 
     void retranslateUi(QWidget *register_Form)
     {
-        register_Form->setWindowTitle(QCoreApplication::translate("register_Form", "Form", nullptr));
+        register_Form->setWindowTitle(QCoreApplication::translate("register_Form", "\346\263\250\345\206\214", nullptr));
         B1->setText(QCoreApplication::translate("register_Form", "\346\263\250\345\206\214", nullptr));
         B2->setText(QCoreApplication::translate("register_Form", "\345\217\226\346\266\210", nullptr));
         pwdtips2->setText(QCoreApplication::translate("register_Form", "3", nullptr));
@@ -102,7 +164,7 @@ public:
         pwdtips1->setText(QCoreApplication::translate("register_Form", "2", nullptr));
         label->setText(QCoreApplication::translate("register_Form", "\347\224\250\346\210\267\345\220\215", nullptr));
         label_2->setText(QCoreApplication::translate("register_Form", "\345\257\206\347\240\201", nullptr));
-        label_3->setText(QCoreApplication::translate("register_Form", "\345\206\215\346\254\241\347\241\256\350\256\244\345\257\206\347\240\201", nullptr));
+        label_3->setText(QCoreApplication::translate("register_Form", "\347\241\256\350\256\244\345\257\206\347\240\201", nullptr));
     } // retranslateUi
 
 };

@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>iconANDpic/plane.png</file>
+        <file>iconANDpic/warning.png</file>
+        <file>iconANDpic/warning(30x30).png</file>
+        <file>iconANDpic/point1.png</file>
+        <file>iconANDpic/point2.png</file>
+        <file>iconANDpic/point3.png</file>
+        <file>iconANDpic/point4.png</file>
+    </qresource>
+    <qresource prefix="/new/prefix2">
+        <file>iconANDpic/adminF(1080x720).png</file>
+        <file>iconANDpic/adminF(1280x720).png</file>
+    </qresource>
+</RCC>

@@ -28,6 +28,14 @@ private slots:
     void on_commandLinkButton_clicked();
 
 
+    void on_commandLinkButton_2_clicked();
+
+    void on_commandLinkButton_3_clicked();
+
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_lineEdit_2_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     user_Form uF;

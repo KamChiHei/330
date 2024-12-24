@@ -34,6 +34,8 @@ private slots:
     void on_RefundButton_clicked();
 
 
+    void on_user_Form_destroyed();
+
 private:
     Ui::user_Form *ui;
     del_user duF;

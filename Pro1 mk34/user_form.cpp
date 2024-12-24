@@ -89,3 +89,9 @@ void user_Form::on_RefundButton_clicked()
 }
 
 
+
+void user_Form::on_user_Form_destroyed()
+{
+
+}
+

@@ -20,7 +20,7 @@ del_user::~del_user()
 
 void del_user::Dgetinfo(int id,QString uname){
     uid = id;
-    ui->user->setText(uname);
+    ui->user->setText("用户名:"+uname);
 }
 
 void del_user::on_delButton_clicked()

@@ -35,10 +35,8 @@ public:
     QPushButton *BookButton;
     QLabel *label_3;
     QLabel *label_2;
-    QTableView *Seats_types;
-    QLabel *label_4;
     QLabel *label_5;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLineEdit *flight_idEdit;
     QLineEdit *fEdit;
@@ -50,7 +48,7 @@ public:
     {
         if (Book->objectName().isEmpty())
             Book->setObjectName("Book");
-        Book->resize(955, 628);
+        Book->resize(1600, 1000);
         centralwidget = new QWidget(Book);
         centralwidget->setObjectName("centralwidget");
         textEdit = new QTextEdit(centralwidget);
@@ -58,45 +56,39 @@ public:
         textEdit->setGeometry(QRect(230, 10, 61, 31));
         Back = new QPushButton(centralwidget);
         Back->setObjectName("Back");
-        Back->setGeometry(QRect(550, 490, 93, 28));
+        Back->setGeometry(QRect(100, 300, 93, 28));
         Tickets = new QTableView(centralwidget);
         Tickets->setObjectName("Tickets");
-        Tickets->setGeometry(QRect(0, 40, 571, 351));
+        Tickets->setGeometry(QRect(300, -10, 751, 621));
         BookButton = new QPushButton(centralwidget);
         BookButton->setObjectName("BookButton");
-        BookButton->setGeometry(QRect(550, 420, 92, 28));
+        BookButton->setGeometry(QRect(100, 200, 92, 28));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(200, 490, 60, 27));
+        label_3->setGeometry(QRect(20, 142, 60, 27));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(200, 450, 60, 28));
-        Seats_types = new QTableView(centralwidget);
-        Seats_types->setObjectName("Seats_types");
-        Seats_types->setGeometry(QRect(590, 100, 361, 141));
-        label_4 = new QLabel(centralwidget);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(740, 60, 71, 31));
+        label_2->setGeometry(QRect(20, 102, 60, 28));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(190, 420, 71, 31));
-        widget = new QWidget(centralwidget);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(270, 418, 144, 97));
-        verticalLayout = new QVBoxLayout(widget);
+        label_5->setGeometry(QRect(10, 72, 71, 31));
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(90, 70, 144, 97));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        flight_idEdit = new QLineEdit(widget);
+        flight_idEdit = new QLineEdit(layoutWidget);
         flight_idEdit->setObjectName("flight_idEdit");
 
         verticalLayout->addWidget(flight_idEdit);
 
-        fEdit = new QLineEdit(widget);
+        fEdit = new QLineEdit(layoutWidget);
         fEdit->setObjectName("fEdit");
 
         verticalLayout->addWidget(fEdit);
 
-        tEdit = new QLineEdit(widget);
+        tEdit = new QLineEdit(layoutWidget);
         tEdit->setObjectName("tEdit");
 
         verticalLayout->addWidget(tEdit);
@@ -104,7 +96,7 @@ public:
         Book->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Book);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 955, 24));
+        menubar->setGeometry(QRect(0, 0, 1600, 24));
         Book->setMenuBar(menubar);
         statusbar = new QStatusBar(Book);
         statusbar->setObjectName("statusbar");
@@ -130,7 +122,6 @@ public:
         BookButton->setText(QCoreApplication::translate("Book", "\350\256\242\345\272\247", nullptr));
         label_3->setText(QCoreApplication::translate("Book", "\347\233\256\347\232\204\345\234\260\357\274\232", nullptr));
         label_2->setText(QCoreApplication::translate("Book", "\345\207\272\345\217\221\345\234\260\357\274\232", nullptr));
-        label_4->setText(QCoreApplication::translate("Book", "\345\272\247\344\275\215\347\261\273\345\236\213", nullptr));
         label_5->setText(QCoreApplication::translate("Book", "\350\210\252\347\217\255\347\274\226\345\217\267\357\274\232", nullptr));
         tEdit->setText(QString());
     } // retranslateUi

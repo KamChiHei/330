@@ -108,6 +108,8 @@ admin_form::admin_form(QWidget *parent)
 
     }
     db.close();
+
+
 }
 
 admin_form::~admin_form()

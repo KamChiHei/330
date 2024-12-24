@@ -1,7 +1,3 @@
-
-//ddd
-//ccc
-
 #include "login.h"
 #include "ui_login.h"
 #include"user_form.h"
@@ -16,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tip->setText("");
 }
 
 MainWindow::~MainWindow()
@@ -41,11 +38,20 @@ void MainWindow::on_login_button_clicked()
     //返回 行数=1 --->比较密码是否正确
 
     if( !qopt.next() ){//用户名错误
-        QMessageBox::information(this,tr(" "),tr("用户名错误"));
+        ui->tip->setText("用户名错误,请重试");
+
+        ui->lineEdit->setText("");
+        ui->lineEdit_2->setText("");
+
+        //QMessageBox::information(this,tr(" "),tr("用户名错误"));
     }else{
 
             if(ui->lineEdit_2->text().trimmed() != qopt.value(0).toString()){//密码错误
-                QMessageBox::information(this,tr(" "),tr("密码错误"));
+                ui->tip->setText("密码错误,请重试");
+
+                ui->lineEdit_2->setText("");
+
+                //QMessageBox::information(this,tr(" "),tr("密码错误"));
 
             }else{
                 int uid = qopt.value(2).toInt();
@@ -80,4 +86,35 @@ void MainWindow::on_commandLinkButton_clicked()
 }
 
 
+
+
+void MainWindow::on_commandLinkButton_2_clicked()
+{
+    ui->lineEdit->setFocus();
+}
+
+void MainWindow::on_commandLinkButton_3_clicked()
+{
+    ui->lineEdit_2->setFocus();
+}
+
+
+void MainWindow::on_lineEdit_textChanged(const QString &arg1)
+{
+    if(ui->lineEdit->text().trimmed()!=""){
+        ui->commandLinkButton_2->hide();
+    }else{
+        ui->commandLinkButton_2->show();
+    }
+}
+
+
+void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
+{
+    if(ui->lineEdit_2->text().trimmed()!=""){
+        ui->commandLinkButton_3->hide();
+    }else{
+        ui->commandLinkButton_3->show();
+    }
+}
 

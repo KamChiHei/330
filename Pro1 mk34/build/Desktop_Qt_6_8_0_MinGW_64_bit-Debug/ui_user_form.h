@@ -24,7 +24,6 @@ public:
     QCommandLinkButton *del_uid;
     QPushButton *BookButton;
     QPushButton *RefundButton;
-    QPushButton *pushButton_3;
 
     void setupUi(QWidget *user_Form)
     {
@@ -42,9 +41,6 @@ public:
         RefundButton = new QPushButton(user_Form);
         RefundButton->setObjectName("RefundButton");
         RefundButton->setGeometry(QRect(210, 200, 56, 18));
-        pushButton_3 = new QPushButton(user_Form);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(210, 250, 56, 18));
 
         retranslateUi(user_Form);
 
@@ -57,7 +53,6 @@ public:
         del_uid->setText(QCoreApplication::translate("user_Form", "\346\263\250\351\224\200", nullptr));
         BookButton->setText(QCoreApplication::translate("user_Form", "\350\264\255\347\245\250", nullptr));
         RefundButton->setText(QCoreApplication::translate("user_Form", "\351\200\200\347\245\250", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("user_Form", "\346\224\271\347\255\276", nullptr));
     } // retranslateUi
 
 };

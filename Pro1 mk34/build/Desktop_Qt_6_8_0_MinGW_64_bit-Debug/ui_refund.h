@@ -27,6 +27,7 @@ public:
     QTableView *orders;
     QPushButton *Tickets;
     QPushButton *cancelButton;
+    QPushButton *changeButton;
 
     void setupUi(QWidget *Refund)
     {
@@ -47,7 +48,10 @@ public:
         Tickets->setGeometry(QRect(30, 400, 121, 31));
         cancelButton = new QPushButton(Refund);
         cancelButton->setObjectName("cancelButton");
-        cancelButton->setGeometry(QRect(210, 410, 92, 28));
+        cancelButton->setGeometry(QRect(170, 400, 92, 28));
+        changeButton = new QPushButton(Refund);
+        changeButton->setObjectName("changeButton");
+        changeButton->setGeometry(QRect(280, 400, 92, 28));
 
         retranslateUi(Refund);
 
@@ -61,6 +65,7 @@ public:
         pushButton->setText(QCoreApplication::translate("Refund", "\350\277\224\345\233\236", nullptr));
         Tickets->setText(QCoreApplication::translate("Refund", "\345\210\267\346\226\260", nullptr));
         cancelButton->setText(QCoreApplication::translate("Refund", "\351\200\200\347\245\250", nullptr));
+        changeButton->setText(QCoreApplication::translate("Refund", "\346\224\271\347\255\276", nullptr));
     } // retranslateUi
 
 };

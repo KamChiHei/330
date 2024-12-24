@@ -86,7 +86,7 @@ void register_Form::on_pwd1_textChanged(const QString &arg1)
     }
 
     if(ui->pwd1->text()!=ui->pwd2->text()){//密码不一致
-        ui->pwdtips2->setText("请两次输入的确认密码一致");
+        ui->pwdtips2->setText("请确认输入的密码一致");
         ui->pwdtips2->show();
         p2flag = false;
     }else{
@@ -101,7 +101,7 @@ void register_Form::on_pwd2_textChanged(const QString &arg1)
 {
     if(ui->pwd1->text()!=ui->pwd2->text()){//密码不一致
 
-        ui->pwdtips2->setText("请两次输入的确认密码一致");
+        ui->pwdtips2->setText("请确认输入的密码一致");
         ui->pwdtips2->show();
         p2flag = false;
     }else{
