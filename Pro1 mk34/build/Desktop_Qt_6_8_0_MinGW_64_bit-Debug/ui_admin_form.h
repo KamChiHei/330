@@ -173,7 +173,7 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(16, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(8, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -632,7 +632,7 @@ public:
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
         pushButton_addFlight->setDefault(false);
 
 

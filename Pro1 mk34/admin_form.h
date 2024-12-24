@@ -66,13 +66,10 @@ private slots:
 
     void on_pushButton_clear_clicked();
 
-    void loadData();
+    void load();
 
-    void setTableItem(int row, int column, const QString &text);
+    void load2();
 
-    void setSeatCount(int row, const QString &flightId, const QString &seatTypeId, int column);
-
-    void loadFilteredData();
 
 private:
     Ui::admin_form *ui;
