@@ -38,8 +38,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    user_Form uF;
     admin_form aF;
+    user_Form uF;
+
     register_Form regF;
 };
 #endif // LOGIN_H

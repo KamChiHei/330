@@ -146,7 +146,9 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_icon.cpp
 debug/qrc_icon.cpp: ../../icon.qrc \
 		D:/Qt/6.8.0/mingw_64/bin/rcc.exe \
+		../../iconANDpic/login(400x300).png \
 		../../iconANDpic/adminF(1080x720).png \
+		../../iconANDpic/login.jpg \
 		../../iconANDpic/adminF(1280x720).png \
 		../../iconANDpic/point1.png \
 		../../iconANDpic/point2.png \
@@ -2114,8 +2116,6 @@ debug/admin_form.o: ../../admin_form.cpp ../../admin_form.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QStackedWidget \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qstackedwidget.h \
-		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QStatusBar \
-		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qstatusbar.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QTableWidget \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qtablewidget.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qtableview.h \
@@ -3087,8 +3087,6 @@ debug/login.o: ../../login.cpp ../../login.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qmenubar.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qmenu.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QPushButton \
-		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QStatusBar \
-		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qstatusbar.h \
 		D:/Qt/6.8.0/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\login.o ..\..\login.cpp
 
@@ -3753,9 +3751,10 @@ debug/register_form.o: ../../register_form.cpp ../../register_form.h \
 		D:/Qt/6.8.0/mingw_64/include/QtGui/QIcon \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QApplication \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qapplication.h \
+		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QFrame \
+		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qframe.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QLabel \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
-		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qframe.h \
 		D:/Qt/6.8.0/mingw_64/include/QtGui/qpicture.h \
 		D:/Qt/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QLineEdit \
@@ -4006,6 +4005,8 @@ debug/user_form.o: ../../user_form.cpp ../../user_form.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qcommandlinkbutton.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
+		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QFrame \
+		D:/Qt/6.8.0/mingw_64/include/QtWidgets/qframe.h \
 		D:/Qt/6.8.0/mingw_64/include/QtWidgets/QPushButton \
 		D:/Qt/6.8.0/mingw_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\user_form.o ..\..\user_form.cpp

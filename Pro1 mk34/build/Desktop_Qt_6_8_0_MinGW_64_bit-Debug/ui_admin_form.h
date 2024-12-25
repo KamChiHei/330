@@ -173,7 +173,7 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(16, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(8, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -621,7 +621,10 @@ public:
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName("graphicsView");
         graphicsView->setGeometry(QRect(0, 0, 200, 720));
-        graphicsView->setStyleSheet(QString::fromUtf8("background-color:  rgba(0, 159, 252, 150);"));
+        graphicsView->setStyleSheet(QString::fromUtf8("QGraphicsView#graphicsView{\n"
+"background-color:  rgba(0, 159, 252, 150);\n"
+"}\n"
+""));
         admin_form->setCentralWidget(centralwidget);
         graphicsView->raise();
         stackedWidget->raise();

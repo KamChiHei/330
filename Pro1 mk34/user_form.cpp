@@ -10,6 +10,7 @@ user_Form::user_Form(QWidget *parent)
     , ui(new Ui::user_Form)
 {
     ui->setupUi(this);
+    qDebug() << this->styleSheet();
 }
 
 user_Form::~user_Form()

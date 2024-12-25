@@ -59,6 +59,7 @@ void MainWindow::on_login_button_clicked()
                 if(qopt.value(1).toInt()==0){     // normal user
                     level = 0;
                     uF.getinfo(uid,ui->lineEdit->text().trimmed());
+
                     uF.show();
                     this->close();
                 }else{                            //admin

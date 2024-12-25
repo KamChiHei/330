@@ -18,7 +18,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -35,7 +34,6 @@ public:
     QCommandLinkButton *commandLinkButton_2;
     QCommandLinkButton *commandLinkButton_3;
     QMenuBar *menubar;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -48,7 +46,9 @@ public:
         icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setWindowOpacity(1.000000000000000);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+        MainWindow->setStyleSheet(QString::fromUtf8("QMainWindow#MainWindow{\n"
+"	background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);\n"
+"}\n"
 ""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
@@ -60,7 +60,8 @@ public:
 "	\n"
 "	\n"
 "	\n"
-"	background-color: rgb(0, 159, 252);\n"
+"	background-color: rgb(7, 195, 233);\n"
+"	\n"
 "    \n"
 "	\n"
 "	font: 14pt \"\351\273\221\344\275\223\";\n"
@@ -104,44 +105,47 @@ public:
         lineEdit_2->setEchoMode(QLineEdit::EchoMode::Password);
         commandLinkButton = new QCommandLinkButton(centralwidget);
         commandLinkButton->setObjectName("commandLinkButton");
-        commandLinkButton->setGeometry(QRect(160, 240, 80, 30));
+        commandLinkButton->setGeometry(QRect(150, 240, 91, 40));
         QFont font;
-        font.setFamilies({QString::fromUtf8("\351\273\221\344\275\223")});
-        font.setPointSize(10);
-        font.setBold(false);
+        font.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font.setPointSize(12);
+        font.setBold(true);
         font.setItalic(false);
         commandLinkButton->setFont(font);
         commandLinkButton->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
-        commandLinkButton->setStyleSheet(QString::fromUtf8("font: 10pt \"\351\273\221\344\275\223\";"));
+        commandLinkButton->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
+"font: 700 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::UserAvailable));
         commandLinkButton->setIcon(icon1);
         commandLinkButton->setIconSize(QSize(0, 0));
+        commandLinkButton->setAutoDefault(false);
+        commandLinkButton->setDefault(false);
         tip = new QLabel(centralwidget);
         tip->setObjectName("tip");
         tip->setGeometry(QRect(100, 160, 200, 30));
-        tip->setStyleSheet(QString::fromUtf8("font: 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+        tip->setStyleSheet(QString::fromUtf8("font: 700 14pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "color: rgb(255, 0, 0);"));
         tip->setScaledContents(false);
         commandLinkButton_2 = new QCommandLinkButton(centralwidget);
         commandLinkButton_2->setObjectName("commandLinkButton_2");
         commandLinkButton_2->setGeometry(QRect(100, 50, 200, 40));
         commandLinkButton_2->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
-        commandLinkButton_2->setStyleSheet(QString::fromUtf8("QCommandLinkButton {\n"
-"    \n"
-"	background-color: transparent;\n"
-"    \n"
-"	\n"
-"	color: rgb(221, 221, 221);\n"
-"	font: 700 12pt \"Microsoft YaHei UI\";\n"
-"	color: rgb(221, 221, 221);\n"
-"    border-radius: 5px;\n"
+        commandLinkButton_2->setStyleSheet(QString::fromUtf8("QCommandLinkButton#commandLinkButton_2 {\n"
+"	border-radius: 5px;\n"
 "	border: 1px solid rgb(230, 230, 230);\n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"    color: White;\n"
+"	\n"
+"    \n"
 "}\n"
 "\n"
-"QCommandLinkButton:hover {\n"
-"    \n"
+"QCommandLinkButton#commandLinkButton_2:hover {\n"
+"\n"
+"    font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: White;\n"
 "    border: 1px solid rgb(230, 230, 230); \n"
-"    background-color: transparent;   \n"
+"    \n"
 "}\n"
 "\n"
 ""));
@@ -150,27 +154,23 @@ public:
         commandLinkButton_3 = new QCommandLinkButton(centralwidget);
         commandLinkButton_3->setObjectName("commandLinkButton_3");
         commandLinkButton_3->setGeometry(QRect(100, 110, 200, 40));
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
-        font1.setPointSize(12);
-        font1.setBold(true);
-        font1.setItalic(false);
-        commandLinkButton_3->setFont(font1);
         commandLinkButton_3->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
-        commandLinkButton_3->setStyleSheet(QString::fromUtf8("QCommandLinkButton {\n"
-"    \n"
-"	background-color: transparent;\n"
+        commandLinkButton_3->setStyleSheet(QString::fromUtf8("QCommandLinkButton#commandLinkButton_3 {\n"
 "    \n"
 "	\n"
-"	color: rgb(221, 221, 221);\n"
-"	font: 700 12pt \"Microsoft YaHei UI\";\n"
+"    \n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: White;\n"
 "	\n"
 "    border-radius: 5px;\n"
 "	border: 1px solid rgb(230, 230, 230);\n"
 "}\n"
 "\n"
-"QCommandLinkButton:hover {\n"
-"    \n"
+"QCommandLinkButton#commandLinkButton_3:hover {\n"
+"\n"
+"    font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: White;\n"
 "    border: 1px solid rgb(230, 230, 230); \n"
 "    background-color: transparent;   \n"
 "}\n"
@@ -182,9 +182,6 @@ public:
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 400, 18));
         MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName("statusbar");
-        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 

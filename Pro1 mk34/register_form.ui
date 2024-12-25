@@ -30,7 +30,7 @@
     <normaloff>:/new/prefix1/iconANDpic/plane.png</normaloff>:/new/prefix1/iconANDpic/plane.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <widget class="QLineEdit" name="name">
    <property name="geometry">
@@ -59,6 +59,14 @@
      <height>30</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: transparent;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="pwd2">
    <property name="geometry">
@@ -68,6 +76,14 @@
      <width>200</width>
      <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: transparent;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}</string>
    </property>
   </widget>
   <widget class="QPushButton" name="B1">
@@ -245,6 +261,37 @@ color: rgb(255, 0, 0);</string>
     </item>
    </layout>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>401</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);
+background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>name</zorder>
+  <zorder>pwd1</zorder>
+  <zorder>pwd2</zorder>
+  <zorder>B1</zorder>
+  <zorder>B2</zorder>
+  <zorder>pwdtips2</zorder>
+  <zorder>nametips</zorder>
+  <zorder>pwdtips1</zorder>
+  <zorder>layoutWidget</zorder>
  </widget>
  <resources>
   <include location="icon.qrc"/>

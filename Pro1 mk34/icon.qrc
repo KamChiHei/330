@@ -11,5 +11,7 @@
     <qresource prefix="/new/prefix2">
         <file>iconANDpic/adminF(1080x720).png</file>
         <file>iconANDpic/adminF(1280x720).png</file>
+        <file>iconANDpic/login(400x300).png</file>
+        <file>iconANDpic/login.jpg</file>
     </qresource>
 </RCC>

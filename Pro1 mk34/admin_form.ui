@@ -205,7 +205,7 @@ QPushButton:hover {
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>16</hour>
+        <hour>8</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2023</year>
@@ -1280,7 +1280,10 @@ border: 1px solid rgb(0, 0, 0);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:  rgba(0, 159, 252, 150);</string>
+     <string notr="true">QGraphicsView#graphicsView{
+background-color:  rgba(0, 159, 252, 150);
+}
+</string>
     </property>
    </widget>
    <zorder>graphicsView</zorder>

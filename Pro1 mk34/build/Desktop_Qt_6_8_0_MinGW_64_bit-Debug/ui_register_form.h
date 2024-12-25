@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -36,6 +37,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
+    QFrame *frame;
 
     void setupUi(QWidget *register_Form)
     {
@@ -47,7 +49,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         register_Form->setWindowIcon(icon);
-        register_Form->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        register_Form->setStyleSheet(QString::fromUtf8(""));
         name = new QLineEdit(register_Form);
         name->setObjectName("name");
         name->setGeometry(QRect(100, 10, 200, 30));
@@ -60,9 +62,21 @@ public:
         pwd1 = new QLineEdit(register_Form);
         pwd1->setObjectName("pwd1");
         pwd1->setGeometry(QRect(100, 80, 200, 30));
+        pwd1->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: transparent;\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"}"));
         pwd2 = new QLineEdit(register_Form);
         pwd2->setObjectName("pwd2");
         pwd2->setGeometry(QRect(100, 140, 200, 30));
+        pwd2->setStyleSheet(QString::fromUtf8("QLineEdit {\n"
+"    background-color: transparent;\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"}"));
         B1 = new QPushButton(register_Form);
         B1->setObjectName("B1");
         B1->setGeometry(QRect(100, 230, 200, 30));
@@ -148,6 +162,24 @@ public:
 
         verticalLayout->addWidget(label_3);
 
+        frame = new QFrame(register_Form);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(0, 0, 401, 301));
+        frame->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
+"background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);\n"
+""));
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        frame->raise();
+        name->raise();
+        pwd1->raise();
+        pwd2->raise();
+        B1->raise();
+        B2->raise();
+        pwdtips2->raise();
+        nametips->raise();
+        pwdtips1->raise();
+        layoutWidget->raise();
 
         retranslateUi(register_Form);
 
