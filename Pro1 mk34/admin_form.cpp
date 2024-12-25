@@ -25,6 +25,11 @@ admin_form::admin_form(QWidget *parent)
     , currentOffset(0)
     ,currentoffset2(0)
     ,currentoffset3(0)
+    ,useroffset1(0)
+    ,useroffset2(0)
+    ,orderoffset1(0)
+    ,orderoffset2(0)
+    ,orderoffset3(0)
 
 
 {
@@ -55,8 +60,23 @@ admin_form::admin_form(QWidget *parent)
 
     connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch);
     connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
+
+
+    connect(ui->nextButton_2, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
+    connect(ui->prevButton_2, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
+
+    connect(ui->nextButton_3, &QPushButton::clicked, this, &admin_form::loadNextBatch3);
+    connect(ui->prevButton_3, &QPushButton::clicked, this, &admin_form::loadPrevBatch3);
+
     sss=false;
     sss1=false;
+
+    aaa=false;
+
+    bbb=false;
+    bbb1=false;
+    bbb2=false;
+
 
 }
 
@@ -288,6 +308,210 @@ void admin_form::loada(int offset){
     db.close();
 }
 
+void admin_form::loaduser(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString sqlstr=QString("select user_id,username,password from users  limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_2->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_2->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_2->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_2->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_2->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_2->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_2->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+void admin_form::loaduser2(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString username =ui->lineEdit_username->text(),password=ui->lineEdit_password->text();
+    QString sqlstr=QString("select user_id,username,password from users where username like '%1%'and password like '%2%' limit %3 offset %4").arg(username,password).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_2->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_2->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_2->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_2->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_2->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_2->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_2->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+void admin_form::loadorder(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString sqlstr=QString("select * from orders limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_3->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_3->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_3->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_3->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget_3->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+void admin_form::loadorder2(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString orderid=ui->lineEdit_orderid->text(),userid=ui->lineEdit_userid->text(),seatid=ui->lineEdit_seatid->text();
+    QString sqlstr=QString("select * from orders where order_id like '%1%'and user_id like '%2%' and seat_id like '%3%' and order_status='已取消' limit %4 offset %5").arg(orderid,userid,seatid).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_3->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_3->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_3->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_3->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget_3->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+void admin_form::loadorder3(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString orderid=ui->lineEdit_orderid->text(),userid=ui->lineEdit_userid->text(),seatid=ui->lineEdit_seatid->text();
+    QString sqlstr=QString("select * from orders where order_id like '%1%'and user_id like '%2%' and seat_id like '%3%' and order_status='已支付' limit %4 offset %5").arg(orderid,userid,seatid).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_3->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_3->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_3->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_3->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget_3->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+void admin_form::loadorder4(int offset){
+    QSqlDatabase db = initializeDatabase();
+    QString orderid=ui->lineEdit_orderid->text(),userid=ui->lineEdit_userid->text(),seatid=ui->lineEdit_seatid->text();
+    QString sqlstr=QString("select * from orders where order_id like '%1%'and user_id like '%2%' and seat_id like '%3%'  limit %4 offset %5").arg(orderid,userid,seatid).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
+    QSqlQuery query(db);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget_3->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget_3->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget_3->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget_3->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget_3->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget_3->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget_3->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            i++;
+        }
+
+    }
+    db.close();
+}
+
+
+
 admin_form::~admin_form() {
     delete ui;
 }
@@ -308,6 +532,8 @@ void admin_form::loadNextBatch() {
 
 
 }
+
+
 
 void admin_form::loadPrevBatch() {
     if(sss){
@@ -338,6 +564,114 @@ void admin_form::loadPrevBatch() {
     }
 }
 
+void admin_form::loadNextBatch2() {
+    if(aaa){
+        useroffset2 += BATCH_SIZE;
+        //load2(currentoffset2);
+        loaduser2(useroffset2);
+    }
+
+    else{
+        useroffset1 += BATCH_SIZE;
+        //load(currentOffset);
+        loaduser(useroffset1);
+    }
+
+
+}
+
+void admin_form::loadPrevBatch2() {
+    if(aaa){
+        if (useroffset2 >= BATCH_SIZE) {
+            useroffset2 -= BATCH_SIZE;
+        }
+        else {
+            useroffset2 = 0;
+        }
+        //load2(currentoffset2);
+        loaduser2(useroffset2);
+    }
+    else{
+        if (useroffset1 >= BATCH_SIZE) {
+            useroffset1 -= BATCH_SIZE;
+        } else {
+            useroffset1 = 0;
+        }
+        //load(currentOffset);
+        loaduser(useroffset1);
+    }
+}
+
+void admin_form::loadNextBatch3() {
+    if(bbb){
+        orderoffset2 += BATCH_SIZE;
+        //load2(currentoffset2);
+        loadorder2(orderoffset2);
+    }
+    else if(bbb1){
+        orderoffset3 += BATCH_SIZE;
+        //loada(currentoffset3);
+        loadorder3(orderoffset3);
+    }
+    else if(bbb2){
+        orderoffset4 += BATCH_SIZE;
+        //loada(currentoffset3);
+        loadorder4(orderoffset4);
+    }
+    else{
+        orderoffset1 += BATCH_SIZE;
+        //load(currentOffset);
+        loadorder(orderoffset1);
+    }
+
+
+}
+
+
+
+void admin_form::loadPrevBatch3() {
+    if(bbb){
+        if (orderoffset2 >= BATCH_SIZE) {
+            orderoffset2 -= BATCH_SIZE;
+        }
+        else {
+            orderoffset2 = 0;
+        }
+        //load2(currentoffset2);
+        loadorder2(orderoffset2);
+    }
+    else if(bbb1){
+        if (currentoffset3 >= BATCH_SIZE) {
+            currentoffset3 -= BATCH_SIZE;
+        }
+        else {
+            currentoffset3 = 0;
+        }
+        //loada(currentoffset3);
+        loadorder3(orderoffset3);
+    }
+    else if(bbb2){
+        if (orderoffset4 >= BATCH_SIZE) {
+            orderoffset4 -= BATCH_SIZE;
+        }
+        else {
+            orderoffset4 = 0;
+        }
+        //loada(currentoffset3);
+        loadorder4(orderoffset4);
+    }
+    else{
+        if (orderoffset1 >= BATCH_SIZE) {
+            orderoffset1 -= BATCH_SIZE;
+        } else {
+            orderoffset1 = 0;
+        }
+        //load(currentOffset);
+        loadorder(orderoffset1);
+    }
+}
+
+
 void admin_form::switchPage() {
     QPushButton *button = qobject_cast<QPushButton*>(sender());
     if (button == ui->pushButton_addFlight)
@@ -351,10 +685,16 @@ void admin_form::switchPage() {
 
     else if (button == ui->pushButton_4)
         ui->stackedWidget->setCurrentIndex(3);
-    else if (button == ui->pushButton_user)
-    ui->stackedWidget->setCurrentIndex(4);
-    else if (button == ui->pushButton_order)
+    else if (button == ui->pushButton_user){
+        ui->stackedWidget->setCurrentIndex(4);
+        loaduser(useroffset1);
+    }
+
+    else if (button == ui->pushButton_order){
         ui->stackedWidget->setCurrentIndex(5);
+        loadorder(orderoffset1);
+    }
+
 }
 
 void admin_form::on_pushButton_addFlight_clicked() {
@@ -497,6 +837,7 @@ void admin_form::clear3() {
 }
 
 void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &arg1) {
+    ui->tableWidget_2->setRowCount(0);
     ui->tableWidget->clearContents();
     ui->label_status->setText("");
     sss=true;
@@ -509,6 +850,7 @@ void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &a
 }
 
 void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1) {
+    ui->tableWidget_2->setRowCount(0);
     ui->tableWidget->clearContents();
     ui->label_status->setText("");
     sss=true;
@@ -521,6 +863,7 @@ void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg
 }
 
 void admin_form::on_dateEdit_selectedDate_dateChanged(const QDate &date) {
+    ui->tableWidget_2->setRowCount(0);
     ui->tableWidget->clearContents();
     ui->label_status->setText("");
     sss=true;
@@ -551,6 +894,7 @@ void admin_form::on_pushButton_clear_clicked() {
 
 void admin_form::on_pushButton_searchall_clicked()
 {
+    ui->tableWidget_2->setRowCount(0);
     currentOffset=0;
     currentoffset2=0;
     currentoffset3=0;
@@ -570,5 +914,156 @@ void admin_form::on_pushButton_user_clicked()
 void admin_form::on_pushButton_order_clicked()
 {
     switchPage();
+}
+
+
+void admin_form::on_lineEdit_username_textChanged(const QString &arg1)
+{
+    ui->tableWidget_2->setRowCount(0);
+    useroffset1=0;
+    useroffset2=0;
+    ui->tableWidget_2->clearContents();
+    aaa=true;
+    loaduser2(useroffset2);
+}
+
+
+void admin_form::on_lineEdit_password_textChanged(const QString &arg1)
+{
+    ui->tableWidget_2->setRowCount(0);
+    useroffset1=0;
+    useroffset2=0;
+    ui->tableWidget_2->clearContents();
+    aaa=true;
+    loaduser2(useroffset2);
+}
+
+
+void admin_form::on_pushButton_clear_2_clicked()
+{
+    ui->tableWidget_2->setRowCount(0);
+    ui->tableWidget_2->clearContents();
+    ui->lineEdit_username->clear();
+    ui->lineEdit_password->clear();
+    aaa=false;
+    useroffset1=0;
+    useroffset2=0;
+    loaduser(useroffset1);
+}
+
+
+void admin_form::on_lineEdit_orderid_textChanged(const QString &arg1)
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
+}
+
+
+void admin_form::on_lineEdit_userid_textChanged(const QString &arg1)
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
+}
+
+
+void admin_form::on_lineEdit_seatid_textChanged(const QString &arg1)
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
+}
+
+
+void admin_form::on_pushButton_clear_3_clicked()
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->lineEdit_seatid->clear();
+    ui->lineEdit_orderid->clear();
+    ui->lineEdit_userid->clear();
+    ui->tableWidget_3->clearContents();
+    bbb=false;
+    bbb1=false;
+    bbb2=false;
+    loadorder(orderoffset1);
+}
+
+
+void admin_form::abc(){
+
+
+        if(ui->radioButton_all->isChecked()==true){
+            bbb=false;
+            bbb1=false;
+            bbb2=true;
+            loadorder4(orderoffset4);
+        }
+        if(ui->radioButton_cancel->isChecked()==true){
+            bbb=true;
+            bbb1=false;
+            bbb2=false;
+            loadorder2(orderoffset2);
+        }
+
+        if(ui->radioButton_paid->isChecked()==true){
+            bbb=false;
+            bbb1=true;
+            bbb2=false;
+            loadorder3(orderoffset3);
+        }
+
+
+}
+
+
+void admin_form::on_radioButton_all_clicked()
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
+}
+
+
+void admin_form::on_radioButton_cancel_clicked()
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
+}
+
+
+void admin_form::on_radioButton_paid_clicked()
+{
+    orderoffset1=0;
+    orderoffset2=0;
+    orderoffset3=0;
+    orderoffset4=0;
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->clearContents();
+    abc();
 }
 

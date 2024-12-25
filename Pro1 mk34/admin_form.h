@@ -76,19 +76,78 @@ private slots:
     void loadNextBatch();
 
     void loadPrevBatch();
+
+    void loadNextBatch2();
+
+    void loadPrevBatch2();
+
+
+    void loadNextBatch3();
+
+    void loadPrevBatch3();
+
     void on_pushButton_searchall_clicked();
 
     void on_pushButton_user_clicked();
 
     void on_pushButton_order_clicked();
 
+    void loaduser(int offset);
+
+    void loaduser2(int offset);
+
+    void loadorder(int offset);
+
+    void loadorder2(int offset);
+
+    void loadorder3(int offset);
+
+    void loadorder4(int offset);
+
+
+    void on_lineEdit_username_textChanged(const QString &arg1);
+
+    void on_lineEdit_password_textChanged(const QString &arg1);
+
+    void on_pushButton_clear_2_clicked();
+
+    void on_lineEdit_orderid_textChanged(const QString &arg1);
+
+    void on_lineEdit_userid_textChanged(const QString &arg1);
+
+    void on_lineEdit_seatid_textChanged(const QString &arg1);
+
+    void on_pushButton_clear_3_clicked();
+
+    void abc();
+
+    void on_radioButton_all_clicked();
+
+    void on_radioButton_cancel_clicked();
+
+    void on_radioButton_paid_clicked();
+
 private:
     Ui::admin_form *ui;
+
     int currentOffset;
     int currentoffset2;
     int currentoffset3;
     bool sss;
     bool sss1;
+
+    int useroffset1;
+    int useroffset2;
+    bool aaa;
+
+
+    int orderoffset1;
+    int orderoffset2;
+    int orderoffset3;
+    int orderoffset4;
+    bool bbb;
+    bool bbb1;
+    bool bbb2;
 
 };
 #endif // ADMIN_FORM_H
