@@ -61,13 +61,16 @@ private slots:
 
     void on_tdBt_clicked();
 
+    void on_Seats_clicked(const QModelIndex &index);
+
 private:
     Ui::Book *ui;
     QSqlDatabase db;
     QSqlTableModel *m;
     QSqlTableModel *s;
     int seat_type=0;
-    QModelIndex current;
+    QModelIndex current=QModelIndex();
+    QModelIndex current_seat=QModelIndex();
 };
 
 #endif // BOOK_H

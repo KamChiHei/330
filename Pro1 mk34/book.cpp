@@ -22,6 +22,7 @@ Book::Book(QWidget *parent,int i)
         m= new QSqlTableModel();
         s = new QSqlTableModel();
 
+        ui->errorLb->hide();
 
 
 
@@ -50,7 +51,7 @@ Book::Book(QWidget *parent,int i)
         m->setHeaderData(6,Qt::Horizontal,"基础价位");
 
 
-        ui->Tickets->hideColumn(0);
+
 
 
 
@@ -143,15 +144,18 @@ void Book::on_FindButton_ft_clicked()
 
 void Book::on_BookButton_clicked()
 {
-
-    if(current.isValid()){
+    qDebug()<<current<<current_seat;
+    if(current_seat.isValid()&&current.isValid()){
 
         qDebug()<<id;
-        int a=current.row();
-        QModelIndex i = m->index(a, 0),j = m->index(a,1);
-        QVariant data = m->data(i),fid= m->data(j);
+        int a=current.row(),b=current_seat.row();
+
+        qDebug()<<a<<" "<<b;
+        QModelIndex i = s->index(b,0),j = m->index(a,0);
+        QVariant data = s->data(i),fid= m->data(j);
         int seatid=data.toInt();
         QString flightid=fid.toString();
+        qDebug()<<seatid<<flightid;
         if(seatid){
 
             // m->setTable("seats");
@@ -159,20 +163,42 @@ void Book::on_BookButton_clicked()
 
             QString query = QString("UPDATE `flight_ticket_system`.`seats` SET `seatchoosed` = '1' WHERE (`seat_id` = '%1');").arg(seatid);
             qDebug() << query;
-            m->setQuery(query, db);
+            s->setQuery(query, db);
 
             QString queryString = QString("INSERT INTO `flight_ticket_system`.`orders` (`user_id`, `seat_id`, `order_status`) VALUES ('%1', '%2', '已支付')").arg(id).arg(seatid);
             qDebug() << queryString;
-            m->setQuery(queryString, db);
+            s->setQuery(queryString, db);
 
 
 
-            QString query2 = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0").arg(flightid);
+            QString query2 =  QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 AND seat_type_id = '%2'").arg(flightid).arg(seat_type);
             qDebug() << query2;
-            m->setQuery(query2, db);
+            s->setQuery(query2, db);
 
-            current = QModelIndex();
+
+            ui->Seats->hideColumn(0);
+            ui->Seats->hideColumn(1);
+            ui->Seats->hideColumn(2);
+            ui->Seats->hideColumn(4);
+
+            current_seat = QModelIndex();
         }
+
+    }
+    else if(!current.isValid()){
+        qDebug()<<"请选择航班！";
+        ui->errorLb->show();
+        ui->errorLb->setText("请选择航班！");
+    }
+    else if(seat_type==0){
+        qDebug()<<"请选择座位类型！";
+        ui->errorLb->show();
+        ui->errorLb->setText("请选择座位类型！");
+    }
+    else if(!current_seat.isValid()){
+        qDebug()<<"请选择座位！";
+        ui->errorLb->show();
+        ui->errorLb->setText("请选择座位！");
     }
 
 
@@ -349,5 +375,13 @@ void Book::on_tdBt_clicked()
         s->setQuery(queryString, db);
     }
     qDebug()<<seat_type;
+}
+
+
+void Book::on_Seats_clicked(const QModelIndex &index)
+{
+    current_seat=index;
+    ui->errorLb->hide();
+    qDebug()<<current_seat;
 }
 

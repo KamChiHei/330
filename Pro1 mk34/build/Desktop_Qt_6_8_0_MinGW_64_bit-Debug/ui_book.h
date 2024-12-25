@@ -48,6 +48,7 @@ public:
     QRadioButton *swBt;
     QRadioButton *tdBt;
     QTableView *Seats;
+    QLabel *errorLb;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -115,6 +116,9 @@ public:
         Seats = new QTableView(centralwidget);
         Seats->setObjectName("Seats");
         Seats->setGeometry(QRect(1100, 220, 481, 361));
+        errorLb = new QLabel(centralwidget);
+        errorLb->setObjectName("errorLb");
+        errorLb->setGeometry(QRect(110, 170, 71, 31));
         Book->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Book);
         menubar->setObjectName("menubar");
@@ -150,6 +154,7 @@ public:
         jjBt->setText(QCoreApplication::translate("Book", "\347\273\217\346\265\216\350\210\261", nullptr));
         swBt->setText(QCoreApplication::translate("Book", "\345\225\206\345\212\241\350\210\261", nullptr));
         tdBt->setText(QCoreApplication::translate("Book", "\345\244\264\347\255\211\350\210\261", nullptr));
+        errorLb->setText(QString());
     } // retranslateUi
 
 };

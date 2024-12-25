@@ -37,10 +37,10 @@ public:
         del_uid->setIcon(icon);
         BookButton = new QPushButton(user_Form);
         BookButton->setObjectName("BookButton");
-        BookButton->setGeometry(QRect(210, 160, 56, 18));
+        BookButton->setGeometry(QRect(220, 160, 56, 18));
         RefundButton = new QPushButton(user_Form);
         RefundButton->setObjectName("RefundButton");
-        RefundButton->setGeometry(QRect(210, 200, 56, 18));
+        RefundButton->setGeometry(QRect(210, 200, 71, 21));
 
         retranslateUi(user_Form);
 
@@ -52,7 +52,7 @@ public:
         user_Form->setWindowTitle(QCoreApplication::translate("user_Form", "Form", nullptr));
         del_uid->setText(QCoreApplication::translate("user_Form", "\346\263\250\351\224\200", nullptr));
         BookButton->setText(QCoreApplication::translate("user_Form", "\350\264\255\347\245\250", nullptr));
-        RefundButton->setText(QCoreApplication::translate("user_Form", "\351\200\200\347\245\250", nullptr));
+        RefundButton->setText(QCoreApplication::translate("user_Form", "\344\270\252\344\272\272\350\256\242\345\215\225", nullptr));
     } // retranslateUi
 
 };

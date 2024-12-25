@@ -18,7 +18,12 @@ Refund::Refund(QWidget *parent,int i)
         m= new QSqlTableModel;
         m->setTable("orders");
 
-        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
+
+
         m->setQuery(sql,db);
 
         ui->orders->setModel(m);
@@ -26,6 +31,19 @@ Refund::Refund(QWidget *parent,int i)
         m->setHeaderData(1,Qt::Horizontal,"订单人");
         m->setHeaderData(2,Qt::Horizontal,"座位号");
         m->setHeaderData(3,Qt::Horizontal,"支付状态");
+        m->setHeaderData(4,Qt::Horizontal,"航班号");
+
+        //QAbstractItemModel *abmodel = ui->orders->model();
+        //m->insertColumn(4);
+        //m->setHeaderData(4,Qt::Horizontal,"航班号");
+        //QVariant newdata= QVariant("111");
+        //qDebug()<<newdata;
+        //m->setData(m->index(1,4),newdata);
+        // ui->orders->setModel(abmodel);
+
+        ui->orders->hideColumn(0);
+        ui->orders->hideColumn(1);
+
 
 
     }
@@ -53,7 +71,10 @@ void Refund::on_pushButton_clicked()
 void Refund::on_Tickets_clicked()
 {
 
-    QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+    QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                          "JOIN seats s ON o.seat_id = s.seat_id "
+                          "JOIN flight f ON s.flight_id = f.flight_id "
+                          "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
     m->setQuery(sql,db);
 }
 
@@ -92,8 +113,13 @@ void Refund::on_cancelButton_clicked()
         QMessageBox::information(this,"退票提示","退票成功！");
 
 
-        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
         m->setQuery(sql,db);
+        ui->orders->hideColumn(0);
+        ui->orders->hideColumn(1);
 
 
         current=QModelIndex();
@@ -110,8 +136,14 @@ void Refund::on_changeButton_clicked()
     this->c = new change();
     connect(this->c,&change::back,[=](){
         // db.open();
+
         this->c->hide();
         this->show();
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
+        m->setQuery(sql,db);
     });
     c->getdatabase(db);
     if(current.isValid()){

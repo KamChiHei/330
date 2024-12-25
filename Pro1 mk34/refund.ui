@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>退票！</string>
+    <string>个人订单</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">

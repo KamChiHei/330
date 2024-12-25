@@ -32,7 +32,7 @@
   <widget class="QPushButton" name="BookButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>220</x>
      <y>160</y>
      <width>56</width>
      <height>18</height>
@@ -47,12 +47,12 @@
     <rect>
      <x>210</x>
      <y>200</y>
-     <width>56</width>
-     <height>18</height>
+     <width>71</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>退票</string>
+    <string>个人订单</string>
    </property>
   </widget>
  </widget>
