@@ -80,7 +80,7 @@ public:
 "}"));
         frame = new QFrame(user_Form);
         frame->setObjectName("frame");
-        frame->setGeometry(QRect(-1, -1, 402, 302));
+        frame->setGeometry(QRect(-1, 0, 402, 302));
         frame->setAutoFillBackground(true);
         frame->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
 "background-image: url(:/new/prefix2/iconANDpic/login.jpg);"));

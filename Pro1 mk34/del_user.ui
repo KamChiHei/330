@@ -36,7 +36,7 @@
     <normaloff>:/new/prefix1/iconANDpic/plane.png</normaloff>:/new/prefix1/iconANDpic/plane.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);</string>
+   <string notr="true"/>
   </property>
   <widget class="QPushButton" name="delButton">
    <property name="geometry">
@@ -164,6 +164,32 @@ color: rgb(255, 0, 0);</string>
     <pixmap resource="icon.qrc">:/new/prefix1/iconANDpic/warning.png</pixmap>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>0</y>
+     <width>402</width>
+     <height>302</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgba(255, 255, 255, 100);
+background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>delButton</zorder>
+  <zorder>nodelButton</zorder>
+  <zorder>label</zorder>
+  <zorder>user</zorder>
+  <zorder>label_2</zorder>
  </widget>
  <resources>
   <include location="icon.qrc"/>

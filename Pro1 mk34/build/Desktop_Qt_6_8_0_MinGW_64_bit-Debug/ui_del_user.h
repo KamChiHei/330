@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -26,6 +27,7 @@ public:
     QLabel *label;
     QLabel *user;
     QLabel *label_2;
+    QFrame *frame;
 
     void setupUi(QWidget *del_user)
     {
@@ -42,7 +44,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         del_user->setWindowIcon(icon);
-        del_user->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        del_user->setStyleSheet(QString::fromUtf8(""));
         delButton = new QPushButton(del_user);
         delButton->setObjectName("delButton");
         delButton->setGeometry(QRect(50, 200, 125, 50));
@@ -99,6 +101,19 @@ public:
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(60, 100, 40, 40));
         label_2->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/iconANDpic/warning.png")));
+        frame = new QFrame(del_user);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(-1, 0, 402, 302));
+        frame->setStyleSheet(QString::fromUtf8("color: rgba(255, 255, 255, 100);\n"
+"background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);"));
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        frame->raise();
+        delButton->raise();
+        nodelButton->raise();
+        label->raise();
+        user->raise();
+        label_2->raise();
 
         retranslateUi(del_user);
 

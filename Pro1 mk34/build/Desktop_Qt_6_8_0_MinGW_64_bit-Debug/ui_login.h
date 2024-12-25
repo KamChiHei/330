@@ -13,6 +13,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCommandLinkButton>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
@@ -33,6 +34,7 @@ public:
     QLabel *tip;
     QCommandLinkButton *commandLinkButton_2;
     QCommandLinkButton *commandLinkButton_3;
+    QFrame *frame;
     QMenuBar *menubar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -46,10 +48,7 @@ public:
         icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setWindowOpacity(1.000000000000000);
-        MainWindow->setStyleSheet(QString::fromUtf8("QMainWindow#MainWindow{\n"
-"	background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);\n"
-"}\n"
-""));
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         login_button = new QPushButton(centralwidget);
@@ -131,13 +130,15 @@ public:
         commandLinkButton_2->setGeometry(QRect(100, 50, 200, 40));
         commandLinkButton_2->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         commandLinkButton_2->setStyleSheet(QString::fromUtf8("QCommandLinkButton#commandLinkButton_2 {\n"
-"	border-radius: 5px;\n"
-"	border: 1px solid rgb(230, 230, 230);\n"
-"	background-color: rgba(255, 255, 255, 50);\n"
-"	font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
-"    color: White;\n"
+"    \n"
 "	\n"
 "    \n"
+"	background-color: rgba(255, 255, 255, 50);\n"
+"	font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: White;\n"
+"	\n"
+"    border-radius: 5px;\n"
+"	border: 1px solid rgb(230, 230, 230);\n"
 "}\n"
 "\n"
 "QCommandLinkButton#commandLinkButton_2:hover {\n"
@@ -145,7 +146,7 @@ public:
 "    font: 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "color: White;\n"
 "    border: 1px solid rgb(230, 230, 230); \n"
-"    \n"
+"    background-color: transparent;   \n"
 "}\n"
 "\n"
 ""));
@@ -177,7 +178,22 @@ public:
 "\n"
 ""));
         commandLinkButton_3->setIconSize(QSize(0, 0));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(-1, 0, 402, 302));
+        frame->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 80);\n"
+"	background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);"));
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
         MainWindow->setCentralWidget(centralwidget);
+        frame->raise();
+        login_button->raise();
+        lineEdit->raise();
+        lineEdit_2->raise();
+        commandLinkButton->raise();
+        tip->raise();
+        commandLinkButton_2->raise();
+        commandLinkButton_3->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
         menubar->setGeometry(QRect(0, 0, 400, 18));

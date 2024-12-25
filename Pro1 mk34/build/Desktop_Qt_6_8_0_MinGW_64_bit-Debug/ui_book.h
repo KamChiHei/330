@@ -10,17 +10,15 @@
 #define UI_BOOK_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
-#include <QtWidgets/QTextEdit>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,78 +27,121 @@ class Ui_Book
 {
 public:
     QWidget *centralwidget;
-    QTextEdit *textEdit;
-    QPushButton *Back;
     QTableView *Tickets;
-    QPushButton *BookButton;
-    QLabel *label_3;
-    QLabel *label_2;
-    QLabel *label_5;
-    QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
+    QFrame *frame;
     QLineEdit *flight_idEdit;
     QLineEdit *fEdit;
     QLineEdit *tEdit;
-    QMenuBar *menubar;
-    QStatusBar *statusbar;
+    QPushButton *BookButton;
+    QPushButton *Back;
+    QLabel *label_4;
+    QLabel *label_3;
+    QLabel *label_2;
 
     void setupUi(QMainWindow *Book)
     {
         if (Book->objectName().isEmpty())
             Book->setObjectName("Book");
-        Book->resize(1600, 1000);
+        Book->resize(1280, 720);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/new/prefix1/iconANDpic/plane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        Book->setWindowIcon(icon);
         centralwidget = new QWidget(Book);
         centralwidget->setObjectName("centralwidget");
-        textEdit = new QTextEdit(centralwidget);
-        textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(230, 10, 61, 31));
-        Back = new QPushButton(centralwidget);
-        Back->setObjectName("Back");
-        Back->setGeometry(QRect(100, 300, 93, 28));
         Tickets = new QTableView(centralwidget);
         Tickets->setObjectName("Tickets");
-        Tickets->setGeometry(QRect(300, -10, 751, 621));
-        BookButton = new QPushButton(centralwidget);
-        BookButton->setObjectName("BookButton");
-        BookButton->setGeometry(QRect(100, 200, 92, 28));
-        label_3 = new QLabel(centralwidget);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(20, 142, 60, 27));
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(20, 102, 60, 28));
-        label_5 = new QLabel(centralwidget);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(10, 72, 71, 31));
-        layoutWidget = new QWidget(centralwidget);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(90, 70, 144, 97));
-        verticalLayout = new QVBoxLayout(layoutWidget);
-        verticalLayout->setObjectName("verticalLayout");
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        flight_idEdit = new QLineEdit(layoutWidget);
+        Tickets->setGeometry(QRect(300, 0, 751, 600));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(-1, 0, 1282, 721));
+        frame->setStyleSheet(QString::fromUtf8("QFrame#frame{\n"
+"\n"
+"background-color: rgba(255, 255, 255, 100);\n"
+"background-image: url(:/new/prefix2/iconANDpic/book.jpg);\n"
+"}\n"
+""));
+        frame->setFrameShape(QFrame::Shape::StyledPanel);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        flight_idEdit = new QLineEdit(frame);
         flight_idEdit->setObjectName("flight_idEdit");
-
-        verticalLayout->addWidget(flight_idEdit);
-
-        fEdit = new QLineEdit(layoutWidget);
+        flight_idEdit->setGeometry(QRect(110, 40, 160, 40));
+        flight_idEdit->setStyleSheet(QString::fromUtf8("\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"\n"
+""));
+        fEdit = new QLineEdit(frame);
         fEdit->setObjectName("fEdit");
-
-        verticalLayout->addWidget(fEdit);
-
-        tEdit = new QLineEdit(layoutWidget);
+        fEdit->setGeometry(QRect(109, 90, 160, 40));
+        fEdit->setStyleSheet(QString::fromUtf8("\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"\n"
+""));
+        tEdit = new QLineEdit(frame);
         tEdit->setObjectName("tEdit");
-
-        verticalLayout->addWidget(tEdit);
-
+        tEdit->setGeometry(QRect(109, 140, 160, 40));
+        tEdit->setStyleSheet(QString::fromUtf8("\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"\n"
+""));
+        BookButton = new QPushButton(frame);
+        BookButton->setObjectName("BookButton");
+        BookButton->setGeometry(QRect(50, 200, 200, 40));
+        BookButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"\n"
+"	background-color: rgba(0, 159, 252,100);\n"
+"\n"
+"	font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 170, 255); \n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {  \n"
+"	background-color: rgba(0, 159, 252,200);\n"
+"}"));
+        Back = new QPushButton(frame);
+        Back->setObjectName("Back");
+        Back->setGeometry(QRect(50, 270, 200, 40));
+        Back->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"\n"
+"	background-color: rgba(0, 159, 252,100);\n"
+"\n"
+"	font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 170, 255); \n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {  \n"
+"	background-color: rgba(0, 159, 252,200);\n"
+"}"));
+        label_4 = new QLabel(frame);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(9, 40, 101, 40));
+        label_4->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 255, 255);"));
+        label_4->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_3 = new QLabel(frame);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(30, 140, 80, 40));
+        label_3->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 255, 255);"));
+        label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_2 = new QLabel(frame);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(30, 90, 80, 40));
+        label_2->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"color: rgb(255, 255, 255);"));
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
         Book->setCentralWidget(centralwidget);
-        menubar = new QMenuBar(Book);
-        menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1600, 24));
-        Book->setMenuBar(menubar);
-        statusbar = new QStatusBar(Book);
-        statusbar->setObjectName("statusbar");
-        Book->setStatusBar(statusbar);
+        frame->raise();
+        Tickets->raise();
 
         retranslateUi(Book);
 
@@ -109,21 +150,13 @@ public:
 
     void retranslateUi(QMainWindow *Book)
     {
-        Book->setWindowTitle(QCoreApplication::translate("Book", "MainWindow", nullptr));
-        textEdit->setHtml(QCoreApplication::translate("Book", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">\350\256\242\347\245\250\357\274\201</p></body></html>", nullptr));
-        Back->setText(QCoreApplication::translate("Book", "\350\277\224\345\233\236", nullptr));
+        Book->setWindowTitle(QCoreApplication::translate("Book", "\350\264\255\347\245\250", nullptr));
+        tEdit->setText(QString());
         BookButton->setText(QCoreApplication::translate("Book", "\350\256\242\345\272\247", nullptr));
+        Back->setText(QCoreApplication::translate("Book", "\350\277\224\345\233\236", nullptr));
+        label_4->setText(QCoreApplication::translate("Book", "\350\210\252\347\217\255\347\274\226\345\217\267:", nullptr));
         label_3->setText(QCoreApplication::translate("Book", "\347\233\256\347\232\204\345\234\260\357\274\232", nullptr));
         label_2->setText(QCoreApplication::translate("Book", "\345\207\272\345\217\221\345\234\260\357\274\232", nullptr));
-        label_5->setText(QCoreApplication::translate("Book", "\350\210\252\347\217\255\347\274\226\345\217\267\357\274\232", nullptr));
-        tEdit->setText(QString());
     } // retranslateUi
 
 };

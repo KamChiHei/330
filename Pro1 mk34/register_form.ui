@@ -155,7 +155,7 @@ QPushButton:hover {
     <rect>
      <x>100</x>
      <y>170</y>
-     <width>200</width>
+     <width>250</width>
      <height>30</height>
     </rect>
    </property>
@@ -264,15 +264,15 @@ color: rgb(255, 0, 0);</string>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>401</width>
-     <height>301</height>
+     <x>-1</x>
+     <y>1</y>
+     <width>402</width>
+     <height>302</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgba(255, 255, 255, 0);
-background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);
+background-image: url(:/new/prefix2/iconANDpic/login.jpg);
 </string>
    </property>
    <property name="frameShape">

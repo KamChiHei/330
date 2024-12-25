@@ -33,10 +33,7 @@
    <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
-   <string notr="true">QMainWindow#MainWindow{
-	background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);
-}
-</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="login_button">
@@ -208,13 +205,15 @@ color: rgb(255, 0, 0);</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QCommandLinkButton#commandLinkButton_2 {
-	border-radius: 5px;
-	border: 1px solid rgb(230, 230, 230);
-	background-color: rgba(255, 255, 255, 50);
-	font: 12pt &quot;微软雅黑&quot;;
-    color: White;
+    
 	
     
+	background-color: rgba(255, 255, 255, 50);
+	font: 12pt &quot;微软雅黑&quot;;
+	color: White;
+	
+    border-radius: 5px;
+	border: 1px solid rgb(230, 230, 230);
 }
 
 QCommandLinkButton#commandLinkButton_2:hover {
@@ -222,7 +221,7 @@ QCommandLinkButton#commandLinkButton_2:hover {
     font: 12pt &quot;微软雅黑&quot;;
 color: White;
     border: 1px solid rgb(230, 230, 230); 
-    
+    background-color: transparent;   
 }
 
 </string>
@@ -285,6 +284,34 @@ color: White;
      </size>
     </property>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>0</y>
+      <width>402</width>
+      <height>302</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 80);
+	background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>login_button</zorder>
+   <zorder>lineEdit</zorder>
+   <zorder>lineEdit_2</zorder>
+   <zorder>commandLinkButton</zorder>
+   <zorder>tip</zorder>
+   <zorder>commandLinkButton_2</zorder>
+   <zorder>commandLinkButton_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -119,7 +119,7 @@ public:
 "}"));
         pwdtips2 = new QLabel(register_Form);
         pwdtips2->setObjectName("pwdtips2");
-        pwdtips2->setGeometry(QRect(100, 170, 200, 30));
+        pwdtips2->setGeometry(QRect(100, 170, 250, 30));
         pwdtips2->setStyleSheet(QString::fromUtf8("font: 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "color: rgb(255, 0, 0);"));
         nametips = new QLabel(register_Form);
@@ -164,9 +164,9 @@ public:
 
         frame = new QFrame(register_Form);
         frame->setObjectName("frame");
-        frame->setGeometry(QRect(0, 0, 401, 301));
+        frame->setGeometry(QRect(-1, 1, 402, 302));
         frame->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 0);\n"
-"background-image: url(:/new/prefix2/iconANDpic/login(400x300).png);\n"
+"background-image: url(:/new/prefix2/iconANDpic/login.jpg);\n"
 ""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);

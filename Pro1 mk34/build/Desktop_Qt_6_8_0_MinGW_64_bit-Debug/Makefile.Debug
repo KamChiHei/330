@@ -147,16 +147,21 @@ compiler_rcc_clean:
 debug/qrc_icon.cpp: ../../icon.qrc \
 		D:/Qt/6.8.0/mingw_64/bin/rcc.exe \
 		../../iconANDpic/login(400x300).png \
+		../../iconANDpic/book.jpg \
 		../../iconANDpic/adminF(1080x720).png \
 		../../iconANDpic/login.jpg \
+		../../iconANDpic/change.jpg \
+		../../iconANDpic/ordermanage.jpg \
 		../../iconANDpic/adminF(1280x720).png \
 		../../iconANDpic/point1.png \
 		../../iconANDpic/point2.png \
+		../../iconANDpic/point5.png \
 		../../iconANDpic/warning(30x30).png \
 		../../iconANDpic/plane.png \
 		../../iconANDpic/point3.png \
 		../../iconANDpic/point4.png \
-		../../iconANDpic/warning.png
+		../../iconANDpic/warning.png \
+		../../iconANDpic/point6.png
 	D:\Qt\6.8.0\mingw_64\bin\rcc.exe -name icon --no-zstd ..\..\icon.qrc -o debug\qrc_icon.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
