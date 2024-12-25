@@ -41,7 +41,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton_add">
@@ -205,7 +205,7 @@ QPushButton:hover {
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>8</hour>
+        <hour>0</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2023</year>
@@ -831,6 +831,32 @@ QPushButton:hover {
        <string>下一页</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_status">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>50</y>
+        <width>151</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_searchall">
+      <property name="geometry">
+       <rect>
+        <x>710</x>
+        <y>90</y>
+        <width>80</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>显示所有航班</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_2">
      <widget class="QLabel" name="label_4">
@@ -1143,6 +1169,8 @@ border-radius: 5px;
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="page_4"/>
+    <widget class="QWidget" name="page_5"/>
    </widget>
    <widget class="QPushButton" name="pushButton_addFlight">
     <property name="geometry">
@@ -1316,12 +1344,92 @@ border: 1px solid rgb(0, 0, 0);
      <string notr="true">background-color:  rgba(0, 159, 252, 150);</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>320</y>
+      <width>200</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>24</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+border: 1px solid rgb(0, 0, 0);
+
+}
+
+QPushButton:hover {
+    color: rgb(255, 255, 255);
+border: 1px solid rgb(0, 0, 0);
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string>查询用户</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>400</y>
+      <width>200</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>24</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+border: 1px solid rgb(0, 0, 0);
+
+}
+
+QPushButton:hover {
+    color: rgb(255, 255, 255);
+border: 1px solid rgb(0, 0, 0);
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string>查询订单</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
    <zorder>graphicsView</zorder>
    <zorder>stackedWidget</zorder>
    <zorder>pushButton_addFlight</zorder>
    <zorder>pushButton_deleteFlight</zorder>
    <zorder>pushButton_searchFlight</zorder>
    <zorder>pushButton_4</zorder>
+   <zorder>pushButton_5</zorder>
+   <zorder>pushButton_6</zorder>
   </widget>
  </widget>
  <resources>

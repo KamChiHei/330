@@ -23,6 +23,8 @@ admin_form::admin_form(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::admin_form)
     , currentOffset(0)
+    ,currentoffset2(0)
+    ,currentoffset3(0)
 
 
 {
@@ -36,18 +38,15 @@ admin_form::admin_form(QWidget *parent)
     ui->tableWidget->clearContents();
     connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch);
     connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
+    sss=false;
 
-    connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
-    connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
-
-    load(currentOffset);
 }
 
 
 
 void admin_form::load(int offset){
     QSqlDatabase db = initializeDatabase();
-    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight where date='2024-01-01' limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
     qDebug()<<sqlstr;
     QSqlQuery query(db);
     query.prepare(sqlstr);//准备
@@ -196,59 +195,129 @@ void admin_form::load2(int offset){
     db.close();
 }
 
-void admin_form::setSeatCount(int row, const QString &flightId, const QString &seatTypeId, int column) {
+void admin_form::loada(int offset){
     QSqlDatabase db = initializeDatabase();
+    QString sqlstr=QString("select flight_id,departure_time,arrival_time,base_fare from flight limit %1 offset %2").arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    qDebug()<<sqlstr;
     QSqlQuery query(db);
-    QString sql = QString("SELECT count(flight_id) FROM seats WHERE flight_id='%1' AND seat_type_id='%2'")
-                      .arg(flightId).arg(seatTypeId);
-    query.prepare(sql);
-    if (query.exec() && query.next()) {
-        ui->tableWidget->setItem(row, column, new QTableWidgetItem(query.value(0).toString()));
-        ui->tableWidget->item(row, column)->setTextAlignment(Qt::AlignVCenter | Qt::AlignHCenter);
+    query.prepare(sqlstr);//准备
+    int i=0;
+    if(query.exec())
+    {
+
+        while(query.next())
+        {
+
+            ui->tableWidget->setRowCount(i+1);//设置表格行数，每一次加一行
+            ui->tableWidget->setItem(i,0,new QTableWidgetItem(query.value(0).toString())); //将从数据库中表获取的数据写入到tableWidget 表中
+            ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,1,new QTableWidgetItem(query.value(1).toString()));
+            ui->tableWidget->item(i,1)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,2,new QTableWidgetItem(query.value(2).toString()));
+            ui->tableWidget->item(i,2)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+            ui->tableWidget->setItem(i,3,new QTableWidgetItem(query.value(3).toString()));
+            ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            int moneyOfLvl2= query.value(3).toInt()*2;
+            int moneyOfLvl3=query.value(3).toInt()*3;
+            QString s = QString::number(moneyOfLvl2);
+            QString q = QString::number(moneyOfLvl3);
+
+            ui->tableWidget->setItem(i,4,new QTableWidgetItem(s));
+            ui->tableWidget->item(i,4)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+
+            ui->tableWidget->setItem(i,5,new QTableWidgetItem(q));
+            ui->tableWidget->item(i,5)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+            QSqlQuery query1;
+            QString sql=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='1';").arg(query.value(0).toString());
+            query1.prepare(sql);
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,6,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='2';").arg(query.value(0).toString());
+            query1.prepare(sqll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,7,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,7)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+
+            QString sqlll=QString("select count(flight_id) from seats where flight_id='%1'and seat_type_id='3';").arg(query.value(0).toString());
+            query1.prepare(sqlll);
+
+            if(query1.exec()){
+                while(query1.next()){
+                    ui->tableWidget->setItem(i,8,new QTableWidgetItem(query1.value(0).toString()));
+                    ui->tableWidget->item(i,8)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
+
+                }
+            }
+            i++;
+        }
+
     }
     db.close();
 }
-
-
-
 
 admin_form::~admin_form() {
     delete ui;
 }
 
 void admin_form::loadNextBatch() {
-    currentOffset += BATCH_SIZE;
-    if(currentoffset2>0){
-        return;
+    if(sss){
+        currentoffset2 += BATCH_SIZE;
+        load2(currentoffset2);
     }
-    load(currentOffset);
+    else if(sss1){
+        currentoffset3 += BATCH_SIZE;
+        loada(currentoffset3);
+    }
+    else{
+        currentOffset += BATCH_SIZE;
+        load(currentOffset);
+    }
+
+
 }
 
 void admin_form::loadPrevBatch() {
-    if (currentOffset >= BATCH_SIZE) {
-        currentOffset -= BATCH_SIZE;
-    } else {
-        currentOffset = 0;
+    if(sss){
+        if (currentoffset2 >= BATCH_SIZE) {
+            currentoffset2 -= BATCH_SIZE;
+        }
+        else {
+            currentoffset2 = 0;
+        }
+        load2(currentoffset2);
     }
-
-    if(currentoffset2>0){
-        return;
+    else if(sss1){
+        if (currentoffset3 >= BATCH_SIZE) {
+            currentoffset3 -= BATCH_SIZE;
+        }
+        else {
+            currentoffset3 = 0;
+        }
+        loada(currentoffset3);
     }
-    load(currentOffset);
-}
-
-void admin_form::loadNextBatch2() {
-    currentoffset2 += BATCH_SIZE;
-    load2(currentoffset2);
-}
-
-void admin_form::loadPrevBatch2() {
-    if (currentoffset2 >= BATCH_SIZE) {
-        currentoffset2 -= BATCH_SIZE;
-    } else {
-        currentoffset2 = 0;
+    else{
+        if (currentOffset >= BATCH_SIZE) {
+            currentOffset -= BATCH_SIZE;
+        } else {
+            currentOffset = 0;
+        }
+        load(currentOffset);
     }
-    load2(currentoffset2);
 }
 
 void admin_form::switchPage() {
@@ -257,8 +326,15 @@ void admin_form::switchPage() {
         ui->stackedWidget->setCurrentIndex(0);
     else if (button == ui->pushButton_deleteFlight)
         ui->stackedWidget->setCurrentIndex(1);
-    else if (button == ui->pushButton_searchFlight)
-        ui->stackedWidget->setCurrentIndex(2);
+    else if (button == ui->pushButton_searchFlight){
+         ui->stackedWidget->setCurrentIndex(2);
+        load(currentOffset);
+    }
+
+    //else if(button == ui->)
+
+
+
     else if (button == ui->pushButton_4)
         ui->stackedWidget->setCurrentIndex(3);
 }
@@ -403,24 +479,38 @@ void admin_form::clear3() {
 
 void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &arg1) {
     ui->tableWidget->clearContents();
+    ui->label_status->setText("");
+    sss=true;
+    sss1=false;
+    currentOffset=0;
     currentoffset2=0;
+    currentoffset3=0;
     load2(currentoffset2);
 
 }
 
 void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1) {
     ui->tableWidget->clearContents();
+    ui->label_status->setText("");
+    sss=true;
+    sss1=false;
+    currentOffset=0;
     currentoffset2=0;
-
+    currentoffset3=0;
     load2(currentoffset2);
 
 }
 
 void admin_form::on_dateEdit_selectedDate_dateChanged(const QDate &date) {
     ui->tableWidget->clearContents();
+    ui->label_status->setText("");
+    sss=true;
+    sss1=false;
+    currentOffset=0;
     currentoffset2=0;
-
+    currentoffset3=0;
     load2(currentoffset2);
+
 
 }
 
@@ -431,6 +521,23 @@ void admin_form::on_pushButton_clear_clicked() {
     ui->lineEdit_selectedDeparturePlace->clear();
     ui->lineEdit_selectedArrivalPlace->clear();
     ui->dateEdit_selectedDate->setDate(QDate(2024, 1, 1));
+    sss=false;
+    sss1=false;
     currentOffset=0;
+    currentoffset2=0;
+    currentoffset3=0;
     load(currentOffset);
+    ui->label_status->setText("");
 }
+
+void admin_form::on_pushButton_searchall_clicked()
+{
+    currentOffset=0;
+    currentoffset2=0;
+    currentoffset3=0;
+    sss=false;
+    sss1=true;
+    ui->label_status->setText("正在显示所有航班");
+    loada(currentoffset3);
+}
+

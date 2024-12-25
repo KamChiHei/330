@@ -75,6 +75,8 @@ public:
     QLabel *label_3;
     QPushButton *prevButton;
     QPushButton *nextButton;
+    QLabel *label_status;
+    QPushButton *pushButton_searchall;
     QWidget *page_2;
     QLabel *label_4;
     QLabel *label_21;
@@ -92,11 +94,15 @@ public:
     QLabel *label_25;
     QLabel *label_26;
     QLabel *label_27;
+    QWidget *page_4;
+    QWidget *page_5;
     QPushButton *pushButton_addFlight;
     QPushButton *pushButton_deleteFlight;
     QPushButton *pushButton_searchFlight;
     QPushButton *pushButton_4;
     QGraphicsView *graphicsView;
+    QPushButton *pushButton_5;
+    QPushButton *pushButton_6;
 
     void setupUi(QMainWindow *admin_form)
     {
@@ -175,7 +181,7 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(8, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 31), QTime(0, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -433,6 +439,12 @@ public:
         nextButton = new QPushButton(page_3);
         nextButton->setObjectName("nextButton");
         nextButton->setGeometry(QRect(810, 150, 80, 18));
+        label_status = new QLabel(page_3);
+        label_status->setObjectName("label_status");
+        label_status->setGeometry(QRect(830, 50, 151, 16));
+        pushButton_searchall = new QPushButton(page_3);
+        pushButton_searchall->setObjectName("pushButton_searchall");
+        pushButton_searchall->setGeometry(QRect(710, 90, 80, 18));
         stackedWidget->addWidget(page_3);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
@@ -555,6 +567,12 @@ public:
         label_27->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_27->setAlignment(Qt::AlignmentFlag::AlignCenter);
         stackedWidget->addWidget(page_2);
+        page_4 = new QWidget();
+        page_4->setObjectName("page_4");
+        stackedWidget->addWidget(page_4);
+        page_5 = new QWidget();
+        page_5->setObjectName("page_5");
+        stackedWidget->addWidget(page_5);
         pushButton_addFlight = new QPushButton(centralwidget);
         pushButton_addFlight->setObjectName("pushButton_addFlight");
         pushButton_addFlight->setGeometry(QRect(0, 0, 200, 80));
@@ -631,6 +649,40 @@ public:
         graphicsView->setObjectName("graphicsView");
         graphicsView->setGeometry(QRect(0, 0, 200, 720));
         graphicsView->setStyleSheet(QString::fromUtf8("background-color:  rgba(0, 159, 252, 150);"));
+        pushButton_5 = new QPushButton(centralwidget);
+        pushButton_5->setObjectName("pushButton_5");
+        pushButton_5->setGeometry(QRect(0, 320, 200, 80));
+        pushButton_5->setFont(font1);
+        pushButton_5->setAutoFillBackground(false);
+        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 0, 0);\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 0, 0);\n"
+" \n"
+"}"));
+        pushButton_5->setFlat(true);
+        pushButton_6 = new QPushButton(centralwidget);
+        pushButton_6->setObjectName("pushButton_6");
+        pushButton_6->setGeometry(QRect(0, 400, 200, 80));
+        pushButton_6->setFont(font1);
+        pushButton_6->setAutoFillBackground(false);
+        pushButton_6->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"	color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 0, 0);\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    color: rgb(255, 255, 255);\n"
+"border: 1px solid rgb(0, 0, 0);\n"
+" \n"
+"}"));
+        pushButton_6->setFlat(true);
         admin_form->setCentralWidget(centralwidget);
         graphicsView->raise();
         stackedWidget->raise();
@@ -638,10 +690,12 @@ public:
         pushButton_deleteFlight->raise();
         pushButton_searchFlight->raise();
         pushButton_4->raise();
+        pushButton_5->raise();
+        pushButton_6->raise();
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(5);
         pushButton_addFlight->setDefault(false);
 
 
@@ -674,6 +728,8 @@ public:
         label_3->setText(QString());
         prevButton->setText(QCoreApplication::translate("admin_form", "\344\270\212\344\270\200\351\241\265", nullptr));
         nextButton->setText(QCoreApplication::translate("admin_form", "\344\270\213\344\270\200\351\241\265", nullptr));
+        label_status->setText(QString());
+        pushButton_searchall->setText(QCoreApplication::translate("admin_form", "\346\230\276\347\244\272\346\211\200\346\234\211\350\210\252\347\217\255", nullptr));
         label_4->setText(QString());
         label_21->setText(QCoreApplication::translate("admin_form", "<html><head/><body><p>\344\277\256\346\224\271\350\210\252\347\217\255</p></body></html>", nullptr));
         pushButton_update->setText(QCoreApplication::translate("admin_form", "\344\277\256\346\224\271", nullptr));
@@ -687,6 +743,8 @@ public:
         pushButton_deleteFlight->setText(QCoreApplication::translate("admin_form", "\345\210\240\351\231\244\350\210\252\347\217\255", nullptr));
         pushButton_searchFlight->setText(QCoreApplication::translate("admin_form", "\346\237\245\350\257\242\350\210\252\347\217\255", nullptr));
         pushButton_4->setText(QCoreApplication::translate("admin_form", "\344\277\256\346\224\271\350\210\252\347\217\255", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("admin_form", "\346\237\245\350\257\242\347\224\250\346\210\267", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("admin_form", "\346\237\245\350\257\242\350\256\242\345\215\225", nullptr));
     } // retranslateUi
 
 };

@@ -70,20 +70,21 @@ private slots:
 
     void load2(int offset);
 
+    void loada(int offset);
 
-    void setSeatCount(int row, const QString &flightId, const QString &seatTypeId, int column);
 
     void loadNextBatch();
 
     void loadPrevBatch();
+    void on_pushButton_searchall_clicked();
 
-    void loadNextBatch2();
-
-    void loadPrevBatch2();
 private:
     Ui::admin_form *ui;
     int currentOffset;
     int currentoffset2;
+    int currentoffset3;
+    bool sss;
+    bool sss1;
 
 };
 #endif // ADMIN_FORM_H
