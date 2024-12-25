@@ -109,7 +109,7 @@ private slots:
 
     void on_lineEdit_password_textChanged(const QString &arg1);
 
-    void on_pushButton_clear_2_clicked();
+    void on_pushButton_clear_4_clicked();
 
     void on_lineEdit_orderid_textChanged(const QString &arg1);
 
@@ -117,7 +117,7 @@ private slots:
 
     void on_lineEdit_seatid_textChanged(const QString &arg1);
 
-    void on_pushButton_clear_3_clicked();
+    void on_pushButton_clear_7_clicked();
 
     void abc();
 

@@ -62,11 +62,11 @@ admin_form::admin_form(QWidget *parent)
     connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
 
 
-    connect(ui->nextButton_2, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
-    connect(ui->prevButton_2, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
+    connect(ui->nextButton_5, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
+    connect(ui->prevButton_5, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
 
-    connect(ui->nextButton_3, &QPushButton::clicked, this, &admin_form::loadNextBatch3);
-    connect(ui->prevButton_3, &QPushButton::clicked, this, &admin_form::loadPrevBatch3);
+    connect(ui->nextButton_6, &QPushButton::clicked, this, &admin_form::loadNextBatch3);
+    connect(ui->prevButton_6, &QPushButton::clicked, this, &admin_form::loadPrevBatch3);
 
     sss=false;
     sss1=false;
@@ -679,7 +679,7 @@ void admin_form::switchPage() {
     else if (button == ui->pushButton_deleteFlight)
         ui->stackedWidget->setCurrentIndex(1);
     else if (button == ui->pushButton_searchFlight){
-         ui->stackedWidget->setCurrentIndex(2);
+        ui->stackedWidget->setCurrentIndex(2);
         load(currentOffset);
     }
 
@@ -939,7 +939,7 @@ void admin_form::on_lineEdit_password_textChanged(const QString &arg1)
 }
 
 
-void admin_form::on_pushButton_clear_2_clicked()
+void admin_form::on_pushButton_clear_4_clicked()
 {
     ui->tableWidget_2->setRowCount(0);
     ui->tableWidget_2->clearContents();
@@ -988,7 +988,7 @@ void admin_form::on_lineEdit_seatid_textChanged(const QString &arg1)
 }
 
 
-void admin_form::on_pushButton_clear_3_clicked()
+void admin_form::on_pushButton_clear_7_clicked()
 {
     orderoffset1=0;
     orderoffset2=0;
@@ -1008,25 +1008,25 @@ void admin_form::on_pushButton_clear_3_clicked()
 void admin_form::abc(){
 
 
-        if(ui->radioButton_all->isChecked()==true){
-            bbb=false;
-            bbb1=false;
-            bbb2=true;
-            loadorder4(orderoffset4);
-        }
-        if(ui->radioButton_cancel->isChecked()==true){
-            bbb=true;
-            bbb1=false;
-            bbb2=false;
-            loadorder2(orderoffset2);
-        }
+    if(ui->radioButton_all->isChecked()==true){
+        bbb=false;
+        bbb1=false;
+        bbb2=true;
+        loadorder4(orderoffset4);
+    }
+    if(ui->radioButton_cancel->isChecked()==true){
+        bbb=true;
+        bbb1=false;
+        bbb2=false;
+        loadorder2(orderoffset2);
+    }
 
-        if(ui->radioButton_paid->isChecked()==true){
-            bbb=false;
-            bbb1=true;
-            bbb2=false;
-            loadorder3(orderoffset3);
-        }
+    if(ui->radioButton_paid->isChecked()==true){
+        bbb=false;
+        bbb1=true;
+        bbb2=false;
+        loadorder3(orderoffset3);
+    }
 
 
 }
@@ -1066,4 +1066,3 @@ void admin_form::on_radioButton_paid_clicked()
     ui->tableWidget_3->clearContents();
     abc();
 }
-
