@@ -78,6 +78,10 @@ private slots:
     void loadPrevBatch();
     void on_pushButton_searchall_clicked();
 
+    void on_pushButton_user_clicked();
+
+    void on_pushButton_order_clicked();
+
 private:
     Ui::admin_form *ui;
     int currentOffset;

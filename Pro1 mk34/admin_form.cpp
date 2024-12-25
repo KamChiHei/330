@@ -36,9 +36,27 @@ admin_form::admin_form(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(labels);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->clearContents();
+
+    QStringList labels2 = {"用户id", "用户名", "密码"};
+
+    ui->tableWidget_2->setColumnCount(3);
+    ui->tableWidget_2->setRowCount(0);
+    ui->tableWidget_2->setHorizontalHeaderLabels(labels2    );
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_2->clearContents();
+
+    QStringList labels3 = {"订单id", "用户id", "座位id","订单状态"};
+
+    ui->tableWidget_3->setColumnCount(4);
+    ui->tableWidget_3->setRowCount(0);
+    ui->tableWidget_3->setHorizontalHeaderLabels(labels3);
+    ui->tableWidget_3->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget_3->clearContents();
+
     connect(ui->nextButton, &QPushButton::clicked, this, &admin_form::loadNextBatch);
     connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
     sss=false;
+    sss1=false;
 
 }
 
@@ -331,12 +349,12 @@ void admin_form::switchPage() {
         load(currentOffset);
     }
 
-    //else if(button == ui->)
-
-
-
     else if (button == ui->pushButton_4)
         ui->stackedWidget->setCurrentIndex(3);
+    else if (button == ui->pushButton_user)
+    ui->stackedWidget->setCurrentIndex(4);
+    else if (button == ui->pushButton_order)
+        ui->stackedWidget->setCurrentIndex(5);
 }
 
 void admin_form::on_pushButton_addFlight_clicked() {
@@ -354,6 +372,7 @@ void admin_form::on_pushButton_searchFlight_clicked() {
 void admin_form::on_pushButton_4_clicked() {
     switchPage();
 }
+
 
 char admin_form::getRandomChar() {
     return 'A' + QRandomGenerator::global()->bounded(26);
@@ -539,5 +558,17 @@ void admin_form::on_pushButton_searchall_clicked()
     sss1=true;
     ui->label_status->setText("正在显示所有航班");
     loada(currentoffset3);
+}
+
+
+void admin_form::on_pushButton_user_clicked()
+{
+    switchPage();
+}
+
+
+void admin_form::on_pushButton_order_clicked()
+{
+    switchPage();
 }
 
