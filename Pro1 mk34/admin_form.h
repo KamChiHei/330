@@ -34,15 +34,15 @@ private slots:
 
     void switchPage();
 
-    void addSeat(QString flightId,QString seatTypeId,int seatAmount);
+    void addSeat(const QString &flightId, const QString &seatTypeId, int seatAmount);
 
-    void addFlight(QString flightId,QString departurePlace,QString arrivalPlace,QString date,QString departureTime,QString arrivalTime,int baseFare,int seatAmountOfLvl1,int seatAmountOfLvl2,int seatAmountOfLvl3);
+    void addFlight(const QString &flightId, const QString &departurePlace, const QString &arrivalPlace, const QString &date, const QString &departureTime, const QString &arrivalTime, int baseFare, int seatAmountOfLvl1, int seatAmountOfLvl2, int seatAmountOfLvl3);
 
     void on_pushButton_4_clicked();
 
-    void delSeat(QString delFlightId);
+    void delSeat(const QString &delFlightId);
 
-    void delFlight(QString delFlightId);
+    void delFlight(const QString &delFlightId);
 
     void on_pushButton_delete_clicked();
 
@@ -66,7 +66,29 @@ private slots:
 
     void on_pushButton_clear_clicked();
 
+    void load(int offset);
+
+    void load2(int offset);
+
+    void loada(int offset);
+
+
+    void loadNextBatch();
+
+    void loadPrevBatch();
+    void on_pushButton_searchall_clicked();
+
+    void on_pushButton_user_clicked();
+
+    void on_pushButton_order_clicked();
+
 private:
     Ui::admin_form *ui;
+    int currentOffset;
+    int currentoffset2;
+    int currentoffset3;
+    bool sss;
+    bool sss1;
+
 };
 #endif // ADMIN_FORM_H
