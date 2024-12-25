@@ -41,7 +41,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton_add">
@@ -205,7 +205,7 @@ QPushButton:hover {
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>16</hour>
+        <hour>8</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2023</year>
@@ -756,7 +756,7 @@ QPushButton:hover {
        <rect>
         <x>90</x>
         <y>200</y>
-        <width>961</width>
+        <width>905</width>
         <height>511</height>
        </rect>
       </property>
@@ -766,7 +766,7 @@ QPushButton:hover {
        <rect>
         <x>700</x>
         <y>30</y>
-        <width>160</width>
+        <width>200</width>
         <height>40</height>
        </rect>
       </property>
@@ -808,10 +808,10 @@ QPushButton:hover {
      <widget class="QPushButton" name="prevButton">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>150</y>
-        <width>91</width>
-        <height>21</height>
+        <x>700</x>
+        <y>140</y>
+        <width>90</width>
+        <height>40</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -836,10 +836,10 @@ QPushButton:hover {
      <widget class="QPushButton" name="nextButton">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>150</y>
-        <width>81</width>
-        <height>21</height>
+        <x>810</x>
+        <y>140</y>
+        <width>90</width>
+        <height>40</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -882,8 +882,8 @@ QPushButton:hover {
        <rect>
         <x>700</x>
         <y>80</y>
-        <width>151</width>
-        <height>41</height>
+        <width>200</width>
+        <height>40</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -1222,10 +1222,32 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>240</y>
-        <width>671</width>
-        <height>301</height>
+        <y>200</y>
+        <width>725</width>
+        <height>500</height>
        </rect>
+      </property>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>240</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>240</number>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>320</y>
+        <width>80</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="icon.qrc">:/new/prefix1/iconANDpic/point5.png</pixmap>
       </property>
      </widget>
     </widget>
@@ -1234,10 +1256,32 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>280</y>
-        <width>571</width>
-        <height>391</height>
+        <y>200</y>
+        <width>605</width>
+        <height>500</height>
        </rect>
+      </property>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>150</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>150</number>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>400</y>
+        <width>80</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="icon.qrc">:/new/prefix1/iconANDpic/point6.png</pixmap>
       </property>
      </widget>
     </widget>

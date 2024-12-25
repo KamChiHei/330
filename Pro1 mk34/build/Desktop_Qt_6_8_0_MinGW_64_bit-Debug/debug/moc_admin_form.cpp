@@ -73,7 +73,16 @@ constexpr auto qt_meta_stringdata_CLASSadmin_formENDCLASS = QtMocHelpers::string
     "arg1",
     "on_lineEdit_selectedArrivalPlace_textChanged",
     "on_dateEdit_selectedDate_dateChanged",
-    "on_pushButton_clear_clicked"
+    "on_pushButton_clear_clicked",
+    "load",
+    "offset",
+    "load2",
+    "loada",
+    "loadNextBatch",
+    "loadPrevBatch",
+    "on_pushButton_searchall_clicked",
+    "on_pushButton_user_clicked",
+    "on_pushButton_order_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -86,7 +95,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      31,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -94,29 +103,37 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  152,    2, 0x08,    1 /* Private */,
-       3,    0,  153,    2, 0x08,    2 /* Private */,
-       4,    0,  154,    2, 0x08,    3 /* Private */,
-       5,    0,  155,    2, 0x08,    4 /* Private */,
-       6,    0,  156,    2, 0x08,    5 /* Private */,
-       7,    0,  157,    2, 0x08,    6 /* Private */,
-       8,    0,  158,    2, 0x08,    7 /* Private */,
-       9,    3,  159,    2, 0x08,    8 /* Private */,
-      13,   10,  166,    2, 0x08,   12 /* Private */,
-      23,    0,  187,    2, 0x08,   23 /* Private */,
-      24,    1,  188,    2, 0x08,   24 /* Private */,
-      26,    1,  191,    2, 0x08,   26 /* Private */,
-      27,    0,  194,    2, 0x08,   28 /* Private */,
-      28,    0,  195,    2, 0x08,   29 /* Private */,
-      29,    0,  196,    2, 0x08,   30 /* Private */,
-      30,    0,  197,    2, 0x08,   31 /* Private */,
-      31,    0,  198,    2, 0x08,   32 /* Private */,
-      32,    0,  199,    2, 0x08,   33 /* Private */,
-      33,    0,  200,    2, 0x08,   34 /* Private */,
-      34,    1,  201,    2, 0x08,   35 /* Private */,
-      36,    1,  204,    2, 0x08,   37 /* Private */,
-      37,    1,  207,    2, 0x08,   39 /* Private */,
-      38,    0,  210,    2, 0x08,   41 /* Private */,
+       1,    0,  200,    2, 0x08,    1 /* Private */,
+       3,    0,  201,    2, 0x08,    2 /* Private */,
+       4,    0,  202,    2, 0x08,    3 /* Private */,
+       5,    0,  203,    2, 0x08,    4 /* Private */,
+       6,    0,  204,    2, 0x08,    5 /* Private */,
+       7,    0,  205,    2, 0x08,    6 /* Private */,
+       8,    0,  206,    2, 0x08,    7 /* Private */,
+       9,    3,  207,    2, 0x08,    8 /* Private */,
+      13,   10,  214,    2, 0x08,   12 /* Private */,
+      23,    0,  235,    2, 0x08,   23 /* Private */,
+      24,    1,  236,    2, 0x08,   24 /* Private */,
+      26,    1,  239,    2, 0x08,   26 /* Private */,
+      27,    0,  242,    2, 0x08,   28 /* Private */,
+      28,    0,  243,    2, 0x08,   29 /* Private */,
+      29,    0,  244,    2, 0x08,   30 /* Private */,
+      30,    0,  245,    2, 0x08,   31 /* Private */,
+      31,    0,  246,    2, 0x08,   32 /* Private */,
+      32,    0,  247,    2, 0x08,   33 /* Private */,
+      33,    0,  248,    2, 0x08,   34 /* Private */,
+      34,    1,  249,    2, 0x08,   35 /* Private */,
+      36,    1,  252,    2, 0x08,   37 /* Private */,
+      37,    1,  255,    2, 0x08,   39 /* Private */,
+      38,    0,  258,    2, 0x08,   41 /* Private */,
+      39,    1,  259,    2, 0x08,   42 /* Private */,
+      41,    1,  262,    2, 0x08,   44 /* Private */,
+      42,    1,  265,    2, 0x08,   46 /* Private */,
+      43,    0,  268,    2, 0x08,   48 /* Private */,
+      44,    0,  269,    2, 0x08,   49 /* Private */,
+      45,    0,  270,    2, 0x08,   50 /* Private */,
+      46,    0,  271,    2, 0x08,   51 /* Private */,
+      47,    0,  272,    2, 0x08,   52 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -141,6 +158,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,   35,
     QMetaType::Void, QMetaType::QString,   35,
     QMetaType::Void, QMetaType::QDate,   16,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   40,
+    QMetaType::Void, QMetaType::Int,   40,
+    QMetaType::Void, QMetaType::Int,   40,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -171,17 +196,17 @@ Q_CONSTINIT const QMetaObject admin_form::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'addSeat'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'addFlight'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
@@ -190,10 +215,10 @@ Q_CONSTINIT const QMetaObject admin_form::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'delSeat'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'delFlight'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_pushButton_delete_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_add_clicked'
@@ -218,6 +243,25 @@ Q_CONSTINIT const QMetaObject admin_form::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QDate &, std::false_type>,
         // method 'on_pushButton_clear_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'load'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'load2'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'loada'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'loadNextBatch'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'loadPrevBatch'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_searchall_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_user_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_order_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -255,6 +299,14 @@ void admin_form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 20: _t->on_lineEdit_selectedArrivalPlace_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 21: _t->on_dateEdit_selectedDate_dateChanged((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
         case 22: _t->on_pushButton_clear_clicked(); break;
+        case 23: _t->load((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 24: _t->load2((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 25: _t->loada((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 26: _t->loadNextBatch(); break;
+        case 27: _t->loadPrevBatch(); break;
+        case 28: _t->on_pushButton_searchall_clicked(); break;
+        case 29: _t->on_pushButton_user_clicked(); break;
+        case 30: _t->on_pushButton_order_clicked(); break;
         default: ;
         }
     }
@@ -279,13 +331,13 @@ int admin_form::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 31;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 31)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 23;
+        _id -= 31;
     }
     return _id;
 }
