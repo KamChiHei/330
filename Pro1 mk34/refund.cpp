@@ -14,7 +14,7 @@ Refund::Refund(QWidget *parent,int i)
     db.setHostName("127.0.0.1");
     db.setPort(3306);
     if(db.open()){
-        QMessageBox::information(this,"连接提示","连接成功");
+        //QMessageBox::information(this,"连接提示","连接成功");
         m= new QSqlTableModel;
         m->setTable("orders");
 
@@ -43,7 +43,7 @@ Refund::~Refund()
 void Refund::on_pushButton_clicked()
 {
     if(db.isOpen()){
-        QMessageBox::information(this,"!","关闭成功！");
+        //QMessageBox::information(this,"!","关闭成功！");
         db.close();}
     emit this->back();
 

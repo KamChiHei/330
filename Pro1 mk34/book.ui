@@ -134,6 +134,68 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>10</y>
+      <width>171</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>座位类型</string>
+    </property>
+    <widget class="QRadioButton" name="jjBt">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>199</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>经济舱</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="swBt">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>199</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>商务舱</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="tdBt">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>150</y>
+       <width>199</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>头等舱</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableView" name="Seats">
+    <property name="geometry">
+     <rect>
+      <x>1100</x>
+      <y>220</y>
+      <width>481</width>
+      <height>361</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

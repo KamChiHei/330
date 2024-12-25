@@ -1,7 +1,8 @@
 #include "book.h"
 #include "ui_book.h"
 
-//khjhjjjh
+
+
 Book::Book(QWidget *parent,int i)
     : QMainWindow(parent)
     , ui(new Ui::Book)
@@ -18,13 +19,28 @@ Book::Book(QWidget *parent,int i)
 
     if(db.open()){
         //QMessageBox::information(this,"连接提示","连接成功");
-        m= new QSqlTableModel;
+        m= new QSqlTableModel();
+        s = new QSqlTableModel();
 
 
-        n = new QSqlTableModel;
-        n->setTable("seat_types");
+
+
+
+
         ui->Tickets->setModel(m);
+        ui->Tickets->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->Seats->setModel(s);
+        ui->Seats->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        s->setTable("seats");
         m->setTable("flight");
+
+        s->setHeaderData(3,Qt::Horizontal,"座位号");
+        ui->Seats->hideColumn(0);
+        ui->Seats->hideColumn(1);
+        ui->Seats->hideColumn(2);
+        ui->Seats->hideColumn(4);
+
         m->setHeaderData(0,Qt::Horizontal,"航班号");
         m->setHeaderData(1,Qt::Horizontal,"出发地");
         m->setHeaderData(2,Qt::Horizontal,"到达地");
@@ -33,12 +49,14 @@ Book::Book(QWidget *parent,int i)
         m->setHeaderData(5,Qt::Horizontal,"日期");
         m->setHeaderData(6,Qt::Horizontal,"基础价位");
 
-        n->select();
+
+        ui->Tickets->hideColumn(0);
+
 
 
     }
     else {
-        //QMessageBox::warning(this,"连接提示","连接失败");
+        QMessageBox::warning(this,"连接提示","连接失败");
     }
     m->select();
     connect(ui->flight_idEdit,SIGNAL(returnPressed()),this,SLOT(on_FindButton_clicked()));
@@ -81,10 +99,6 @@ void Book::on_FindButton_clicked()
 
 
 
-void Book::on_AllButton_clicked()
-{
-    m->setQuery("SELECT * FROM flight",db);
-}
 
 
 
@@ -170,33 +184,45 @@ void Book::on_BookButton_clicked()
 }
 
 
-void Book::on_Tickets_doubleClicked(const QModelIndex &index)
-{
+// void Book::on_Tickets_doubleClicked(const QModelIndex &index)
+// {
 
-    changeHead();
+//     changeHead();
 
-    qDebug()<<"双击一次";
-    int a=index.row();
-    QModelIndex i = m->index(a, 0);
-    QVariant data = m->data(i);
-    qDebug()<<data;
-    int var=data.type();
-    qDebug()<< var;
+//     qDebug()<<"双击一次";
+//     int a=index.row();
+//     QModelIndex i = m->index(a, 0);
+//     QVariant data = m->data(i);
+//     qDebug()<<data;
+//     int var=data.type();
+//     qDebug()<< var;
 
 
-    if(var== QVariant::String){
-        QString flightid = data.toString();
-        QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 ").arg(flightid);
-        qDebug() << queryString;
-        m->setQuery(queryString, db);
-    }
-}
+//     if(var== QVariant::String){
+//         QString flightid = data.toString();
+//         QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 ").arg(flightid);
+//         qDebug() << queryString;
+//         m->setQuery(queryString, db);
+//         //ui->Tickets->hideColumn(0);
+//         //ui->Tickets->hideColumn(3);
+//     }
+// }
 
 
 
 void Book::on_Tickets_clicked(const QModelIndex &index)
 {
     current=index;
+    if(seat_type!=0){
+        int a=index.row();
+        QModelIndex i = m->index(a, 0);
+        QVariant data = m->data(i);
+        qDebug()<<data;
+        QString flightid = data.toString();
+        QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 AND seat_type_id = '%2'").arg(flightid).arg(seat_type);
+        qDebug() << queryString;
+        s->setQuery(queryString, db);
+    }
     qDebug()<<current;
 }
 
@@ -257,16 +283,71 @@ void Book::fin(){
 void Book::changeHead1(){
     m->setHeaderData(0,Qt::Horizontal,"航班号");
     m->setHeaderData(1,Qt::Horizontal,"出发地");
+    ui->Tickets->showColumn(1);
     m->setHeaderData(2,Qt::Horizontal,"到达地");
     m->setHeaderData(3,Qt::Horizontal,"出发时间");
     m->setHeaderData(4,Qt::Horizontal,"到达时间");
+    ui->Tickets->showColumn(4);
     m->setHeaderData(5,Qt::Horizontal,"日期");
     m->setHeaderData(6,Qt::Horizontal,"基础价位");
 }
 void Book::changeHead(){
     m->setHeaderData(0,Qt::Horizontal,"座位id");
     m->setHeaderData(1,Qt::Horizontal,"航班号");
+    ui->Tickets->hideColumn(1);
     m->setHeaderData(2,Qt::Horizontal,"座位类型");
     m->setHeaderData(3,Qt::Horizontal,"座位号");
     m->setHeaderData(4,Qt::Horizontal,"座位状态");
+    ui->Tickets->hideColumn(4);
 }
+
+void Book::on_jjBt_clicked()
+{
+    seat_type=1;
+    if(current.isValid()){
+        int a=current.row();
+        QModelIndex i = m->index(a, 0);
+        QVariant data = m->data(i);
+        qDebug()<<data;
+        QString flightid = data.toString();
+        QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 AND seat_type_id = '%2'").arg(flightid).arg(seat_type);
+        qDebug() << queryString;
+        s->setQuery(queryString, db);
+    }
+    qDebug()<<seat_type;
+}
+
+
+void Book::on_swBt_clicked()
+{
+    seat_type=2;
+    if(current.isValid()){
+        int a=current.row();
+        QModelIndex i = m->index(a, 0);
+        QVariant data = m->data(i);
+        qDebug()<<data;
+        QString flightid = data.toString();
+        QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 AND seat_type_id = '%2'").arg(flightid).arg(seat_type);
+        qDebug() << queryString;
+        s->setQuery(queryString, db);
+    }
+    qDebug()<<seat_type;
+}
+
+
+void Book::on_tdBt_clicked()
+{
+    seat_type=3;
+    if(current.isValid()){
+        int a=current.row();
+        QModelIndex i = m->index(a, 0);
+        QVariant data = m->data(i);
+        qDebug()<<data;
+        QString flightid = data.toString();
+        QString queryString = QString("SELECT * FROM seats WHERE flight_id = '%1' AND seatchoosed = 0 AND seat_type_id = '%2'").arg(flightid).arg(seat_type);
+        qDebug() << queryString;
+        s->setQuery(queryString, db);
+    }
+    qDebug()<<seat_type;
+}
+

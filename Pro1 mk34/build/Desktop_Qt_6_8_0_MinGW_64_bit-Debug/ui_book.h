@@ -11,12 +11,14 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
@@ -41,6 +43,11 @@ public:
     QLineEdit *flight_idEdit;
     QLineEdit *fEdit;
     QLineEdit *tEdit;
+    QGroupBox *groupBox;
+    QRadioButton *jjBt;
+    QRadioButton *swBt;
+    QRadioButton *tdBt;
+    QTableView *Seats;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -93,6 +100,21 @@ public:
 
         verticalLayout->addWidget(tEdit);
 
+        groupBox = new QGroupBox(centralwidget);
+        groupBox->setObjectName("groupBox");
+        groupBox->setGeometry(QRect(1260, 10, 171, 201));
+        jjBt = new QRadioButton(groupBox);
+        jjBt->setObjectName("jjBt");
+        jjBt->setGeometry(QRect(0, 40, 199, 25));
+        swBt = new QRadioButton(groupBox);
+        swBt->setObjectName("swBt");
+        swBt->setGeometry(QRect(0, 90, 199, 25));
+        tdBt = new QRadioButton(groupBox);
+        tdBt->setObjectName("tdBt");
+        tdBt->setGeometry(QRect(0, 150, 199, 25));
+        Seats = new QTableView(centralwidget);
+        Seats->setObjectName("Seats");
+        Seats->setGeometry(QRect(1100, 220, 481, 361));
         Book->setCentralWidget(centralwidget);
         menubar = new QMenuBar(Book);
         menubar->setObjectName("menubar");
@@ -124,6 +146,10 @@ public:
         label_2->setText(QCoreApplication::translate("Book", "\345\207\272\345\217\221\345\234\260\357\274\232", nullptr));
         label_5->setText(QCoreApplication::translate("Book", "\350\210\252\347\217\255\347\274\226\345\217\267\357\274\232", nullptr));
         tEdit->setText(QString());
+        groupBox->setTitle(QCoreApplication::translate("Book", "\345\272\247\344\275\215\347\261\273\345\236\213", nullptr));
+        jjBt->setText(QCoreApplication::translate("Book", "\347\273\217\346\265\216\350\210\261", nullptr));
+        swBt->setText(QCoreApplication::translate("Book", "\345\225\206\345\212\241\350\210\261", nullptr));
+        tdBt->setText(QCoreApplication::translate("Book", "\345\244\264\347\255\211\350\210\261", nullptr));
     } // retranslateUi
 
 };
