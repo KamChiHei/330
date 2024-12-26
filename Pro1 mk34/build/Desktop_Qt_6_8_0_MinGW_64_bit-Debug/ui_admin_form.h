@@ -105,6 +105,8 @@ public:
     QPushButton *nextButton_3;
     QPushButton *prevButton_3;
     QPushButton *pushButton_clear_3;
+    QLineEdit *lineEdit_userid_2;
+    QLabel *label_62;
     QWidget *page_5;
     QTableWidget *tableWidget_3;
     QLabel *label_28;
@@ -205,7 +207,7 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 30), QTime(0, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 29), QTime(16, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -644,7 +646,7 @@ public:
         label_17->setPixmap(QPixmap(QString::fromUtf8(":/new/prefix1/iconANDpic/point5.png")));
         lineEdit_username = new QLineEdit(page_4);
         lineEdit_username->setObjectName("lineEdit_username");
-        lineEdit_username->setGeometry(QRect(360, 40, 200, 40));
+        lineEdit_username->setGeometry(QRect(360, 70, 200, 40));
         lineEdit_username->setStyleSheet(QString::fromUtf8("\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
@@ -653,12 +655,12 @@ public:
 ""));
         label_57 = new QLabel(page_4);
         label_57->setObjectName("label_57");
-        label_57->setGeometry(QRect(180, 40, 161, 40));
+        label_57->setGeometry(QRect(180, 70, 161, 40));
         label_57->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_57->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineEdit_password = new QLineEdit(page_4);
         lineEdit_password->setObjectName("lineEdit_password");
-        lineEdit_password->setGeometry(QRect(360, 100, 200, 40));
+        lineEdit_password->setGeometry(QRect(360, 130, 200, 40));
         lineEdit_password->setStyleSheet(QString::fromUtf8("\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
@@ -667,7 +669,7 @@ public:
 ""));
         label_58 = new QLabel(page_4);
         label_58->setObjectName("label_58");
-        label_58->setGeometry(QRect(180, 100, 161, 40));
+        label_58->setGeometry(QRect(180, 130, 161, 40));
         label_58->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_58->setAlignment(Qt::AlignmentFlag::AlignCenter);
         nextButton_3 = new QPushButton(page_4);
@@ -718,6 +720,20 @@ public:
 "QPushButton:hover {  \n"
 "	background-color: rgba(0, 159, 252,200);\n"
 "}"));
+        lineEdit_userid_2 = new QLineEdit(page_4);
+        lineEdit_userid_2->setObjectName("lineEdit_userid_2");
+        lineEdit_userid_2->setGeometry(QRect(380, 20, 200, 40));
+        lineEdit_userid_2->setStyleSheet(QString::fromUtf8("\n"
+"	font: 16pt \"Microsoft YaHei UI\";\n"
+"    border: 1px solid rgb(230, 230, 230);\n"
+"    border-radius: 5px;\n"
+"\n"
+""));
+        label_62 = new QLabel(page_4);
+        label_62->setObjectName("label_62");
+        label_62->setGeometry(QRect(200, 20, 161, 40));
+        label_62->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
+        label_62->setAlignment(Qt::AlignmentFlag::AlignCenter);
         stackedWidget->addWidget(page_4);
         page_5 = new QWidget();
         page_5->setObjectName("page_5");
@@ -952,7 +968,7 @@ public:
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(4);
         pushButton_addFlight->setDefault(false);
 
 
@@ -1002,6 +1018,7 @@ public:
         nextButton_3->setText(QCoreApplication::translate("admin_form", "\344\270\213\344\270\200\351\241\265", nullptr));
         prevButton_3->setText(QCoreApplication::translate("admin_form", "\344\270\212\344\270\200\351\241\265", nullptr));
         pushButton_clear_3->setText(QCoreApplication::translate("admin_form", "\346\270\205\351\231\244", nullptr));
+        label_62->setText(QCoreApplication::translate("admin_form", "<html><head/><body><p>\347\224\250\346\210\267id</p></body></html>", nullptr));
         label_28->setText(QString());
         label_59->setText(QCoreApplication::translate("admin_form", "<html><head/><body><p>\350\256\242\345\215\225id</p></body></html>", nullptr));
         label_60->setText(QCoreApplication::translate("admin_form", "<html><head/><body><p>\347\224\250\346\210\267id</p></body></html>", nullptr));

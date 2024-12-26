@@ -127,6 +127,8 @@ private slots:
 
     void on_radioButton_paid_clicked();
 
+    void on_lineEdit_userid_2_textChanged(const QString &arg1);
+
 private:
     Ui::admin_form *ui;
 

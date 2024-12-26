@@ -41,7 +41,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton_add">
@@ -205,12 +205,12 @@ QPushButton:hover {
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>0</hour>
+        <hour>16</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2023</year>
         <month>12</month>
-        <day>30</day>
+        <day>29</day>
        </datetime>
       </property>
      </widget>
@@ -1254,7 +1254,7 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>40</y>
+        <y>70</y>
         <width>200</width>
         <height>40</height>
        </rect>
@@ -1272,7 +1272,7 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>40</y>
+        <y>70</y>
         <width>161</width>
         <height>40</height>
        </rect>
@@ -1291,7 +1291,7 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>360</x>
-        <y>100</y>
+        <y>130</y>
         <width>200</width>
         <height>40</height>
        </rect>
@@ -1309,7 +1309,7 @@ border-radius: 5px;
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>100</y>
+        <y>130</y>
         <width>161</width>
         <height>40</height>
        </rect>
@@ -1406,6 +1406,43 @@ QPushButton:hover {
       </property>
       <property name="text">
        <string>清除</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_userid_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>20</y>
+        <width>200</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+
+</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_62">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>20</y>
+        <width>161</width>
+        <height>40</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;</string>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用户id&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
     </widget>
