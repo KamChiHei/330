@@ -30,6 +30,7 @@ admin_form::admin_form(QWidget *parent)
     ,orderoffset1(0)
     ,orderoffset2(0)
     ,orderoffset3(0)
+    ,orderoffset4(0)
 
 
 {
@@ -62,11 +63,11 @@ admin_form::admin_form(QWidget *parent)
     connect(ui->prevButton, &QPushButton::clicked, this, &admin_form::loadPrevBatch);
 
 
-    connect(ui->nextButton_5, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
-    connect(ui->prevButton_5, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
+    connect(ui->nextButton_3, &QPushButton::clicked, this, &admin_form::loadNextBatch2);
+    connect(ui->prevButton_3, &QPushButton::clicked, this, &admin_form::loadPrevBatch2);
 
-    connect(ui->nextButton_6, &QPushButton::clicked, this, &admin_form::loadNextBatch3);
-    connect(ui->prevButton_6, &QPushButton::clicked, this, &admin_form::loadPrevBatch3);
+    connect(ui->nextButton_4, &QPushButton::clicked, this, &admin_form::loadNextBatch3);
+    connect(ui->prevButton_4, &QPushButton::clicked, this, &admin_form::loadPrevBatch3);
 
     sss=false;
     sss1=false;
@@ -641,11 +642,11 @@ void admin_form::loadPrevBatch3() {
         loadorder2(orderoffset2);
     }
     else if(bbb1){
-        if (currentoffset3 >= BATCH_SIZE) {
-            currentoffset3 -= BATCH_SIZE;
+        if (orderoffset3 >= BATCH_SIZE) {
+            orderoffset3 -= BATCH_SIZE;
         }
         else {
-            currentoffset3 = 0;
+            orderoffset3 = 0;
         }
         //loada(currentoffset3);
         loadorder3(orderoffset3);
@@ -680,6 +681,11 @@ void admin_form::switchPage() {
         ui->stackedWidget->setCurrentIndex(1);
     else if (button == ui->pushButton_searchFlight){
         ui->stackedWidget->setCurrentIndex(2);
+        sss=false;
+        sss1=false;
+        currentOffset=0;
+        currentoffset2=0;
+        currentoffset3=0;
         load(currentOffset);
     }
 
@@ -687,12 +693,23 @@ void admin_form::switchPage() {
         ui->stackedWidget->setCurrentIndex(3);
     else if (button == ui->pushButton_user){
         ui->stackedWidget->setCurrentIndex(4);
+        aaa=false;
+        useroffset1=0;
+        useroffset2=0;
         loaduser(useroffset1);
     }
 
     else if (button == ui->pushButton_order){
         ui->stackedWidget->setCurrentIndex(5);
+        bbb=false;
+        bbb1=false;
+        bbb2=false;
+        orderoffset1=0;
+        orderoffset2=0;
+        orderoffset3=0;
+        orderoffset4=0;
         loadorder(orderoffset1);
+
     }
 
 }
@@ -939,7 +956,7 @@ void admin_form::on_lineEdit_password_textChanged(const QString &arg1)
 }
 
 
-void admin_form::on_pushButton_clear_4_clicked()
+void admin_form::on_pushButton_clear_3_clicked()
 {
     ui->tableWidget_2->setRowCount(0);
     ui->tableWidget_2->clearContents();
@@ -988,7 +1005,7 @@ void admin_form::on_lineEdit_seatid_textChanged(const QString &arg1)
 }
 
 
-void admin_form::on_pushButton_clear_7_clicked()
+void admin_form::on_pushButton_clear_4_clicked()
 {
     orderoffset1=0;
     orderoffset2=0;
