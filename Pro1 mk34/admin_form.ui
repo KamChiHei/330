@@ -41,7 +41,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="pushButton_add">
@@ -205,7 +205,7 @@ QPushButton:hover {
       </property>
       <property name="dateTime">
        <datetime>
-        <hour>16</hour>
+        <hour>8</hour>
         <minute>0</minute>
         <second>0</second>
         <year>2023</year>
@@ -1271,7 +1271,7 @@ border-radius: 5px;
      <widget class="QLabel" name="label_57">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>200</x>
         <y>70</y>
         <width>161</width>
         <height>40</height>
@@ -1308,7 +1308,7 @@ border-radius: 5px;
      <widget class="QLabel" name="label_58">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>200</x>
         <y>130</y>
         <width>161</width>
         <height>40</height>
@@ -1411,8 +1411,8 @@ QPushButton:hover {
      <widget class="QLineEdit" name="lineEdit_userid_2">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>20</y>
+        <x>360</x>
+        <y>10</y>
         <width>200</width>
         <height>40</height>
        </rect>
@@ -1430,7 +1430,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>200</x>
-        <y>20</y>
+        <y>10</y>
         <width>161</width>
         <height>40</height>
        </rect>
@@ -1500,7 +1500,7 @@ QPushButton:hover {
      <widget class="QLabel" name="label_59">
       <property name="geometry">
        <rect>
-        <x>300</x>
+        <x>320</x>
         <y>10</y>
         <width>161</width>
         <height>40</height>
@@ -1519,7 +1519,7 @@ QPushButton:hover {
      <widget class="QLineEdit" name="lineEdit_userid">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>480</x>
         <y>60</y>
         <width>200</width>
         <height>40</height>
@@ -1537,7 +1537,7 @@ QPushButton:hover {
      <widget class="QLabel" name="label_60">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>320</x>
         <y>60</y>
         <width>161</width>
         <height>40</height>
@@ -1556,7 +1556,7 @@ QPushButton:hover {
      <widget class="QLineEdit" name="lineEdit_seatid">
       <property name="geometry">
        <rect>
-        <x>490</x>
+        <x>480</x>
         <y>110</y>
         <width>200</width>
         <height>40</height>
@@ -1574,8 +1574,8 @@ QPushButton:hover {
      <widget class="QLabel" name="label_61">
       <property name="geometry">
        <rect>
-        <x>310</x>
-        <y>100</y>
+        <x>320</x>
+        <y>110</y>
         <width>161</width>
         <height>40</height>
        </rect>
@@ -1593,11 +1593,18 @@ QPushButton:hover {
      <widget class="QRadioButton" name="radioButton_all">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>120</y>
-        <width>73</width>
-        <height>18</height>
+        <x>180</x>
+        <y>30</y>
+        <width>80</width>
+        <height>40</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>全部状态</string>
@@ -1606,11 +1613,18 @@ QPushButton:hover {
      <widget class="QRadioButton" name="radioButton_cancel">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>150</y>
-        <width>73</width>
-        <height>18</height>
+        <x>180</x>
+        <y>70</y>
+        <width>80</width>
+        <height>40</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>已取消</string>
@@ -1619,11 +1633,18 @@ QPushButton:hover {
      <widget class="QRadioButton" name="radioButton_paid">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>170</y>
-        <width>73</width>
-        <height>18</height>
+        <x>180</x>
+        <y>110</y>
+        <width>80</width>
+        <height>40</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>12</pointsize>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>已支付</string>
@@ -1633,7 +1654,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>710</x>
-        <y>130</y>
+        <y>110</y>
         <width>90</width>
         <height>40</height>
        </rect>
@@ -1688,8 +1709,8 @@ QPushButton:hover {
      <widget class="QPushButton" name="nextButton_4">
       <property name="geometry">
        <rect>
-        <x>820</x>
-        <y>130</y>
+        <x>810</x>
+        <y>110</y>
         <width>90</width>
         <height>40</height>
        </rect>
