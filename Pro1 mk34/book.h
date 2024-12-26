@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include<QStandardItem>
 
 
 
@@ -28,22 +29,15 @@ public:
 signals:
     void back();
 private slots:
-    void changeHead();
     void changeHead1();
     void cl();
     void fin();
     void on_Back_clicked();
-    void on_FindButton_clicked();
 
-
-    void on_AllButton_clicked();
-
-    void on_FindButton_ft_clicked();
 
 
     void on_BookButton_clicked();
 
-    void on_Tickets_doubleClicked(const QModelIndex &index);
 
     void on_Tickets_clicked(const QModelIndex &index);
 
@@ -53,12 +47,24 @@ private slots:
 
     void on_tEdit_textChanged();
 
+    void on_jjBt_clicked();
+
+
+
+    void on_swBt_clicked();
+
+    void on_tdBt_clicked();
+
+    void on_Seats_clicked(const QModelIndex &index);
+
 private:
     Ui::Book *ui;
     QSqlDatabase db;
     QSqlTableModel *m;
-    QSqlTableModel *n;
-    QModelIndex current;
+    QSqlTableModel *s;
+    int seat_type=0;
+    QModelIndex current=QModelIndex();
+    QModelIndex current_seat=QModelIndex();
 };
 
 #endif // BOOK_H

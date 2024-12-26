@@ -17,15 +17,303 @@
    <iconset resource="icon.qrc">
     <normaloff>:/new/prefix1/iconANDpic/plane.png</normaloff>:/new/prefix1/iconANDpic/plane.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#Book{
+background-image: url(:/new/prefix2/iconANDpic/book.jpg);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="Back">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>630</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	font: 700 24pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+
+
+background-color: rgba(0, 159, 252,100);
+
+   border: 1px solid rgb(0, 170, 255); 
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+
+
+background-color: rgba(0, 159, 252,200);
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string>返回</string>
+    </property>
+   </widget>
    <widget class="QTableView" name="Tickets">
     <property name="geometry">
      <rect>
       <x>300</x>
-      <y>0</y>
+      <y>50</y>
       <width>751</width>
-      <height>600</height>
+      <height>621</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BookButton">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>290</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	font: 700 24pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+
+
+background-color: rgba(0, 159, 252,100);
+
+   border: 1px solid rgb(0, 170, 255); 
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+
+
+background-color: rgba(0, 159, 252,200);
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string>订座</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>80</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 14pt &quot;微软雅黑&quot;;</string>
+    </property>
+    <property name="text">
+     <string>目的地：</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>80</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 14pt &quot;微软雅黑&quot;;</string>
+    </property>
+    <property name="text">
+     <string>出发地：</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>50</y>
+      <width>81</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 14pt &quot;微软雅黑&quot;;</string>
+    </property>
+    <property name="text">
+     <string>航班号：</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>50</y>
+      <width>200</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 700 20pt &quot;微软雅黑&quot;;</string>
+    </property>
+    <property name="title">
+     <string>座位类型</string>
+    </property>
+    <widget class="QRadioButton" name="jjBt">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>45</y>
+       <width>120</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;</string>
+     </property>
+     <property name="text">
+      <string>经济舱</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="swBt">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>121</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;</string>
+     </property>
+     <property name="text">
+      <string>商务舱</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="tdBt">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>215</y>
+       <width>121</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;</string>
+     </property>
+     <property name="text">
+      <string>头等舱</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableView" name="Seats">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>370</y>
+      <width>201</width>
+      <height>300</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>200</number>
+    </attribute>
+   </widget>
+   <widget class="QLabel" name="errorLb">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>250</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="flight_idEdit">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>50</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+
+</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="fEdit">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>120</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+
+</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="tEdit">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>190</y>
+      <width>200</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QFrame" name="frame">
@@ -34,16 +322,11 @@
       <x>-1</x>
       <y>0</y>
       <width>1282</width>
-      <height>721</height>
+      <height>722</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QFrame#frame{
-
-background-color: rgba(255, 255, 255, 100);
-background-image: url(:/new/prefix2/iconANDpic/book.jpg);
-}
-</string>
+     <string notr="true">background-color: rgba(255, 255, 255, 100);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -51,182 +334,20 @@ background-image: url(:/new/prefix2/iconANDpic/book.jpg);
     <property name="frameShadow">
      <enum>QFrame::Shadow::Raised</enum>
     </property>
-    <widget class="QLineEdit" name="flight_idEdit">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>40</y>
-       <width>160</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-	font: 16pt &quot;Microsoft YaHei UI&quot;;
-    border: 1px solid rgb(230, 230, 230);
-    border-radius: 5px;
-
-</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="fEdit">
-     <property name="geometry">
-      <rect>
-       <x>109</x>
-       <y>90</y>
-       <width>160</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-	font: 16pt &quot;Microsoft YaHei UI&quot;;
-    border: 1px solid rgb(230, 230, 230);
-    border-radius: 5px;
-
-</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="tEdit">
-     <property name="geometry">
-      <rect>
-       <x>109</x>
-       <y>140</y>
-       <width>160</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-	font: 16pt &quot;Microsoft YaHei UI&quot;;
-    border: 1px solid rgb(230, 230, 230);
-    border-radius: 5px;
-
-</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="BookButton">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>200</y>
-       <width>200</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-
-	background-color: rgba(0, 159, 252,100);
-
-	font: 700 16pt &quot;微软雅黑&quot;;
-	color: rgb(255, 255, 255);
-border: 1px solid rgb(0, 170, 255); 
-    border-radius: 5px;
-}
-
-QPushButton:hover {  
-	background-color: rgba(0, 159, 252,200);
-}</string>
-     </property>
-     <property name="text">
-      <string>订座</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="Back">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>270</y>
-       <width>200</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton {
-
-	background-color: rgba(0, 159, 252,100);
-
-	font: 700 16pt &quot;微软雅黑&quot;;
-	color: rgb(255, 255, 255);
-border: 1px solid rgb(0, 170, 255); 
-    border-radius: 5px;
-}
-
-QPushButton:hover {  
-	background-color: rgba(0, 159, 252,200);
-}</string>
-     </property>
-     <property name="text">
-      <string>返回</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>9</x>
-       <y>40</y>
-       <width>101</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>航班编号:</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_3">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>140</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>目的地：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_2">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>80</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>出发地：</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignCenter</set>
-     </property>
-    </widget>
    </widget>
    <zorder>frame</zorder>
+   <zorder>Back</zorder>
    <zorder>Tickets</zorder>
+   <zorder>BookButton</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_5</zorder>
+   <zorder>groupBox</zorder>
+   <zorder>Seats</zorder>
+   <zorder>errorLb</zorder>
+   <zorder>flight_idEdit</zorder>
+   <zorder>fEdit</zorder>
+   <zorder>tEdit</zorder>
   </widget>
  </widget>
  <resources>

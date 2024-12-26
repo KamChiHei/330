@@ -81,41 +81,36 @@ public:
         B1->setObjectName("B1");
         B1->setGeometry(QRect(100, 230, 200, 30));
         B1->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"	\n"
-"	\n"
-"	\n"
-"	background-color: rgb(0, 159, 252);\n"
-"    \n"
-"	\n"
-"	font: 14pt \"\351\273\221\344\275\223\";\n"
-"	\n"
+"	font: 700 20pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
 "	color: rgb(255, 255, 255);\n"
-"border: 1px solid rgb(0, 170, 255); \n"
+"\n"
+"\n"
+"background-color: rgba(0, 159, 252,100);\n"
+"\n"
+"   border: 1px solid rgb(0, 170, 255); \n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    \n"
-"	background-color: rgb(0, 159, 252);\n"
-"       \n"
-"    font: 14pt \"\351\273\221\344\275\223\";\n"
-"	color: rgb(255, 255, 255);\n"
+"\n"
+"\n"
+"background-color: rgba(0, 159, 252,200);\n"
+" \n"
 "}"));
         B2 = new QPushButton(register_Form);
         B2->setObjectName("B2");
         B2->setGeometry(QRect(100, 260, 200, 30));
         B2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "		\n"
-"	font: 14pt \"\351\273\221\344\275\223\";\n"
-"	color: rgb(0, 0, 0);\n"
+"	font: 700 20pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);\n"
 "border: 1px solid  rgb(230, 230, 230);\n"
 "    border-radius: 5px;\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
 "     \n"
-"    font: 14pt \"\351\273\221\344\275\223\";\n"
-"	color: rgb(0, 0, 0);\n"
+"\n"
 "}"));
         pwdtips2 = new QLabel(register_Form);
         pwdtips2->setObjectName("pwdtips2");
@@ -141,9 +136,13 @@ public:
         label = new QLabel(layoutWidget);
         label->setObjectName("label");
         QFont font;
-        font.setFamilies({QString::fromUtf8("\351\273\221\344\275\223")});
-        font.setPointSize(14);
+        font.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font.setPointSize(16);
+        font.setBold(true);
+        font.setItalic(false);
         label->setFont(font);
+        label->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);"));
         label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label);
@@ -151,6 +150,8 @@ public:
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
         label_2->setFont(font);
+        label_2->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);"));
         label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_2);
@@ -158,6 +159,8 @@ public:
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
         label_3->setFont(font);
+        label_3->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	color: rgb(255, 255, 255);"));
         label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(label_3);

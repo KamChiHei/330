@@ -60,7 +60,13 @@ public:
         orders = new QTableView(Refund);
         orders->setObjectName("orders");
         orders->setGeometry(QRect(100, 20, 600, 400));
-        orders->horizontalHeader()->setDefaultSectionSize(149);
+        QFont font;
+        font.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font.setPointSize(10);
+        font.setBold(true);
+        orders->setFont(font);
+        orders->horizontalHeader()->setMinimumSectionSize(199);
+        orders->horizontalHeader()->setDefaultSectionSize(199);
         Tickets = new QPushButton(Refund);
         Tickets->setObjectName("Tickets");
         Tickets->setGeometry(QRect(100, 460, 200, 40));

@@ -14,11 +14,14 @@ Refund::Refund(QWidget *parent,int i)
     db.setHostName("127.0.0.1");
     db.setPort(3306);
     if(db.open()){
-        QMessageBox::information(this,"连接提示","连接成功");
+        //QMessageBox::information(this,"连接提示","连接成功");
         m= new QSqlTableModel;
         m->setTable("orders");
 
-        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
         m->setQuery(sql,db);
 
         ui->orders->setModel(m);
@@ -26,11 +29,15 @@ Refund::Refund(QWidget *parent,int i)
         m->setHeaderData(1,Qt::Horizontal,"订单人");
         m->setHeaderData(2,Qt::Horizontal,"座位号");
         m->setHeaderData(3,Qt::Horizontal,"支付状态");
+        m->setHeaderData(4,Qt::Horizontal,"航班号");
 
+
+        ui->orders->hideColumn(0);
+        ui->orders->hideColumn(1);
 
     }
     else {
-        QMessageBox::warning(this,"连接提示","连接失败");
+        //QMessageBox::warning(this,"连接提示","连接失败");
     }
 
 }
@@ -43,7 +50,7 @@ Refund::~Refund()
 void Refund::on_pushButton_clicked()
 {
     if(db.isOpen()){
-        QMessageBox::information(this,"!","关闭成功！");
+       // QMessageBox::information(this,"!","关闭成功！");
         db.close();}
     emit this->back();
 
@@ -53,7 +60,10 @@ void Refund::on_pushButton_clicked()
 void Refund::on_Tickets_clicked()
 {
 
-    QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+    QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                          "JOIN seats s ON o.seat_id = s.seat_id "
+                          "JOIN flight f ON s.flight_id = f.flight_id "
+                          "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
     m->setQuery(sql,db);
 }
 
@@ -89,13 +99,18 @@ void Refund::on_cancelButton_clicked()
         qDebug() << query2;
         m->setQuery(query2, db);
 
-        QMessageBox::information(this,"退票提示","退票成功！");
+        //QMessageBox::information(this,"退票提示","退票成功！");
 
 
-        QString sql = QString("SELECT * FROM orders WHERE user_id = '%1'").arg(id);
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
         m->setQuery(sql,db);
 
 
+        ui->orders->hideColumn(0);
+        ui->orders->hideColumn(1);
         current=QModelIndex();
     }
 }
@@ -112,6 +127,11 @@ void Refund::on_changeButton_clicked()
         // db.open();
         this->c->hide();
         this->show();
+        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                              "JOIN seats s ON o.seat_id = s.seat_id "
+                              "JOIN flight f ON s.flight_id = f.flight_id "
+                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
+        m->setQuery(sql,db);
     });
     c->getdatabase(db);
     if(current.isValid()){
@@ -125,7 +145,7 @@ void Refund::on_changeButton_clicked()
         int seatid=data2.toInt();
         int orderid=data0.toInt();
         qDebug()<<orderid<<seatid;
-         c->getinfo(orderid,seatid);
+        c->getinfo(orderid,seatid);
 
     }
 
@@ -137,4 +157,3 @@ void Refund::on_changeButton_clicked()
     this->hide();
     this->c->show();
 }
-

@@ -97,25 +97,21 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-	
-	
-	
-	background-color: rgb(0, 159, 252);
-    
-	
-	font: 14pt &quot;黑体&quot;;
-	
+	font: 700 20pt &quot;微软雅黑&quot;;
 	color: rgb(255, 255, 255);
-border: 1px solid rgb(0, 170, 255); 
+
+
+background-color: rgba(0, 159, 252,100);
+
+   border: 1px solid rgb(0, 170, 255); 
     border-radius: 5px;
 }
 
 QPushButton:hover {
-    
-	background-color: rgb(0, 159, 252);
-       
-    font: 14pt &quot;黑体&quot;;
-	color: rgb(255, 255, 255);
+
+
+background-color: rgba(0, 159, 252,200);
+ 
 }</string>
    </property>
    <property name="text">
@@ -134,16 +130,15 @@ QPushButton:hover {
    <property name="styleSheet">
     <string notr="true">QPushButton {
 		
-	font: 14pt &quot;黑体&quot;;
-	color: rgb(0, 0, 0);
+	font: 700 20pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
 border: 1px solid  rgb(230, 230, 230);
     border-radius: 5px;
 }
 
 QPushButton:hover {
      
-    font: 14pt &quot;黑体&quot;;
-	color: rgb(0, 0, 0);
+
 }</string>
    </property>
    <property name="text">
@@ -215,9 +210,15 @@ color: rgb(255, 0, 0);</string>
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
-        <family>黑体</family>
-        <pointsize>14</pointsize>
+        <family>微软雅黑</family>
+        <pointsize>16</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>用户名</string>
@@ -231,9 +232,15 @@ color: rgb(255, 0, 0);</string>
      <widget class="QLabel" name="label_2">
       <property name="font">
        <font>
-        <family>黑体</family>
-        <pointsize>14</pointsize>
+        <family>微软雅黑</family>
+        <pointsize>16</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>密码</string>
@@ -247,9 +254,15 @@ color: rgb(255, 0, 0);</string>
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
-        <family>黑体</family>
-        <pointsize>14</pointsize>
+        <family>微软雅黑</family>
+        <pointsize>16</pointsize>
+        <italic>false</italic>
+        <bold>true</bold>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 700 16pt &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>确认密码</string>

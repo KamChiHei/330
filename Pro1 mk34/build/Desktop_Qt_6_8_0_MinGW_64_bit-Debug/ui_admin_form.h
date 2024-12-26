@@ -207,7 +207,7 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 29), QTime(16, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 29), QTime(0, 0, 0)));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -439,6 +439,11 @@ public:
         tableWidget = new QTableWidget(page_3);
         tableWidget->setObjectName("tableWidget");
         tableWidget->setGeometry(QRect(90, 200, 905, 511));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font1.setPointSize(10);
+        font1.setBold(true);
+        tableWidget->setFont(font1);
         pushButton_clear = new QPushButton(page_3);
         pushButton_clear->setObjectName("pushButton_clear");
         pushButton_clear->setGeometry(QRect(700, 30, 200, 40));
@@ -638,6 +643,7 @@ public:
         tableWidget_2 = new QTableWidget(page_4);
         tableWidget_2->setObjectName("tableWidget_2");
         tableWidget_2->setGeometry(QRect(170, 200, 725, 500));
+        tableWidget_2->setFont(font1);
         tableWidget_2->horizontalHeader()->setMinimumSectionSize(240);
         tableWidget_2->horizontalHeader()->setDefaultSectionSize(240);
         label_17 = new QLabel(page_4);
@@ -655,7 +661,7 @@ public:
 ""));
         label_57 = new QLabel(page_4);
         label_57->setObjectName("label_57");
-        label_57->setGeometry(QRect(180, 70, 161, 40));
+        label_57->setGeometry(QRect(200, 70, 161, 40));
         label_57->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_57->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineEdit_password = new QLineEdit(page_4);
@@ -669,12 +675,12 @@ public:
 ""));
         label_58 = new QLabel(page_4);
         label_58->setObjectName("label_58");
-        label_58->setGeometry(QRect(180, 130, 161, 40));
+        label_58->setGeometry(QRect(200, 130, 161, 40));
         label_58->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_58->setAlignment(Qt::AlignmentFlag::AlignCenter);
         nextButton_3 = new QPushButton(page_4);
         nextButton_3->setObjectName("nextButton_3");
-        nextButton_3->setGeometry(QRect(810, 130, 90, 40));
+        nextButton_3->setGeometry(QRect(740, 130, 90, 40));
         nextButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "\n"
 "	background-color: rgba(0, 159, 252,100);\n"
@@ -690,7 +696,7 @@ public:
 "}"));
         prevButton_3 = new QPushButton(page_4);
         prevButton_3->setObjectName("prevButton_3");
-        prevButton_3->setGeometry(QRect(700, 130, 90, 40));
+        prevButton_3->setGeometry(QRect(630, 130, 90, 40));
         prevButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "\n"
 "	background-color: rgba(0, 159, 252,100);\n"
@@ -706,7 +712,7 @@ public:
 "}"));
         pushButton_clear_3 = new QPushButton(page_4);
         pushButton_clear_3->setObjectName("pushButton_clear_3");
-        pushButton_clear_3->setGeometry(QRect(700, 20, 200, 40));
+        pushButton_clear_3->setGeometry(QRect(630, 10, 200, 40));
         pushButton_clear_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "\n"
 "	background-color: rgba(0, 159, 252,100);\n"
@@ -722,7 +728,7 @@ public:
 "}"));
         lineEdit_userid_2 = new QLineEdit(page_4);
         lineEdit_userid_2->setObjectName("lineEdit_userid_2");
-        lineEdit_userid_2->setGeometry(QRect(380, 20, 200, 40));
+        lineEdit_userid_2->setGeometry(QRect(360, 10, 200, 40));
         lineEdit_userid_2->setStyleSheet(QString::fromUtf8("\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
@@ -731,7 +737,7 @@ public:
 ""));
         label_62 = new QLabel(page_4);
         label_62->setObjectName("label_62");
-        label_62->setGeometry(QRect(200, 20, 161, 40));
+        label_62->setGeometry(QRect(200, 10, 161, 40));
         label_62->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_62->setAlignment(Qt::AlignmentFlag::AlignCenter);
         stackedWidget->addWidget(page_4);
@@ -740,6 +746,7 @@ public:
         tableWidget_3 = new QTableWidget(page_5);
         tableWidget_3->setObjectName("tableWidget_3");
         tableWidget_3->setGeometry(QRect(240, 200, 605, 500));
+        tableWidget_3->setFont(font1);
         tableWidget_3->horizontalHeader()->setMinimumSectionSize(150);
         tableWidget_3->horizontalHeader()->setDefaultSectionSize(150);
         label_28 = new QLabel(page_5);
@@ -757,12 +764,12 @@ public:
 ""));
         label_59 = new QLabel(page_5);
         label_59->setObjectName("label_59");
-        label_59->setGeometry(QRect(300, 10, 161, 40));
+        label_59->setGeometry(QRect(340, 10, 141, 40));
         label_59->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_59->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineEdit_userid = new QLineEdit(page_5);
         lineEdit_userid->setObjectName("lineEdit_userid");
-        lineEdit_userid->setGeometry(QRect(490, 60, 200, 40));
+        lineEdit_userid->setGeometry(QRect(480, 60, 200, 40));
         lineEdit_userid->setStyleSheet(QString::fromUtf8("\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
@@ -771,12 +778,12 @@ public:
 ""));
         label_60 = new QLabel(page_5);
         label_60->setObjectName("label_60");
-        label_60->setGeometry(QRect(310, 60, 161, 40));
+        label_60->setGeometry(QRect(340, 60, 141, 40));
         label_60->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_60->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineEdit_seatid = new QLineEdit(page_5);
         lineEdit_seatid->setObjectName("lineEdit_seatid");
-        lineEdit_seatid->setGeometry(QRect(490, 110, 200, 40));
+        lineEdit_seatid->setGeometry(QRect(480, 110, 200, 40));
         lineEdit_seatid->setStyleSheet(QString::fromUtf8("\n"
 "	font: 16pt \"Microsoft YaHei UI\";\n"
 "    border: 1px solid rgb(230, 230, 230);\n"
@@ -785,21 +792,32 @@ public:
 ""));
         label_61 = new QLabel(page_5);
         label_61->setObjectName("label_61");
-        label_61->setGeometry(QRect(310, 100, 161, 40));
+        label_61->setGeometry(QRect(340, 110, 141, 40));
         label_61->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         label_61->setAlignment(Qt::AlignmentFlag::AlignCenter);
         radioButton_all = new QRadioButton(page_5);
         radioButton_all->setObjectName("radioButton_all");
-        radioButton_all->setGeometry(QRect(190, 120, 73, 18));
+        radioButton_all->setGeometry(QRect(230, 10, 111, 40));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font2.setPointSize(16);
+        font2.setBold(true);
+        font2.setItalic(false);
+        radioButton_all->setFont(font2);
+        radioButton_all->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         radioButton_cancel = new QRadioButton(page_5);
         radioButton_cancel->setObjectName("radioButton_cancel");
-        radioButton_cancel->setGeometry(QRect(190, 150, 73, 18));
+        radioButton_cancel->setGeometry(QRect(230, 60, 111, 40));
+        radioButton_cancel->setFont(font2);
+        radioButton_cancel->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         radioButton_paid = new QRadioButton(page_5);
         radioButton_paid->setObjectName("radioButton_paid");
-        radioButton_paid->setGeometry(QRect(190, 170, 73, 18));
+        radioButton_paid->setGeometry(QRect(230, 110, 111, 40));
+        radioButton_paid->setFont(font2);
+        radioButton_paid->setStyleSheet(QString::fromUtf8("font: 700 16pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";"));
         prevButton_4 = new QPushButton(page_5);
         prevButton_4->setObjectName("prevButton_4");
-        prevButton_4->setGeometry(QRect(710, 130, 90, 40));
+        prevButton_4->setGeometry(QRect(710, 110, 90, 40));
         prevButton_4->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "\n"
 "	background-color: rgba(0, 159, 252,100);\n"
@@ -831,7 +849,7 @@ public:
 "}"));
         nextButton_4 = new QPushButton(page_5);
         nextButton_4->setObjectName("nextButton_4");
-        nextButton_4->setGeometry(QRect(820, 130, 90, 40));
+        nextButton_4->setGeometry(QRect(820, 110, 90, 40));
         nextButton_4->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "\n"
 "	background-color: rgba(0, 159, 252,100);\n"
@@ -849,11 +867,11 @@ public:
         pushButton_addFlight = new QPushButton(centralwidget);
         pushButton_addFlight->setObjectName("pushButton_addFlight");
         pushButton_addFlight->setGeometry(QRect(0, 0, 200, 80));
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
-        font1.setPointSize(24);
-        font1.setBold(true);
-        pushButton_addFlight->setFont(font1);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font3.setPointSize(24);
+        font3.setBold(true);
+        pushButton_addFlight->setFont(font3);
         pushButton_addFlight->setAutoFillBackground(false);
         pushButton_addFlight->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -870,7 +888,7 @@ public:
         pushButton_deleteFlight = new QPushButton(centralwidget);
         pushButton_deleteFlight->setObjectName("pushButton_deleteFlight");
         pushButton_deleteFlight->setGeometry(QRect(0, 80, 200, 80));
-        pushButton_deleteFlight->setFont(font1);
+        pushButton_deleteFlight->setFont(font3);
         pushButton_deleteFlight->setAutoFillBackground(false);
         pushButton_deleteFlight->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -887,7 +905,7 @@ public:
         pushButton_searchFlight = new QPushButton(centralwidget);
         pushButton_searchFlight->setObjectName("pushButton_searchFlight");
         pushButton_searchFlight->setGeometry(QRect(0, 160, 200, 80));
-        pushButton_searchFlight->setFont(font1);
+        pushButton_searchFlight->setFont(font3);
         pushButton_searchFlight->setAutoFillBackground(false);
         pushButton_searchFlight->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -904,7 +922,7 @@ public:
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName("pushButton_4");
         pushButton_4->setGeometry(QRect(0, 240, 200, 80));
-        pushButton_4->setFont(font1);
+        pushButton_4->setFont(font3);
         pushButton_4->setAutoFillBackground(false);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -925,7 +943,7 @@ public:
         pushButton_user = new QPushButton(centralwidget);
         pushButton_user->setObjectName("pushButton_user");
         pushButton_user->setGeometry(QRect(0, 320, 200, 80));
-        pushButton_user->setFont(font1);
+        pushButton_user->setFont(font3);
         pushButton_user->setAutoFillBackground(false);
         pushButton_user->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -942,7 +960,7 @@ public:
         pushButton_order = new QPushButton(centralwidget);
         pushButton_order->setObjectName("pushButton_order");
         pushButton_order->setGeometry(QRect(0, 400, 200, 80));
-        pushButton_order->setFont(font1);
+        pushButton_order->setFont(font3);
         pushButton_order->setAutoFillBackground(false);
         pushButton_order->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "	color: rgb(255, 255, 255);\n"
@@ -968,7 +986,7 @@ public:
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(0);
         pushButton_addFlight->setDefault(false);
 
 

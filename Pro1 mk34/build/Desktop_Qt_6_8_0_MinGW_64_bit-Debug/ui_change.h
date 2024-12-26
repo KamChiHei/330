@@ -75,6 +75,13 @@ public:
         mytable = new QTableWidget(change);
         mytable->setObjectName("mytable");
         mytable->setGeometry(QRect(50, 10, 705, 400));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font.setPointSize(10);
+        font.setBold(true);
+        mytable->setFont(font);
+        mytable->horizontalHeader()->setMinimumSectionSize(100);
+        mytable->horizontalHeader()->setDefaultSectionSize(100);
         label = new QLabel(change);
         label->setObjectName("label");
         label->setGeometry(QRect(300, 420, 200, 40));

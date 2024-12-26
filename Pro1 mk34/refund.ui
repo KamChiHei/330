@@ -67,8 +67,18 @@ background-color: rgba(255, 255, 255, 100);
      <height>400</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <attribute name="horizontalHeaderMinimumSectionSize">
+    <number>199</number>
+   </attribute>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>149</number>
+    <number>199</number>
    </attribute>
   </widget>
   <widget class="QPushButton" name="Tickets">
