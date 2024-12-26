@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>register_Form</class>
+ <widget class="QWidget" name="register_Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>注册</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icon.qrc">
+    <normaloff>:/new/prefix1/iconANDpic/plane.png</normaloff>:/new/prefix1/iconANDpic/plane.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QLineEdit" name="name">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: transparent;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwd1">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>80</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: transparent;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="pwd2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>140</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    background-color: transparent;
+	font: 16pt &quot;Microsoft YaHei UI&quot;;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 5px;
+}</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B1">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>230</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+	
+	
+	
+	background-color: rgb(0, 159, 252);
+    
+	
+	font: 14pt &quot;黑体&quot;;
+	
+	color: rgb(255, 255, 255);
+border: 1px solid rgb(0, 170, 255); 
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    
+	background-color: rgb(0, 159, 252);
+       
+    font: 14pt &quot;黑体&quot;;
+	color: rgb(255, 255, 255);
+}</string>
+   </property>
+   <property name="text">
+    <string>注册</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>260</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+		
+	font: 14pt &quot;黑体&quot;;
+	color: rgb(0, 0, 0);
+border: 1px solid  rgb(230, 230, 230);
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+     
+    font: 14pt &quot;黑体&quot;;
+	color: rgb(0, 0, 0);
+}</string>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwdtips2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>170</y>
+     <width>250</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;微软雅黑&quot;;
+color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>3</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nametips">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>40</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;微软雅黑&quot;;
+color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pwdtips1">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>110</y>
+     <width>200</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;微软雅黑&quot;;
+color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>86</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>黑体</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>用户名</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <family>黑体</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>密码</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <family>黑体</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>确认密码</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>-1</x>
+     <y>1</y>
+     <width>402</width>
+     <height>302</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 0);
+background-image: url(:/new/prefix2/iconANDpic/login.jpg);
+</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>name</zorder>
+  <zorder>pwd1</zorder>
+  <zorder>pwd2</zorder>
+  <zorder>B1</zorder>
+  <zorder>B2</zorder>
+  <zorder>pwdtips2</zorder>
+  <zorder>nametips</zorder>
+  <zorder>pwdtips1</zorder>
+  <zorder>layoutWidget</zorder>
+ </widget>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>
