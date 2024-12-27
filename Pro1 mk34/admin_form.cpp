@@ -1166,6 +1166,8 @@ void admin_form::on_pushButton_clear_clicked() {
     currentoffset3=0;
     load(currentOffset);
     ui->label_status->setText("");
+    ui->dateEdit_selectedDate->setVisible(true);
+    ui->label_20->setVisible(true);
 }
 
 void admin_form::on_pushButton_searchall_clicked()
@@ -1185,6 +1187,8 @@ void admin_form::on_pushButton_searchall_clicked()
     sss1=true;
     sss2=false;
     ui->label_status->setText("正在显示所有日期的航班");
+    ui->dateEdit_selectedDate->setVisible(false);
+    ui->label_20->setVisible(false);
     loada(currentoffset3);
 }
 
