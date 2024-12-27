@@ -109,7 +109,7 @@ private slots:
 
     void on_lineEdit_password_textChanged(const QString &arg1);
 
-    void on_pushButton_clear_3_clicked();
+    void on_pushButton_clear_7_clicked();
 
     void on_lineEdit_orderid_textChanged(const QString &arg1);
 
@@ -128,6 +128,17 @@ private slots:
     void on_radioButton_paid_clicked();
 
     void on_lineEdit_userid_2_textChanged(const QString &arg1);
+
+    void on_pushButton_clear_8_clicked();
+
+
+    void on_lineEdit_needToUpdateFlightId_editingFinished();
+
+    void on_pushButton_clear_9_clicked();
+
+    void on_lineEdit_selectedFlightId_textChanged(const QString &arg1);
+
+    void on_pushButton_clear_3_clicked();
 
 private:
     Ui::admin_form *ui;

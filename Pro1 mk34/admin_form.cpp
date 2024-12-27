@@ -166,8 +166,9 @@ void admin_form::load(int offset){
 
 void admin_form::load2(int offset){
     QSqlDatabase db = initializeDatabase();
+    QString selectedFlightId=ui->lineEdit_selectedFlightId->text();
     QString selectedDeparturePlace=ui->lineEdit_selectedDeparturePlace->text(),selectedArrivalPlace=ui->lineEdit_selectedArrivalPlace->text(),selectedDate=ui->dateEdit_selectedDate->date().toString("yyyy-MM-dd");
-    QString sqlstr=QString("select flight_id,departure_place,arrival_place,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%' limit %4 offset %5").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
+    QString sqlstr=QString("select flight_id,departure_place,arrival_place,departure_time,arrival_time,base_fare from flight WHERE departure_place like '%%1%' AND arrival_place like '%%2%' AND date like '%%3%'and flight_id like '%4%' limit %5 offset %6").arg(selectedDeparturePlace,selectedArrivalPlace,selectedDate).arg(selectedFlightId).arg(BATCH_SIZE).arg(offset);//使用MYSQL查询语句获取表的数据 ，写入tableWidget中
     qDebug()<<sqlstr;
     QSqlQuery query(db);
     query.prepare(sqlstr);//准备
@@ -819,8 +820,34 @@ void admin_form::clear() {
 void admin_form::on_pushButton_add_clicked() {
     QString flightId = ui->lineEdit_flightId->text(), departurePlace = ui->lineEdit_departurePlace->text(), arrivalPlace = ui->lineEdit_arrivalPlace->text(), date = ui->dateEdit_date->date().toString("yyyy-MM-dd"), departureTime = ui->timeEdit_departureTime->time().toString(), arrivalTime = ui->timeEdit_arrivalTime->time().toString();
     int baseFare = ui->lineEdit_baseFare->text().toInt(), seatAmountOfLvl1 = ui->lineEdit_seatAmountOfLvl1->text().toInt(), seatAmountOfLvl2 = ui->lineEdit_seatAmountOfLvl2->text().toInt(), seatAmountOfLvl3 = ui->lineEdit_seatAmountOfLvl3->text().toInt();
-    addFlight(flightId, departurePlace, arrivalPlace, date, departureTime, arrivalTime, baseFare, seatAmountOfLvl1, seatAmountOfLvl2, seatAmountOfLvl3);
-    clear();
+    if(flightId==""){
+        ui->label_Note->setText("航班号不能为空");
+    }
+    else if(departurePlace==""){
+        ui->label_Note->setText("出发地不能为空");
+    }
+    else if(arrivalPlace==""){
+        ui->label_Note->setText("到达地不能为空");
+    }
+    else if(baseFare==0){
+        ui->label_Note->setText("基础价格不能为0");
+    }
+    else if((seatAmountOfLvl1+seatAmountOfLvl2+seatAmountOfLvl3)==0){
+        ui->label_Note->setText("座位数不能为0");
+    }
+    else if(departurePlace==arrivalPlace){
+        ui->label_Note->setText("出发地与到达地不能相同");
+    }
+    else if(departureTime==arrivalTime){
+        ui->label_Note->setText("出发时间与到达时间不能相同");
+    }
+    else{
+        ui->label_Note->setText("添加成功");
+        addFlight(flightId, departurePlace, arrivalPlace, date, departureTime, arrivalTime, baseFare, seatAmountOfLvl1, seatAmountOfLvl2, seatAmountOfLvl3);
+        clear();
+    }
+
+
 }
 
 void admin_form::delSeat(const QString &delFlightId) {
@@ -846,18 +873,33 @@ void admin_form::clear2() {
 
 void admin_form::on_pushButton_delete_clicked() {
     QString delFlightId = ui->lineEdit_delFlightId->text();
-    delFlight(delFlightId);
-    clear2();
+    if(delFlightId==""){
+        ui->label_Note_3->setText("请输入要删除的航班号");
+    }
+    else{
+        ui->label_Note_3->setText("删除成功");
+        delFlight(delFlightId);
+        clear2();
+    }
+
+
 }
 
 void admin_form::on_pushButton_update_clicked() {
     QSqlDatabase db = initializeDatabase();
     QSqlQuery query(db);
     QString needToUpdateFlightId = ui->lineEdit_needToUpdateFlightId->text(), needToUpdateDate = ui->dateEdit_needToUpdateDate->date().toString("yyyy-MM-dd"), needToUpdateDepartureTime = ui->timeEdit_needToUpdateDepartureTime->time().toString(), needToUpdateArrivalTime = ui->timeEdit_needToUpdateArrivalTime->time().toString(), needToUpdateDeparturePlace = ui->lineEdit_needToUpdateDeparturePlace->text(), needToUpdateArrivalPlace = ui->lineEdit_needToUpdateArrivalPlace->text(), needToUpdateBaseFare = ui->lineEdit_needToUpdateBaseFare->text();
-    QString sql = QString("UPDATE flight SET date='%1', departure_time='%2', arrival_time='%3', departure_place='%4', arrival_place='%5', base_fare='%6' where flight_id='%7'").arg(needToUpdateDate, needToUpdateDepartureTime, needToUpdateArrivalTime, needToUpdateDeparturePlace, needToUpdateArrivalPlace, needToUpdateBaseFare, needToUpdateFlightId);
-    query.exec(sql);
-    db.close();
-    clear3();
+    if(needToUpdateFlightId==""){
+        ui->label_Note_4->setText("请输入需要修改的航班号");
+    }
+    else {
+        QString sql = QString("UPDATE flight SET date='%1', departure_time='%2', arrival_time='%3', departure_place='%4', arrival_place='%5', base_fare='%6' where flight_id='%7'").arg(needToUpdateDate, needToUpdateDepartureTime, needToUpdateArrivalTime, needToUpdateDeparturePlace, needToUpdateArrivalPlace, needToUpdateBaseFare, needToUpdateFlightId);
+        query.exec(sql);
+        db.close();
+        clear3();
+        ui->label_Note_4->setText("修改成功");
+    }
+
 }
 
 void admin_form::on_lineEdit_baseFare_editingFinished() {
@@ -875,7 +917,7 @@ void admin_form::clear3() {
     ui->timeEdit_needToUpdateArrivalTime->setTime(QTime(0, 0));
     ui->lineEdit_needToUpdateBaseFare->clear();
     ui->lineEdit_needToUpdateDeparturePlace->clear();
-    ui->timeEdit_needToUpdateDepartureTime->clear();
+    ui->timeEdit_needToUpdateDepartureTime->setTime(QTime(0,0));
     ui->dateEdit_needToUpdateDate->setDate(QDate(2024, 1, 1));
 }
 
@@ -926,6 +968,7 @@ void admin_form::on_pushButton_clear_clicked() {
     ui->lineEdit_selectedDeparturePlace->clear();
     ui->lineEdit_selectedArrivalPlace->clear();
     ui->dateEdit_selectedDate->setDate(QDate(2024, 1, 1));
+    ui->lineEdit_selectedFlightId->clear();
     sss=false;
     sss1=false;
     currentOffset=0;
@@ -984,6 +1027,7 @@ void admin_form::on_lineEdit_password_textChanged(const QString &arg1)
 
 void admin_form::on_pushButton_clear_3_clicked()
 {
+    ui->lineEdit_userid_2->clear();
     ui->tableWidget_2->setRowCount(0);
     ui->tableWidget_2->clearContents();
     ui->lineEdit_username->clear();
@@ -1044,6 +1088,20 @@ void admin_form::on_pushButton_clear_4_clicked()
     bbb=false;
     bbb1=false;
     bbb2=false;
+
+    ui->radioButton_all->setAutoExclusive(false);
+
+    ui->radioButton_all->setChecked(false);
+
+    ui->radioButton_all->setAutoExclusive(true);
+
+    ui->radioButton_cancel->setAutoExclusive(false);
+    ui->radioButton_cancel->setChecked(false);
+    ui->radioButton_cancel->setAutoExclusive(true);
+    ui->radioButton_paid->setAutoExclusive(false);
+    ui->radioButton_paid->setChecked(false);
+    ui->radioButton_paid->setAutoExclusive(true);
+
     loadorder(orderoffset1);
 }
 
@@ -1118,5 +1176,62 @@ void admin_form::on_lineEdit_userid_2_textChanged(const QString &arg1)
     ui->tableWidget_2->clearContents();
     aaa=true;
     loaduser2(useroffset2);
+}
+
+
+void admin_form::on_pushButton_clear_8_clicked()
+{
+    ui->label_Note->clear();
+    clear();
+}
+
+
+void admin_form::on_pushButton_clear_7_clicked()
+{
+    ui->label_Note_3->clear();
+    ui->lineEdit_delFlightId->clear();
+}
+
+
+void admin_form::on_lineEdit_needToUpdateFlightId_editingFinished()
+{
+    QSqlDatabase db = initializeDatabase();
+    QSqlQuery query(db);
+    QString needToUpdateFlightId=ui->lineEdit_needToUpdateFlightId->text();
+    QString sqll=QString("select departure_place,arrival_place,departure_time,arrival_time,date,base_fare  from flight where flight_id='%1'").arg(needToUpdateFlightId);
+    qDebug()<<sqll;
+
+    if(query.exec(sqll)){
+        while(query.next()){
+            ui->lineEdit_needToUpdateDeparturePlace->setText(query.value(0).toString());
+            ui->lineEdit_needToUpdateArrivalPlace->setText(query.value(1).toString());
+            ui->timeEdit_needToUpdateDepartureTime->setTime(query.value(2).toTime());
+            ui->timeEdit_arrivalTime->setTime(query.value(3).toTime());
+            ui->dateEdit_needToUpdateDate->setDate(query.value(4).toDate());
+            ui->lineEdit_needToUpdateBaseFare->setText(query.value(5).toString());
+        }
+    }
+    db.close();
+}
+
+
+void admin_form::on_pushButton_clear_9_clicked()
+{
+    clear3();
+    ui->label_Note_4->clear();
+}
+
+
+void admin_form::on_lineEdit_selectedFlightId_textChanged(const QString &arg1)
+{
+    ui->tableWidget->setRowCount(0);
+    ui->tableWidget->clearContents();
+    ui->label_status->setText("");
+    sss=true;
+    sss1=false;
+    currentOffset=0;
+    currentoffset2=0;
+    currentoffset3=0;
+    load2(currentoffset2);
 }
 
