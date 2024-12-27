@@ -215,7 +215,8 @@ public:
 "    border-radius: 5px;\n"
 "\n"
 ""));
-        dateEdit_date->setDateTime(QDateTime(QDate(2023, 12, 28), QTime(16, 0, 0)));
+        dateEdit_date->setDateTime(QDateTime(QDate(2024, 1, 1), QTime(0, 0, 0)));
+        dateEdit_date->setDate(QDate(2024, 1, 1));
         lineEdit_flightId = new QLineEdit(page);
         lineEdit_flightId->setObjectName("lineEdit_flightId");
         lineEdit_flightId->setGeometry(QRect(640, 100, 200, 40));
@@ -1075,7 +1076,7 @@ public:
 
         retranslateUi(admin_form);
 
-        stackedWidget->setCurrentIndex(5);
+        stackedWidget->setCurrentIndex(3);
         pushButton_addFlight->setDefault(false);
 
 

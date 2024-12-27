@@ -140,6 +140,8 @@ private slots:
 
     void on_pushButton_clear_3_clicked();
 
+    void delOrder(const QString &delFlightID);
+
 private:
     Ui::admin_form *ui;
 
