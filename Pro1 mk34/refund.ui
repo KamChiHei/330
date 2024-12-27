@@ -178,8 +178,14 @@ background-color: rgba(255, 255, 255, 100);
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgba(255, 255, 255, 100);
-background-image: url(:/new/prefix2/iconANDpic/ordermanage.jpg);</string>
+    <string notr="true">QFrame#frame{
+background-color: rgba(255, 255, 255, 100);
+background-image: url(:/new/prefix2/iconANDpic/ordermanage.jpg);
+
+}
+
+
+</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Shape::StyledPanel</enum>
@@ -187,6 +193,27 @@ background-image: url(:/new/prefix2/iconANDpic/ordermanage.jpg);</string>
    <property name="frameShadow">
     <enum>QFrame::Shadow::Raised</enum>
    </property>
+   <widget class="QLabel" name="nullLb">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>430</y>
+      <width>141</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel#nullLb{
+
+background-color: transparent;
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <zorder>frame</zorder>
   <zorder>pushButton</zorder>
