@@ -142,14 +142,20 @@ private slots:
 
     void delOrder(const QString &delFlightID);
 
+    void loadall2(int offset);
+
+
+
 private:
     Ui::admin_form *ui;
 
     int currentOffset;
     int currentoffset2;
     int currentoffset3;
+    int currentoffset4;
     bool sss;
     bool sss1;
+    bool sss2;
 
     int useroffset1;
     int useroffset2;

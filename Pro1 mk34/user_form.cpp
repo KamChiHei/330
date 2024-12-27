@@ -32,7 +32,7 @@ bool user_Form::haveTikets(int uid){
     dbu.open();
 
     //SQL 查询用户名
-    QString opt = QString("select order_id from orders where user_id='%1'").arg(uid);
+    QString opt = QString("select order_id from orders where user_id='%1'and order_status='已支付'").arg(uid);
     QSqlQuery qopt(dbu);
     qopt.exec(opt);
 
