@@ -25,6 +25,11 @@ Refund::Refund(QWidget *parent,int i)
         m->setQuery(sql,db);
 
         ui->orders->setModel(m);
+        ui->orders->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->orders->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->orders->setSelectionBehavior(QAbstractItemView::SelectRows);
+        \
+
         m->setHeaderData(0,Qt::Horizontal,"订单编号");
         m->setHeaderData(1,Qt::Horizontal,"订单人");
         m->setHeaderData(2,Qt::Horizontal,"座位号");
@@ -70,6 +75,9 @@ void Refund::on_Tickets_clicked()
 
 void Refund::on_orders_clicked(const QModelIndex &index)
 {
+
+    ui->nullLb->hide();
+
     current=index;
     qDebug()<<current;
 }
@@ -113,6 +121,10 @@ void Refund::on_cancelButton_clicked()
         ui->orders->hideColumn(1);
         current=QModelIndex();
     }
+    else {
+        ui->nullLb->setText("请选择要退订的订单！");
+        ui->nullLb->show();
+    }
 }
 
 
@@ -121,22 +133,21 @@ void Refund::on_changeButton_clicked()
 
 
 
-
-    this->c = new change();
-    connect(this->c,&change::back,[=](){
-        // db.open();
-        this->c->hide();
-        this->show();
-        QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
-                              "JOIN seats s ON o.seat_id = s.seat_id "
-                              "JOIN flight f ON s.flight_id = f.flight_id "
-                              "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
-        m->setQuery(sql,db);
-    });
-    c->getdatabase(db);
     if(current.isValid()){
 
 
+        this->c = new change();
+        connect(this->c,&change::back,[=](){
+            // db.open();
+            this->c->hide();
+            this->show();
+            QString sql = QString("SELECT o.*, f.flight_id FROM orders o "
+                                  "JOIN seats s ON o.seat_id = s.seat_id "
+                                  "JOIN flight f ON s.flight_id = f.flight_id "
+                                  "WHERE o.user_id = '%1' AND o.order_status = '已支付'").arg(id);
+            m->setQuery(sql,db);
+        });
+        c->getdatabase(db);
 
         qDebug()<<id;
         int a=current.row();
@@ -147,6 +158,13 @@ void Refund::on_changeButton_clicked()
         qDebug()<<orderid<<seatid;
         c->getinfo(orderid,seatid);
 
+        this->hide();
+        this->c->show();
+
+    }
+    else {
+        ui->nullLb->setText("请选择要改签的订单！");
+        ui->nullLb->show();
     }
 
     // db.close();
@@ -154,6 +172,5 @@ void Refund::on_changeButton_clicked()
     //     QMessageBox::information(this,"!","关闭成功");
     // }
 
-    this->hide();
-    this->c->show();
+
 }

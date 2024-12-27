@@ -30,8 +30,14 @@ Book::Book(QWidget *parent,int i)
 
         ui->Tickets->setModel(m);
         ui->Tickets->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->Tickets->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->Tickets->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
         ui->Seats->setModel(s);
         ui->Seats->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->Seats->setSelectionMode(QAbstractItemView::SingleSelection);
+        ui->Seats->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         s->setTable("seats");
         m->setTable("flight");
@@ -182,6 +188,8 @@ void Book::on_Tickets_clicked(const QModelIndex &index)
 
 void Book::on_flight_idEdit_textChanged()
 {
+    current=QModelIndex();
+    current_seat=QModelIndex();
     changeHead1();
 
     this->flid =ui->flight_idEdit->text();
@@ -197,6 +205,9 @@ void Book::on_flight_idEdit_textChanged()
 
 void Book::on_fEdit_textChanged()
 {
+    current=QModelIndex();
+    current_seat=QModelIndex();
+
     changeHead1();
     this->fromtxt = ui->fEdit->text().trimmed();
     if(totxt==""&&fromtxt==""&&flid==""){
@@ -211,6 +222,9 @@ void Book::on_fEdit_textChanged()
 
 void Book::on_tEdit_textChanged()
 {
+    current=QModelIndex();
+    current_seat=QModelIndex();
+
     changeHead1();
     this->totxt = ui->tEdit->text().trimmed();
     if(totxt==""&&fromtxt==""&&flid==""){

@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
@@ -29,6 +30,7 @@ public:
     QPushButton *cancelButton;
     QPushButton *changeButton;
     QFrame *frame;
+    QLabel *nullLb;
 
     void setupUi(QWidget *Refund)
     {
@@ -121,10 +123,25 @@ public:
         frame = new QFrame(Refund);
         frame->setObjectName("frame");
         frame->setGeometry(QRect(-1, 0, 802, 601));
-        frame->setStyleSheet(QString::fromUtf8("background-color: rgba(255, 255, 255, 100);\n"
-"background-image: url(:/new/prefix2/iconANDpic/ordermanage.jpg);"));
+        frame->setStyleSheet(QString::fromUtf8("QFrame#frame{\n"
+"background-color: rgba(255, 255, 255, 100);\n"
+"background-image: url(:/new/prefix2/iconANDpic/ordermanage.jpg);\n"
+"\n"
+"}\n"
+"\n"
+"\n"
+""));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
+        nullLb = new QLabel(frame);
+        nullLb->setObjectName("nullLb");
+        nullLb->setGeometry(QRect(340, 430, 141, 19));
+        nullLb->setStyleSheet(QString::fromUtf8("QLabel#nullLb{\n"
+"\n"
+"background-color: transparent;\n"
+"}\n"
+"\n"
+""));
         frame->raise();
         pushButton->raise();
         orders->raise();
@@ -144,6 +161,7 @@ public:
         Tickets->setText(QCoreApplication::translate("Refund", "\345\210\267\346\226\260", nullptr));
         cancelButton->setText(QCoreApplication::translate("Refund", "\351\200\200\347\245\250", nullptr));
         changeButton->setText(QCoreApplication::translate("Refund", "\346\224\271\347\255\276", nullptr));
+        nullLb->setText(QString());
     } // retranslateUi
 
 };
