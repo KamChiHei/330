@@ -777,29 +777,46 @@ QString admin_form::generateCode() {
 
 void admin_form::addSeat(const QString &flightId, const QString &seatTypeId, int seatAmount) {
     QSqlDatabase db = initializeDatabase();
-    for (int i = 1; i <= seatAmount; i++) {
-        QString sqll = "select seat_id from seats order by seat_id desc limit 1";
-        QSqlQuery query2(db), query3(db);
-        query2.prepare(sqll);
-        if (query2.exec() && query2.next()) {
-            int id = query2.value(0).toInt() + 1;
-            QString code = generateCode();
-            QString sql2 = QString("insert into seats(seat_id, flight_id, seat_type_id, seat_number) values('%1', '%2', '%3', '%4')").arg(id).arg(flightId).arg(seatTypeId).arg(code);
-            query3.exec(sql2);
+    QString sql=QString("select * from seats where flight_id='%1'").arg(flightId);
+    QSqlQuery query(db);
+    query.exec(sql);
+
+        for (int i = 1; i <= seatAmount; i++) {
+            QString sqll = "select seat_id from seats order by seat_id desc limit 1";
+            QSqlQuery query2(db), query3(db);
+            query2.prepare(sqll);
+            if (query2.exec() && query2.next()) {
+                int id = query2.value(0).toInt() + 1;
+                QString code = generateCode();
+                QString sql2 = QString("insert into seats(seat_id, flight_id, seat_type_id, seat_number) values('%1', '%2', '%3', '%4')").arg(id).arg(flightId).arg(seatTypeId).arg(code);
+                query3.exec(sql2);
+            }
         }
-    }
-    db.close();
+        db.close();
+
 }
 
 void admin_form::addFlight(const QString &flightId, const QString &departurePlace, const QString &arrivalPlace, const QString &date, const QString &departureTime, const QString &arrivalTime, int baseFare, int seatAmountOfLvl1, int seatAmountOfLvl2, int seatAmountOfLvl3) {
-    addSeat(flightId, "1", seatAmountOfLvl1);
-    addSeat(flightId, "2", seatAmountOfLvl2);
-    addSeat(flightId, "3", seatAmountOfLvl3);
     QSqlDatabase db = initializeDatabase();
-    QSqlQuery query(db);
-    QString sql = QString("insert into flight (flight_id, departure_place, arrival_place, departure_time, arrival_time, date, base_fare) values('%1', '%2', '%3', '%4', '%5', '%6', '%7')").arg(flightId, departurePlace, arrivalPlace, departureTime, arrivalTime, date, QString::number(baseFare));
-    query.exec(sql);
-    db.close();
+    QString sql1=QString("select * from flight where flight_id='%1'").arg(flightId);
+    QSqlQuery query1(db);
+    query1.exec(sql1);
+    if(query1.next()){
+        ui->label_Note->setText("航班已存在");
+        db.close();
+    }
+    else{
+        addSeat(flightId, "1", seatAmountOfLvl1);
+        addSeat(flightId, "2", seatAmountOfLvl2);
+        addSeat(flightId, "3", seatAmountOfLvl3);
+
+        QSqlQuery query(db);
+        QString sql = QString("insert into flight (flight_id, departure_place, arrival_place, departure_time, arrival_time, date, base_fare) values('%1', '%2', '%3', '%4', '%5', '%6', '%7')").arg(flightId, departurePlace, arrivalPlace, departureTime, arrivalTime, date, QString::number(baseFare));
+        query.exec(sql);
+        ui->label_Note->setText("添加成功");
+        db.close();
+    }
+
 }
 
 void admin_form::clear() {
@@ -842,7 +859,6 @@ void admin_form::on_pushButton_add_clicked() {
         ui->label_Note->setText("出发时间与到达时间不能相同");
     }
     else{
-        ui->label_Note->setText("添加成功");
         addFlight(flightId, departurePlace, arrivalPlace, date, departureTime, arrivalTime, baseFare, seatAmountOfLvl1, seatAmountOfLvl2, seatAmountOfLvl3);
         clear();
     }
@@ -852,18 +868,19 @@ void admin_form::on_pushButton_add_clicked() {
 
 void admin_form::delSeat(const QString &delFlightId) {
     QSqlDatabase db = initializeDatabase();
-    QSqlQuery query(db);
-    QString sql = QString("Delete from seats where flight_id='%1'").arg(delFlightId);
-    query.exec(sql);
+    QSqlQuery query1(db);
+    QString sqll = QString("Delete from seats where flight_id='%1'").arg(delFlightId);
+    query1.exec(sqll);
     db.close();
 }
 
 void admin_form::delFlight(const QString &delFlightId) {
-    delSeat(delFlightId);
+
     QSqlDatabase db = initializeDatabase();
     QSqlQuery query(db);
     QString sql = QString("Delete from flight where flight_id='%1'").arg(delFlightId);
     query.exec(sql);
+    delSeat(delFlightId);
     db.close();
 }
 
@@ -877,7 +894,6 @@ void admin_form::on_pushButton_delete_clicked() {
         ui->label_Note_3->setText("请输入要删除的航班号");
     }
     else{
-        ui->label_Note_3->setText("删除成功");
         delFlight(delFlightId);
         clear2();
     }
