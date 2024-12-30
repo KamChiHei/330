@@ -32,11 +32,14 @@ admin_form::admin_form(QWidget *parent)
     ,orderoffset2(0)
     ,orderoffset3(0)
     ,orderoffset4(0)
+    ,seatMoneyOfLvl2(0)
+    ,seatMoneyOfLvl3(0)
 
 
 {
     ui->setupUi(this);
     QStringList labels = {"航班号", "出发地","到达地","出发时间", "到达时间","日期", "经济舱票价", "商务舱票价", "头等舱票价", "经济舱座位数", "商务舱座位数", "头等舱座位数"};
+
 
     ui->tableWidget->setColumnCount(12);
     ui->tableWidget->setRowCount(0);
@@ -83,6 +86,23 @@ admin_form::admin_form(QWidget *parent)
 
 }
 
+void admin_form::loadmoney(){
+    QSqlDatabase db = initializeDatabase();
+    QSqlQuery query(db);
+    QString sql=QString("select additional_fare from seat_types where seat_type_id='2'");
+
+    query.exec(sql);
+    if(query.next()){
+        seatMoneyOfLvl2 = query.value(0).toInt();
+    }
+
+    sql=QString("select additional_fare from seat_types where seat_type_id='3'");
+    query.exec(sql);
+    if(query.next()){
+        seatMoneyOfLvl3 = query.value(0).toInt();
+    }
+    db.close();
+}
 
 
 void admin_form::load(int offset){
@@ -820,10 +840,12 @@ void admin_form::switchPage() {
         currentOffset=0;
          currentoffset2=0;
         currentoffset3=0;
+         loadmoney();
          if(ui->label_status->text()!=""){
             sss1=true;
              sss=false;
             loada(currentoffset3);
+
          }
          else{
              load2(currentoffset2);
@@ -1076,20 +1098,7 @@ void admin_form::on_lineEdit_baseFare_editingFinished() {
 
     ui->lineEdit_moneyOfLvl2->setReadOnly(0);
     ui->lineEdit_moneyOfLvl3->setReadOnly(0);
-    QSqlDatabase db = initializeDatabase();
-    QSqlQuery query(db);
-    QString sql=QString("select additional_fare from seat_types where seat_type_id='2'");
 
-    query.exec(sql);
-    if(query.next()){
-        seatMoneyOfLvl2 = query.value(0).toInt();
-    }
-
-    sql=QString("select additional_fare from seat_types where seat_type_id='3'");
-    query.exec(sql);
-    if(query.next()){
-        seatMoneyOfLvl3 = query.value(0).toInt();
-    }
 
     if (!ui->lineEdit_baseFare->text().isEmpty()) {
         ui->lineEdit_moneyOfLvl2->setText(QString::number(seatMoneyOfLvl2*ui->lineEdit_baseFare->text().toInt()));

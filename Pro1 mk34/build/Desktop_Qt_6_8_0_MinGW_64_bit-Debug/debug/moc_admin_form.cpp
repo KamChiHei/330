@@ -113,7 +113,8 @@ constexpr auto qt_meta_stringdata_CLASSadmin_formENDCLASS = QtMocHelpers::string
     "delOrder",
     "delFlightID",
     "loadall2",
-    "on_lineEdit_baseFare_textChanged"
+    "on_lineEdit_baseFare_textChanged",
+    "loadmoney"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -126,7 +127,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      61,   14, // methods
+      62,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -134,67 +135,68 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  380,    2, 0x08,    1 /* Private */,
-       3,    0,  381,    2, 0x08,    2 /* Private */,
-       4,    0,  382,    2, 0x08,    3 /* Private */,
-       5,    0,  383,    2, 0x08,    4 /* Private */,
-       6,    0,  384,    2, 0x08,    5 /* Private */,
-       7,    0,  385,    2, 0x08,    6 /* Private */,
-       8,    0,  386,    2, 0x08,    7 /* Private */,
-       9,    3,  387,    2, 0x08,    8 /* Private */,
-      13,   10,  394,    2, 0x08,   12 /* Private */,
-      23,    0,  415,    2, 0x08,   23 /* Private */,
-      24,    1,  416,    2, 0x08,   24 /* Private */,
-      26,    1,  419,    2, 0x08,   26 /* Private */,
-      27,    0,  422,    2, 0x08,   28 /* Private */,
-      28,    0,  423,    2, 0x08,   29 /* Private */,
-      29,    0,  424,    2, 0x08,   30 /* Private */,
-      30,    0,  425,    2, 0x08,   31 /* Private */,
-      31,    0,  426,    2, 0x08,   32 /* Private */,
-      32,    0,  427,    2, 0x08,   33 /* Private */,
-      33,    0,  428,    2, 0x08,   34 /* Private */,
-      34,    1,  429,    2, 0x08,   35 /* Private */,
-      36,    1,  432,    2, 0x08,   37 /* Private */,
-      37,    1,  435,    2, 0x08,   39 /* Private */,
-      38,    0,  438,    2, 0x08,   41 /* Private */,
-      39,    1,  439,    2, 0x08,   42 /* Private */,
-      41,    1,  442,    2, 0x08,   44 /* Private */,
-      42,    1,  445,    2, 0x08,   46 /* Private */,
-      43,    0,  448,    2, 0x08,   48 /* Private */,
-      44,    0,  449,    2, 0x08,   49 /* Private */,
-      45,    0,  450,    2, 0x08,   50 /* Private */,
-      46,    0,  451,    2, 0x08,   51 /* Private */,
-      47,    0,  452,    2, 0x08,   52 /* Private */,
-      48,    0,  453,    2, 0x08,   53 /* Private */,
-      49,    0,  454,    2, 0x08,   54 /* Private */,
-      50,    0,  455,    2, 0x08,   55 /* Private */,
-      51,    0,  456,    2, 0x08,   56 /* Private */,
-      52,    1,  457,    2, 0x08,   57 /* Private */,
-      53,    1,  460,    2, 0x08,   59 /* Private */,
-      54,    1,  463,    2, 0x08,   61 /* Private */,
-      55,    1,  466,    2, 0x08,   63 /* Private */,
-      56,    1,  469,    2, 0x08,   65 /* Private */,
-      57,    1,  472,    2, 0x08,   67 /* Private */,
-      58,    1,  475,    2, 0x08,   69 /* Private */,
-      59,    1,  478,    2, 0x08,   71 /* Private */,
-      60,    0,  481,    2, 0x08,   73 /* Private */,
-      61,    1,  482,    2, 0x08,   74 /* Private */,
-      62,    1,  485,    2, 0x08,   76 /* Private */,
-      63,    1,  488,    2, 0x08,   78 /* Private */,
-      64,    0,  491,    2, 0x08,   80 /* Private */,
-      65,    0,  492,    2, 0x08,   81 /* Private */,
-      66,    0,  493,    2, 0x08,   82 /* Private */,
-      67,    0,  494,    2, 0x08,   83 /* Private */,
-      68,    0,  495,    2, 0x08,   84 /* Private */,
-      69,    1,  496,    2, 0x08,   85 /* Private */,
-      70,    0,  499,    2, 0x08,   87 /* Private */,
-      71,    0,  500,    2, 0x08,   88 /* Private */,
-      72,    0,  501,    2, 0x08,   89 /* Private */,
-      73,    1,  502,    2, 0x08,   90 /* Private */,
-      74,    0,  505,    2, 0x08,   92 /* Private */,
-      75,    1,  506,    2, 0x08,   93 /* Private */,
-      77,    1,  509,    2, 0x08,   95 /* Private */,
-      78,    1,  512,    2, 0x08,   97 /* Private */,
+       1,    0,  386,    2, 0x08,    1 /* Private */,
+       3,    0,  387,    2, 0x08,    2 /* Private */,
+       4,    0,  388,    2, 0x08,    3 /* Private */,
+       5,    0,  389,    2, 0x08,    4 /* Private */,
+       6,    0,  390,    2, 0x08,    5 /* Private */,
+       7,    0,  391,    2, 0x08,    6 /* Private */,
+       8,    0,  392,    2, 0x08,    7 /* Private */,
+       9,    3,  393,    2, 0x08,    8 /* Private */,
+      13,   10,  400,    2, 0x08,   12 /* Private */,
+      23,    0,  421,    2, 0x08,   23 /* Private */,
+      24,    1,  422,    2, 0x08,   24 /* Private */,
+      26,    1,  425,    2, 0x08,   26 /* Private */,
+      27,    0,  428,    2, 0x08,   28 /* Private */,
+      28,    0,  429,    2, 0x08,   29 /* Private */,
+      29,    0,  430,    2, 0x08,   30 /* Private */,
+      30,    0,  431,    2, 0x08,   31 /* Private */,
+      31,    0,  432,    2, 0x08,   32 /* Private */,
+      32,    0,  433,    2, 0x08,   33 /* Private */,
+      33,    0,  434,    2, 0x08,   34 /* Private */,
+      34,    1,  435,    2, 0x08,   35 /* Private */,
+      36,    1,  438,    2, 0x08,   37 /* Private */,
+      37,    1,  441,    2, 0x08,   39 /* Private */,
+      38,    0,  444,    2, 0x08,   41 /* Private */,
+      39,    1,  445,    2, 0x08,   42 /* Private */,
+      41,    1,  448,    2, 0x08,   44 /* Private */,
+      42,    1,  451,    2, 0x08,   46 /* Private */,
+      43,    0,  454,    2, 0x08,   48 /* Private */,
+      44,    0,  455,    2, 0x08,   49 /* Private */,
+      45,    0,  456,    2, 0x08,   50 /* Private */,
+      46,    0,  457,    2, 0x08,   51 /* Private */,
+      47,    0,  458,    2, 0x08,   52 /* Private */,
+      48,    0,  459,    2, 0x08,   53 /* Private */,
+      49,    0,  460,    2, 0x08,   54 /* Private */,
+      50,    0,  461,    2, 0x08,   55 /* Private */,
+      51,    0,  462,    2, 0x08,   56 /* Private */,
+      52,    1,  463,    2, 0x08,   57 /* Private */,
+      53,    1,  466,    2, 0x08,   59 /* Private */,
+      54,    1,  469,    2, 0x08,   61 /* Private */,
+      55,    1,  472,    2, 0x08,   63 /* Private */,
+      56,    1,  475,    2, 0x08,   65 /* Private */,
+      57,    1,  478,    2, 0x08,   67 /* Private */,
+      58,    1,  481,    2, 0x08,   69 /* Private */,
+      59,    1,  484,    2, 0x08,   71 /* Private */,
+      60,    0,  487,    2, 0x08,   73 /* Private */,
+      61,    1,  488,    2, 0x08,   74 /* Private */,
+      62,    1,  491,    2, 0x08,   76 /* Private */,
+      63,    1,  494,    2, 0x08,   78 /* Private */,
+      64,    0,  497,    2, 0x08,   80 /* Private */,
+      65,    0,  498,    2, 0x08,   81 /* Private */,
+      66,    0,  499,    2, 0x08,   82 /* Private */,
+      67,    0,  500,    2, 0x08,   83 /* Private */,
+      68,    0,  501,    2, 0x08,   84 /* Private */,
+      69,    1,  502,    2, 0x08,   85 /* Private */,
+      70,    0,  505,    2, 0x08,   87 /* Private */,
+      71,    0,  506,    2, 0x08,   88 /* Private */,
+      72,    0,  507,    2, 0x08,   89 /* Private */,
+      73,    1,  508,    2, 0x08,   90 /* Private */,
+      74,    0,  511,    2, 0x08,   92 /* Private */,
+      75,    1,  512,    2, 0x08,   93 /* Private */,
+      77,    1,  515,    2, 0x08,   95 /* Private */,
+      78,    1,  518,    2, 0x08,   97 /* Private */,
+      79,    0,  521,    2, 0x08,   99 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -258,6 +260,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadmin_formENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,   76,
     QMetaType::Void, QMetaType::Int,   40,
     QMetaType::Void, QMetaType::QString,   35,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -429,7 +432,9 @@ Q_CONSTINIT const QMetaObject admin_form::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_lineEdit_baseFare_textChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'loadmoney'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -504,6 +509,7 @@ void admin_form::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 58: _t->delOrder((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 59: _t->loadall2((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 60: _t->on_lineEdit_baseFare_textChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 61: _t->loadmoney(); break;
         default: ;
         }
     }
@@ -528,13 +534,13 @@ int admin_form::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 61)
+        if (_id < 62)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 61;
+        _id -= 62;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 61)
+        if (_id < 62)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 61;
+        _id -= 62;
     }
     return _id;
 }
