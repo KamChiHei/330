@@ -1067,8 +1067,8 @@ void admin_form::on_pushButton_update_clicked() {
 }
 
 void admin_form::on_lineEdit_baseFare_editingFinished() {
-    int seatMoneyOfLvl2 = ui->lineEdit_baseFare->text().toInt() * 2;
-    int seatMoneyOfLvl3 = ui->lineEdit_baseFare->text().toInt() * 3;
+    int seatMoneyOfLvl2 = ui->lineEdit_baseFare->text().toInt() * 5;
+    int seatMoneyOfLvl3 = ui->lineEdit_baseFare->text().toInt() * 10;
     if (!ui->lineEdit_baseFare->text().isEmpty()) {
         ui->lineEdit_moneyOfLvl2->setText(QString::number(seatMoneyOfLvl2));
         ui->lineEdit_moneyOfLvl3->setText(QString::number(seatMoneyOfLvl3));
@@ -1451,6 +1451,12 @@ void admin_form::on_lineEdit_selectedFlightId_textChanged(const QString &arg1)
     }
 
 
+
+}
+
+
+void admin_form::on_lineEdit_baseFare_textChanged(const QString &arg1)
+{
 
 }
 

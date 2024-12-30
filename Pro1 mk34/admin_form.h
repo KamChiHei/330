@@ -146,6 +146,8 @@ private slots:
 
 
 
+    void on_lineEdit_baseFare_textChanged(const QString &arg1);
+
 private:
     Ui::admin_form *ui;
 
