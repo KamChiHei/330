@@ -119,8 +119,8 @@ void admin_form::load(int offset){
 
             ui->tableWidget->setItem(i,6,new QTableWidgetItem(query.value(6).toString()));
             ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
-            int moneyOfLvl2= query.value(6).toInt()*2;
-            int moneyOfLvl3=query.value(6).toInt()*3;
+            int moneyOfLvl2= query.value(6).toInt()*seatMoneyOfLvl2;
+            int moneyOfLvl3=query.value(6).toInt()*seatMoneyOfLvl3;
             QString s = QString::number(moneyOfLvl2);
             QString q = QString::number(moneyOfLvl3);
 
@@ -204,8 +204,8 @@ void admin_form::loadall2(int offset){
 
             ui->tableWidget->setItem(i,6,new QTableWidgetItem(query.value(6).toString()));
             ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
-            int moneyOfLvl2= query.value(6).toInt()*2;
-            int moneyOfLvl3=query.value(6).toInt()*3;
+            int moneyOfLvl2= query.value(6).toInt()*seatMoneyOfLvl2;
+            int moneyOfLvl3=query.value(6).toInt()*seatMoneyOfLvl3;
             QString s = QString::number(moneyOfLvl2);
             QString q = QString::number(moneyOfLvl3);
 
@@ -289,8 +289,8 @@ void admin_form::load2(int offset){
 
             ui->tableWidget->setItem(i,6,new QTableWidgetItem(query.value(6).toString()));
             ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
-            int moneyOfLvl2= query.value(6).toInt()*2;
-            int moneyOfLvl3=query.value(6).toInt()*3;
+            int moneyOfLvl2= query.value(6).toInt()*seatMoneyOfLvl2;
+            int moneyOfLvl3=query.value(6).toInt()*seatMoneyOfLvl3;
             QString s = QString::number(moneyOfLvl2);
             QString q = QString::number(moneyOfLvl3);
 
@@ -373,8 +373,8 @@ void admin_form::loada(int offset){
 
             ui->tableWidget->setItem(i,6,new QTableWidgetItem(query.value(6).toString()));
             ui->tableWidget->item(i,6)->setTextAlignment(Qt::AlignVCenter|Qt::AlignHCenter);
-            int moneyOfLvl2= query.value(6).toInt()*2;
-            int moneyOfLvl3=query.value(6).toInt()*3;
+            int moneyOfLvl2= query.value(6).toInt()*seatMoneyOfLvl2;
+            int moneyOfLvl3=query.value(6).toInt()*seatMoneyOfLvl3;
             QString s = QString::number(moneyOfLvl2);
             QString q = QString::number(moneyOfLvl3);
 
@@ -1056,6 +1056,12 @@ void admin_form::on_pushButton_update_clicked() {
     if(needToUpdateFlightId==""){
         ui->label_Note_4->setText("请输入需要修改的航班号");
     }
+    else if(ui->label_Note_4->text()=="找不到航班"){
+        ui->label_Note_4->setText("请输入一个存在的航班");
+    }
+    else if( ui->label_Note_4->text()=="请输入一个存在的航班"){
+        return;
+    }
     else {
         QString sql = QString("UPDATE flight SET date='%1', departure_time='%2', arrival_time='%3', departure_place='%4', arrival_place='%5', base_fare='%6' where flight_id='%7'").arg(needToUpdateDate, needToUpdateDepartureTime, needToUpdateArrivalTime, needToUpdateDeparturePlace, needToUpdateArrivalPlace, needToUpdateBaseFare, needToUpdateFlightId);
         query.exec(sql);
@@ -1067,12 +1073,30 @@ void admin_form::on_pushButton_update_clicked() {
 }
 
 void admin_form::on_lineEdit_baseFare_editingFinished() {
-    int seatMoneyOfLvl2 = ui->lineEdit_baseFare->text().toInt() * 5;
-    int seatMoneyOfLvl3 = ui->lineEdit_baseFare->text().toInt() * 10;
-    if (!ui->lineEdit_baseFare->text().isEmpty()) {
-        ui->lineEdit_moneyOfLvl2->setText(QString::number(seatMoneyOfLvl2));
-        ui->lineEdit_moneyOfLvl3->setText(QString::number(seatMoneyOfLvl3));
+
+    ui->lineEdit_moneyOfLvl2->setReadOnly(0);
+    ui->lineEdit_moneyOfLvl3->setReadOnly(0);
+    QSqlDatabase db = initializeDatabase();
+    QSqlQuery query(db);
+    QString sql=QString("select additional_fare from seat_types where seat_type_id='2'");
+
+    query.exec(sql);
+    if(query.next()){
+        seatMoneyOfLvl2 = query.value(0).toInt();
     }
+
+    sql=QString("select additional_fare from seat_types where seat_type_id='3'");
+    query.exec(sql);
+    if(query.next()){
+        seatMoneyOfLvl3 = query.value(0).toInt();
+    }
+
+    if (!ui->lineEdit_baseFare->text().isEmpty()) {
+        ui->lineEdit_moneyOfLvl2->setText(QString::number(seatMoneyOfLvl2*ui->lineEdit_baseFare->text().toInt()));
+        ui->lineEdit_moneyOfLvl3->setText(QString::number(seatMoneyOfLvl3*ui->lineEdit_baseFare->text().toInt()));
+    }
+    ui->lineEdit_moneyOfLvl2->setReadOnly(1);
+    ui->lineEdit_moneyOfLvl3->setReadOnly(1);
 }
 
 void admin_form::clear3() {

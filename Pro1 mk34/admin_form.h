@@ -172,5 +172,7 @@ private:
     bool bbb1;
     bool bbb2;
 
+    int seatMoneyOfLvl2,seatMoneyOfLvl3;
+
 };
 #endif // ADMIN_FORM_H
