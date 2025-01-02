@@ -82,7 +82,7 @@ admin_form::admin_form(QWidget *parent)
     bbb=false;
     bbb1=false;
     bbb2=false;
-
+    loadmoney();
 
 }
 
@@ -840,7 +840,7 @@ void admin_form::switchPage() {
         currentOffset=0;
          currentoffset2=0;
         currentoffset3=0;
-         loadmoney();
+
          if(ui->label_status->text()!=""){
             sss1=true;
              sss=false;
