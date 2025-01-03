@@ -31,6 +31,11 @@ bool user_Form::haveTikets(int uid){
     dbu.setDatabaseName("flight_ticket_system");           // ODBC 数据源名称
     dbu.open();
 
+    QString opt1 = QString("DELETE FROM `flight_ticket_system`.`orders` WHERE (`order_status` = '已取消')and user_id='%1'").arg(uid);
+
+    QSqlQuery qopt1(dbu);
+    qopt1.exec(opt1);
+
     //SQL 查询用户名
     QString opt = QString("select order_id from orders where user_id='%1'and order_status='已支付'").arg(uid);
     QSqlQuery qopt(dbu);

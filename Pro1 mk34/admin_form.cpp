@@ -82,8 +82,8 @@ admin_form::admin_form(QWidget *parent)
     bbb=false;
     bbb1=false;
     bbb2=false;
-    loadmoney();
 
+    loadmoney();
 }
 
 void admin_form::loadmoney(){
@@ -1084,6 +1084,12 @@ void admin_form::on_pushButton_update_clicked() {
     else if( ui->label_Note_4->text()=="请输入一个存在的航班"){
         return;
     }
+    else if(needToUpdateDeparturePlace==needToUpdateArrivalPlace){
+        ui->label_Note_4->setText("出发地与到达地不能一样");
+    }
+    else if(ui->timeEdit_needToUpdateArrivalTime->time()==ui->timeEdit_needToUpdateDepartureTime->time()){
+        ui->label_Note_4->setText("出发时间与到达时间不能一样");
+    }
     else {
         QString sql = QString("UPDATE flight SET date='%1', departure_time='%2', arrival_time='%3', departure_place='%4', arrival_place='%5', base_fare='%6' where flight_id='%7'").arg(needToUpdateDate, needToUpdateDepartureTime, needToUpdateArrivalTime, needToUpdateDeparturePlace, needToUpdateArrivalPlace, needToUpdateBaseFare, needToUpdateFlightId);
         query.exec(sql);
@@ -1125,7 +1131,7 @@ void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &a
     currentoffset4=0;
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->clearContents();
-    if(ui->label_status->text()=="正在显示所有航班"){
+    if(ui->label_status->text()=="正在显示所有日期的航班"){
         sss=false;
         sss1=false;
         sss2=true;
@@ -1137,6 +1143,8 @@ void admin_form::on_lineEdit_selectedDeparturePlace_textChanged(const QString &a
         sss2=false;
         load2(currentoffset2);
     }
+
+
 }
 
 void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg1) {
@@ -1146,7 +1154,7 @@ void admin_form::on_lineEdit_selectedArrivalPlace_textChanged(const QString &arg
     currentoffset4=0;
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->clearContents();
-    if(ui->label_status->text()=="正在显示所有航班"){
+    if(ui->label_status->text()=="正在显示所有日期的航班"){
         sss=false;
         sss1=false;
         sss2=true;
@@ -1168,7 +1176,7 @@ void admin_form::on_dateEdit_selectedDate_dateChanged(const QDate &date) {
     currentoffset4=0;
     ui->tableWidget->setRowCount(0);
     ui->tableWidget->clearContents();
-    if(ui->label_status->text()=="正在显示所有航班"){
+    if(ui->label_status->text()=="正在显示所有日期的航班"){
         sss=false;
         sss1=false;
         sss2=true;
